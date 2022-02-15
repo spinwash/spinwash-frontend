@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 import Navbar from './Components/Navbar/Navbar';
-import Home from './Pages/Home';
+import { Home, RegisterPage } from './Pages/Index';
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='about' element={''} />
+        <Route path='register' element={<RegisterPage />} />
       </Routes>
     </>
   );

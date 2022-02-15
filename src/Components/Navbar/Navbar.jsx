@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../Logos/Logo';
 import LogoDark from '../Logos/LogoDark';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
@@ -22,9 +22,24 @@ import {
   Box,
 } from '@chakra-ui/react';
 import Login from '../Authentication/Login';
+import { useLocation } from 'react-router-dom';
 
 const MobileNav = () => {
+  const [navbarDark, setNavbarDark] = useState(1);
+  const { pathname } = useLocation();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  useEffect(() => {
+    if (pathname === '/') {
+      setNavbarDark(0);
+    }
+    if (pathname === '/about') {
+      setNavbarDark(0);
+    }
+    if (pathname === '/order') {
+      setNavbarDark(0);
+    }
+  }, [pathname]);
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
@@ -34,7 +49,7 @@ const MobileNav = () => {
   const btnRef = React.useRef();
   return (
     <Container
-      bg='spinwash.300'
+      bg={navbarDark ? 'white' : 'spinwash.300'}
       display={{ base: 'flex', lg: 'none' }}
       maxW='full'
       h='4rem'
@@ -42,13 +57,16 @@ const MobileNav = () => {
       justifyContent='space-between'
     >
       <Box as='button' ref={btnRef} onClick={onOpen}>
-        <HiOutlineMenuAlt2 color='white' size='2rem' />
+        <HiOutlineMenuAlt2
+          color={navbarDark ? '#1B4D7A' : 'white'}
+          size='2rem'
+        />
       </Box>
       <Center display={{ base: 'none', sm: 'flex' }}>
-        <Logo />
+        {navbarDark ? <LogoDark /> : <Logo />}
       </Center>
       <Box as='button' onClick={onOpenModal}>
-        <ButtonHOC variant='light'>Login</ButtonHOC>
+        <ButtonHOC variant={{ navbarDark } ? 'dark' : 'light'}>Login</ButtonHOC>
       </Box>
       <Modal isOpen={isOpenModal} size='full' onClose={onCloseModal} isCentered>
         <ModalOverlay />
@@ -61,7 +79,10 @@ const MobileNav = () => {
         finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent backgroundColor='white'>
+        <DrawerContent
+          backgroundColor={navbarDark ? 'spinwash.500' : 'white'}
+          color={navbarDark ? 'white' : 'spinwash.500'}
+        >
           <DrawerCloseButton size={'lg'} />
           <DrawerHeader>Spin Wash</DrawerHeader>
           <DrawerBody>
@@ -78,15 +99,28 @@ const MobileNav = () => {
               <Text>Pricing</Text>
             </VStack>
           </DrawerBody>
-          <DrawerFooter>
-            <LogoDark />
-          </DrawerFooter>
+          <DrawerFooter>{navbarDark ? <Logo /> : <LogoDark />}</DrawerFooter>
         </DrawerContent>
       </Drawer>
     </Container>
   );
 };
 const DeskNavbar = () => {
+  const [navbarDark, setNavbarDark] = useState(1);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname === '/') {
+      setNavbarDark(0);
+    }
+    if (pathname === '/about') {
+      setNavbarDark(0);
+    }
+    if (pathname === '/order') {
+      setNavbarDark(0);
+    }
+  }, [pathname]);
+
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
@@ -96,20 +130,20 @@ const DeskNavbar = () => {
   return (
     <Container
       maxW='full'
-      bg='spinwash.300'
+      bg={navbarDark ? 'white' : 'spinwash.300'}
       display={{ base: 'none', lg: 'flex' }}
       flexDirection={'row'}
       alignItems='center'
     >
       <Center mx='auto' justifyContent={'space-between'} maxW='8xl' w='full'>
-        <Logo />
+        {navbarDark ? <LogoDark /> : <Logo />}
         <HStack
           fontSize={'xl'}
           align='start'
           m=' 1rem'
           spacing='2rem'
           fontWeight={'500'}
-          color='white'
+          color={navbarDark ? 'spinwash.500' : 'white'}
           alignItems={'center'}
         >
           <Text>Order</Text>
@@ -117,7 +151,9 @@ const DeskNavbar = () => {
           <Text>Areas</Text>
           <Text>Pricing</Text>
           <Box as='button' onClick={onOpenModal}>
-            <ButtonHOC variant='dark'>Login</ButtonHOC>
+            <ButtonHOC variant={{ navbarDark } ? 'dark' : 'light'}>
+              Login
+            </ButtonHOC>
           </Box>
           <Modal
             isOpen={isOpenModal}
