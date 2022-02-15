@@ -1,5 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
-import "@fontsource/manrope";
+import '@fontsource/manrope';
 
 const config = {
   initialColorMode: 'light',
@@ -11,7 +11,7 @@ const theme = extendTheme({
     spinwash: {
       100: '#E1F6FF',
       200: '#BFDBE8',
-      300: '#80D5FB',
+      300: '#7FD0F9',
       400: '#2B5EB9',
       500: '#1B4D7A',
     },

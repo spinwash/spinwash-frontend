@@ -1,8 +1,8 @@
 import React from 'react';
-import Logo from './Logos/Logo';
-import LogoDark from './Logos/LogoDark';
+import Logo from '../Logos/Logo';
+import LogoDark from '../Logos/LogoDark';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
-import ButtonHOC from './HOC/Button.HOC';
+import ButtonHOC from '../HOC/Button.HOC';
 import {
   HStack,
   Container,
@@ -13,15 +13,24 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Modal,
+  ModalOverlay,
   useDisclosure,
   VStack,
   Center,
   Text,
   Box,
 } from '@chakra-ui/react';
+import Login from '../Authentication/Login';
 
 const MobileNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenModal,
+    onOpen: onOpenModal,
+    onClose: onCloseModal,
+  } = useDisclosure();
+
   const btnRef = React.useRef();
   return (
     <Container
@@ -38,7 +47,13 @@ const MobileNav = () => {
       <Center display={{ base: 'none', sm: 'flex' }}>
         <Logo />
       </Center>
-      <ButtonHOC variant='light'>Login</ButtonHOC>
+      <Box as='button' onClick={onOpenModal}>
+        <ButtonHOC variant='light'>Login</ButtonHOC>
+      </Box>
+      <Modal isOpen={isOpenModal} size='full' onClose={onCloseModal} isCentered>
+        <ModalOverlay />
+        <Login />
+      </Modal>
       <Drawer
         isOpen={isOpen}
         placement='left'
@@ -72,6 +87,12 @@ const MobileNav = () => {
   );
 };
 const DeskNavbar = () => {
+  const {
+    isOpen: isOpenModal,
+    onOpen: onOpenModal,
+    onClose: onCloseModal,
+  } = useDisclosure();
+
   return (
     <Container
       maxW='full'
@@ -83,7 +104,7 @@ const DeskNavbar = () => {
       <Center mx='auto' justifyContent={'space-between'} maxW='8xl' w='full'>
         <Logo />
         <HStack
-          fontSize={'2xl'}
+          fontSize={'xl'}
           align='start'
           m=' 1rem'
           spacing='2rem'
@@ -95,7 +116,18 @@ const DeskNavbar = () => {
           <Text>Service</Text>
           <Text>Areas</Text>
           <Text>Pricing</Text>
-          <ButtonHOC variant='dark'>Login</ButtonHOC>
+          <Box as='button' onClick={onOpenModal}>
+            <ButtonHOC variant='dark'>Login</ButtonHOC>
+          </Box>
+          <Modal
+            isOpen={isOpenModal}
+            size='xl'
+            onClose={onCloseModal}
+            isCentered
+          >
+            <ModalOverlay />
+            <Login />
+          </Modal>
         </HStack>
       </Center>
     </Container>

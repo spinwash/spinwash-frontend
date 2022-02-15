@@ -6,7 +6,7 @@ const ButtonHOC = (props) => {
     <Box
       as='button'
       bg={props.variant == 'dark' ? 'spinwash.500' : 'white'}
-      p='0.5rem 1.5rem'
+      p='0.4rem 1.2rem'
       color={props.variant == 'dark' ? 'white' : 'spinwash.500'}
       fontWeight={'600'}
       _hover={{

@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
-import Navbar from './Components/Navbar';
-import Home from './Screens/Home';
+import Navbar from './Components/Navbar/Navbar';
+import Home from './Pages/Home';
 
 function App() {
   return (
