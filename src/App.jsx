@@ -2,6 +2,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import { Box } from '@chakra-ui/react';
 import Navbar from './Components/Navbar/Navbar';
 import { Home, RegisterPage } from './Pages/Index';
+import { Activate, ResetPassword } from './Components/Authentication/Index';
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='about' element={''} />
         <Route path='register' element={<RegisterPage />} />
+        <Route path='user/activate' element={<RegisterPage />} />
+        <Route path='user/reset-password' element={<RegisterPage />} />
       </Routes>
     </>
   );
