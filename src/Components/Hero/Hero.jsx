@@ -2,7 +2,6 @@ import HeroImage from '../Images/Hero.png';
 import React from 'react';
 import {
   Box,
-  Container,
   Heading,
   Image,
   Center,
@@ -11,7 +10,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { AiOutlineSearch } from 'react-icons/ai';
+import BookingBar from './BookingBar';
 
 const MotionBox = motion(Box);
 
@@ -29,7 +28,7 @@ const Hero = () => {
       <VStack
         zIndex={'1'}
         color='white'
-        p={{ base: '2rem 1rem 0rem 1rem', lg: '8rem 2rem 4rem 2rem' }}
+        p={{ base: '2rem 0rem 0rem 0rem', lg: '8rem 2rem 4rem 2rem' }}
         spacing={{ base: '1rem', md: '1.5rem', xl: '2rem' }}
         ml={{ base: 'auto', xl: '8rem' }}
         mr={{ base: 'auto', xl: '-20rem' }}
@@ -62,27 +61,18 @@ const Hero = () => {
           </Text>
         </MotionBox>
         <MotionBox
+          bg='white'
           initial={{ opacity: 0, y: 40 }}
           animate={{
             opacity: 1,
             y: 0,
             transition: { duration: 0.6, delay: 1, ease: 'easeInOut' },
           }}
-          minW={{ base: '14rem', md: '20rem' }}
-          maxW={{ base: '10vw', md: '20vw', lg: '40vw' }}
-          h={{ base: '3rem', md: '5rem', xl: '6rem' }}
-          bg='white'
+          w={{ base: '80vw', md: '60vw', lg: '36vw' }}
           alignSelf={'start'}
           display='flex'
         >
-          <Center
-            bg='spinwash.500'
-            w={{ base: '4rem', lg: '5rem' }}
-            h='auto'
-            m='0.3rem'
-          >
-            <AiOutlineSearch size={26} />
-          </Center>
+          <BookingBar />
         </MotionBox>
       </VStack>
       <Center>

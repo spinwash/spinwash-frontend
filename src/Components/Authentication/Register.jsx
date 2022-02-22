@@ -18,6 +18,9 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import GoogleLogin from 'react-google-login';
@@ -25,6 +28,7 @@ import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { VscEye, VscEyeClosed } from 'react-icons/vsc';
 import ArrowButton from '../HOC/ArrowButton';
+import Login from './Login';
 
 const AlertPop = (props) => {
   return (
@@ -42,6 +46,12 @@ const Register = () => {
   const [loaderGoogle, setLoaderGoogle] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
+
+  const {
+    isOpen: isOpenModal,
+    onOpen: onOpenModal,
+    onClose: onCloseModal,
+  } = useDisclosure();
 
   const {
     handleSubmit,
@@ -230,13 +240,24 @@ const Register = () => {
         </VStack>
         <Text fontSize={{ base: 'sm', md: 'md' }} py={'1rem'}>
           Already have an account{' '}
-          <Text
-            as='span'
-            textColor={'blue.500'}
-            _hover={{ textDecoration: 'underline' }}
+          <Box as='button' onClick={onOpenModal}>
+            <Text
+              as='span'
+              textColor={'blue.500'}
+              _hover={{ textDecoration: 'underline' }}
+            >
+              Login
+            </Text>
+          </Box>
+          <Modal
+            isOpen={isOpenModal}
+            size='xl'
+            onClose={onCloseModal}
+            isCentered
           >
-            Login
-          </Text>
+            <ModalOverlay />
+            <Login closeModel={onCloseModal} />
+          </Modal>
         </Text>
       </VStack>
     </Container>

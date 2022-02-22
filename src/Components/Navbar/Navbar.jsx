@@ -23,22 +23,24 @@ import {
 } from '@chakra-ui/react';
 import Login from '../Authentication/Login';
 import { useLocation } from 'react-router-dom';
+import Profile from './Profile';
 
-const MobileNav = () => {
+const MobileNav = ({ isAuth }) => {
   const [navbarDark, setNavbarDark] = useState(1);
   const { pathname } = useLocation();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
+    console.log('useEffect of navbar called');
     if (pathname === '/') {
       setNavbarDark(0);
     }
     if (pathname === '/about') {
       setNavbarDark(0);
+    } else {
+      setNavbarDark(1);
     }
-    if (pathname === '/order') {
-      setNavbarDark(0);
-    }
+    console.log(navbarDark);
   }, [pathname]);
   const {
     isOpen: isOpenModal,
@@ -49,6 +51,7 @@ const MobileNav = () => {
   const btnRef = React.useRef();
   return (
     <Container
+      zIndex='10'
       bg={navbarDark ? 'white' : 'spinwash.300'}
       display={{ base: 'flex', lg: 'none' }}
       maxW='full'
@@ -65,9 +68,17 @@ const MobileNav = () => {
       <Center display={{ base: 'none', sm: 'flex' }}>
         {navbarDark ? <LogoDark /> : <Logo />}
       </Center>
-      <Box as='button' onClick={onOpenModal}>
-        <ButtonHOC variant={{ navbarDark } ? 'dark' : 'light'}>Login</ButtonHOC>
-      </Box>
+      {isAuth ? (
+        <Box zIndex='10'>
+          <Profile />
+        </Box>
+      ) : (
+        <Box as='button' onClick={onOpenModal}>
+          <ButtonHOC variant={{ navbarDark } ? 'dark' : 'light'}>
+            Login
+          </ButtonHOC>
+        </Box>
+      )}
       <Modal isOpen={isOpenModal} size='full' onClose={onCloseModal} isCentered>
         <ModalOverlay />
         <Login />
@@ -105,7 +116,7 @@ const MobileNav = () => {
     </Container>
   );
 };
-const DeskNavbar = () => {
+const DeskNavbar = ({ isAuth }) => {
   const [navbarDark, setNavbarDark] = useState(1);
   const { pathname } = useLocation();
 
@@ -129,6 +140,7 @@ const DeskNavbar = () => {
 
   return (
     <Container
+      zIndex='10'
       maxW='full'
       bg={navbarDark ? 'white' : 'spinwash.300'}
       display={{ base: 'none', lg: 'flex' }}
@@ -150,11 +162,15 @@ const DeskNavbar = () => {
           <Text>Service</Text>
           <Text>Areas</Text>
           <Text>Pricing</Text>
-          <Box as='button' onClick={onOpenModal}>
-            <ButtonHOC variant={{ navbarDark } ? 'dark' : 'light'}>
-              Login
-            </ButtonHOC>
-          </Box>
+          {isAuth ? (
+            <Profile />
+          ) : (
+            <Box as='button' onClick={onOpenModal}>
+              <ButtonHOC variant={{ navbarDark } ? 'dark' : 'light'}>
+                Login
+              </ButtonHOC>
+            </Box>
+          )}
           <Modal
             isOpen={isOpenModal}
             size='xl'
@@ -162,7 +178,7 @@ const DeskNavbar = () => {
             isCentered
           >
             <ModalOverlay />
-            <Login />
+            <Login closeModel={onCloseModal} />
           </Modal>
         </HStack>
       </Center>
@@ -171,10 +187,12 @@ const DeskNavbar = () => {
 };
 
 const Navbar = () => {
+  const isAuth = true;
+
   return (
     <>
-      <MobileNav />
-      <DeskNavbar />
+      <MobileNav isAuth={isAuth} />
+      <DeskNavbar isAuth={isAuth} />
     </>
   );
 };

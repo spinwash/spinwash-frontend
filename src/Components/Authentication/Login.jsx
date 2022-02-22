@@ -4,19 +4,15 @@ import {
   ModalContent,
   ModalHeader,
   Button,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
   useToast,
   Text,
   Heading,
   FormControl,
-  FormLabel,
   Alert,
   AlertIcon,
   AlertTitle,
-  FormErrorMessage,
-  FormHelperText,
   VStack,
   Input,
   InputGroup,
@@ -27,6 +23,7 @@ import GoogleLogin from 'react-google-login';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { VscEye, VscEyeClosed } from 'react-icons/vsc';
+import { Link } from 'react-router-dom';
 import ArrowButton from '../HOC/ArrowButton';
 import { ForgotPassword } from './ForgotPassword';
 
@@ -41,7 +38,7 @@ const AlertPop = (props) => {
   );
 };
 
-const Login = () => {
+const Login = ({ closeModel }) => {
   const [loader, setLoader] = useState(false);
   const [showForgotPasswordScreen, setShowForgotPasswordScreen] =
     useState(false);
@@ -213,13 +210,15 @@ const Login = () => {
             </VStack>
             <Text fontSize={{ base: 'sm', md: 'md' }} py={'1rem'}>
               Dont have an acount{' '}
-              <Text
-                as='span'
-                textColor={'blue.500'}
-                _hover={{ textDecoration: 'underline' }}
-              >
-                SignUp
-              </Text>
+              <Link to='/register' onClick={() => closeModel()}>
+                <Text
+                  as='span'
+                  textColor={'blue.500'}
+                  _hover={{ textDecoration: 'underline' }}
+                >
+                  SignUp
+                </Text>
+              </Link>
             </Text>
           </VStack>
         )}
