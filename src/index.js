@@ -8,7 +8,7 @@ import theme from './Theme';
 export const newTheme = {
   ...theme,
   shadows: { ...theme.shadows, outline: '0 !important' },
-  colors: { ...theme.colors, primary: '#ffffff' },
+  // colors: { ...theme.colors, primary: '#ffffff' },
 };
 
 ReactDOM.render(

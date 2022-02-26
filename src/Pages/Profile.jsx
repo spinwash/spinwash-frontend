@@ -1,34 +1,42 @@
-import {
-  Center,
-  Container,
-  Flex,
-  Heading,
-  HStack,
-  Stack,
-  Text,
-  VStack,
-  Wrap,
-  Checkbox,
-} from '@chakra-ui/react';
-import React from 'react';
+import { Container, Heading, Stack, Box } from '@chakra-ui/react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import ArrowButton from '../Components/HOC/ArrowButton';
+import { EditProfile, UserProfile } from '../Components/Profile/Index';
+import { isAuth } from '../Helpers/auth';
 
-const data = {
-  email: 'hashtag.irfan@gmail.com',
-  name: 'Irfan Asif',
-  phoneNumber: '+916005293283',
-  address: 'Adi Cplx, Apos;petblr-53, Chickpet, Banglore, Karnatka',
-  postcode: 185111,
-  shirtHung: true,
-  ShirtFolded: false,
-  bedding: 2,
-  profilePicture:
-    'https://www.ommel.fi/content/uploads/2019/03/dummy-profile-image-male.jpg',
-};
+const Profile = (props) => {
+  const { _id } = isAuth();
+  const [editMode, setEditMode] = useState(false);
+  const [Data, setData] = useState(props.profileData);
 
-const Profile = () => {
+  useEffect(() => {
+    axios
+      .get(`/api/user/${_id}`)
+      .then((res) => {
+        setData(res.data);
+        console.log('data inside profile component - ', Data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [_id, editMode, setEditMode, setData]);
+
   return (
     <Container maxW='8xl' py='3rem'>
-      <Heading fontSize={{ base: '4xl', md: '5xl' }}>Your Profile</Heading>
+      <Stack
+        w='100%'
+        justify={{ base: 'start', sm: 'space-between' }}
+        align={{ base: 'start', sm: 'center' }}
+        direction={{ base: 'column', sm: 'row' }}
+      >
+        <Heading fontSize={{ base: '4xl', md: '5xl' }}>Your Profile</Heading>
+        <Box as='button' onClick={() => setEditMode(!editMode)}>
+          <ArrowButton variant='dark'>
+            {editMode ? 'Cancel' : 'Edit Profile'}
+          </ArrowButton>
+        </Box>
+      </Stack>
       <Container
         overflow='hidden'
         maxW={'8xl'}
@@ -39,129 +47,15 @@ const Profile = () => {
         flexDirection='column'
         p={{ base: '0', md: '2rem' }}
       >
-        <VStack alignItems={'start'} gap='2rem'>
-          <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight={'500'}>
-            Account
-          </Heading>
-          <VStack px='1rem'>
-            <Wrap spacing={{ base: '2rem', md: '3rem' }} mx='auto'>
-              <VStack
-                alignItems='start'
-                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
-              >
-                <Heading fontSize={{ base: 'xl', md: '2xl' }} fontWeight={500}>
-                  Name
-                </Heading>
-                <Text fontWeight={400}>{data.name}</Text>
-              </VStack>
-              <VStack
-                alignItems='start'
-                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
-              >
-                <Heading fontSize={{ base: 'xl', md: '2xl' }} fontWeight={500}>
-                  Email
-                </Heading>
-                <Text fontWeight={300}>{data.email}</Text>
-              </VStack>
-              <VStack
-                alignItems='start'
-                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
-              >
-                <Heading fontSize={{ base: 'xl', md: '2xl' }} fontWeight={500}>
-                  Phone Number
-                </Heading>
-                <Text fontWeight={300}>{data.phoneNumber}</Text>
-              </VStack>
-              <VStack
-                alignItems='start'
-                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
-              >
-                <Heading fontSize={{ base: 'xl', md: '2xl' }} fontWeight={500}>
-                  Address
-                </Heading>
-                <Text fontWeight={300}>{data.address}</Text>
-              </VStack>
-            </Wrap>
-          </VStack>
-        </VStack>
-        <VStack alignItems={'start'} gap='2rem'>
-          <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight={'500'}>
-            Preferences
-          </Heading>
-          <VStack px='1rem'>
-            <Wrap spacing={{ base: '2rem', md: '3rem' }}>
-              <VStack
-                alignItems='start'
-                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
-              >
-                <Heading
-                  my='0.5rem'
-                  fontSize={{ base: 'xl', md: '2xl' }}
-                  fontWeight={500}
-                >
-                  Bedding
-                </Heading>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    size='lg'
-                    colorScheme='blue'
-                    defaultChecked={data.bedding === 1}
-                    isDisabled
-                  />
-                  <Text as='span'>Wash and Press</Text>
-                </HStack>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    size='lg'
-                    colorScheme='blue'
-                    defaultChecked={data.bedding === 2}
-                    isDisabled
-                  />
-                  <Text as='span'>Wash and fold</Text>
-                </HStack>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    size='lg'
-                    colorScheme='blue'
-                    defaultChecked={data.bedding === 3}
-                    isDisabled
-                  />
-                  <Text as='span'>Press only</Text>
-                </HStack>
-              </VStack>
-              <VStack
-                alignItems='start'
-                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
-              >
-                <Heading
-                  my='0.5rem'
-                  fontSize={{ base: 'xl', md: '2xl' }}
-                  fontWeight={500}
-                >
-                  Shirts
-                </Heading>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    size='lg'
-                    colorScheme='blue'
-                    defaultChecked={data.shirtHung}
-                    isDisabled
-                  />
-                  <Text as='span'>Shirt Hung</Text>
-                </HStack>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    size='lg'
-                    colorScheme='blue'
-                    defaultChecked={data.ShirtFolded}
-                    isDisabled
-                  />
-                  <Text as='span'>Shirt Folded</Text>
-                </HStack>
-              </VStack>
-            </Wrap>
-          </VStack>
-        </VStack>
+        {editMode ? (
+          <EditProfile
+            data={Data}
+            setEditMode={setEditMode}
+            setData={setData}
+          />
+        ) : (
+          <UserProfile data={Data} />
+        )}
       </Container>
     </Container>
   );

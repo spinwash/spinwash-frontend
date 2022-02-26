@@ -1,110 +1,85 @@
 import {
-  Center,
   Container,
   Heading,
-  HStack,
-  VStack,
   Stack,
   Box,
   Text,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
+  Center,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ArrowButton from '../Components/HOC/ArrowButton';
+import Lottie from 'react-lottie';
+import * as animationData from '../Components/LottieFiles/lf30_editor_oesdryt1.json';
+import axios from 'axios';
+import { isAuth } from '../Helpers/auth';
 
-const Data = [
-  {
-    address:
-      'Current order, Adi Cplx, Apos;petblr-53, Chickpet, Banglore, Karnatka',
-    dropOff: 'Thu Feb 24 2022 00:00:00 GMT+0530',
-    dropOffTime: '07 PM',
-    pickup: 'Wed Feb 23 2022 00:00:00 GMT+0530',
-    pickupTime: '06 PM',
-    requirements: 'This is an order',
-  },
-  {
-    address:
-      'Current order, Adi Cplx, Apos;petblr-53, Chickpet, Banglore, Karnatka',
-    dropOff: 'Sun Feb 26 2022 00:00:00 GMT+0530',
-    dropOffTime: '07 PM',
-    pickup: 'Mon Feb 28 2022 00:00:00 GMT+0530',
-    pickupTime: '06 PM',
-    requirements: 'This is an order',
-  },
-  {
-    address:
-      'Prev Order, Adi Cplx, Apos;petblr-53, Chickpet, Banglore, Karnatka',
-    dropOff: 'Thu Feb 20 2022 00:00:00 GMT+0530',
-    dropOffTime: '06 PM',
-    pickup: 'Wed Feb 21 2022 00:00:00 GMT+0530',
-    pickupTime: '07 PM',
-    requirements: 'This is an order',
-  },
-  {
-    address:
-      'Prev Order, Adi Cplx, Apos;petblr-53, Chickpet, Banglore, Karnatka',
-    dropOff: 'Thu Feb 10 2022 00:00:00 GMT+0530',
-    dropOffTime: '01 PM',
-    pickup: 'Wed Feb 13 2022 00:00:00 GMT+0530',
-    pickupTime: '02 PM',
-    requirements: 'This is an order',
-  },
-  {
-    address:
-      'Prev Order, Adi Cplx, Apos;petblr-53, Chickpet, Banglore, Karnatka',
-    dropOff: 'Thu Feb 20 2022 00:00:00 GMT+0530',
-    dropOffTime: '06 PM',
-    pickup: 'Wed Feb 21 2022 00:00:00 GMT+0530',
-    pickupTime: '07 PM',
-    requirements: 'This is an order',
-  },
-  {
-    address:
-      'Prev Order, Adi Cplx, Apos;petblr-53, Chickpet, Banglore, Karnatka',
-    dropOff: 'Thu Feb 10 2022 00:00:00 GMT+0530',
-    dropOffTime: '01 PM',
-    pickup: 'Wed Feb 13 2022 00:00:00 GMT+0530',
-    pickupTime: '02 PM',
-    requirements: 'This is an order',
-  },
-];
+const Orders = (props) => {
+  const [Data, setData] = useState(props.Data);
+  const id = isAuth()?._id;
 
-const Orders = () => {
+  useEffect(() => {
+    axios
+      .get(`/api/user/${id}`)
+      .then((res) => {
+        setData(res.data.order);
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
+
   const now = new Date();
-  const todayDate = JSON.stringify(now.getDate());
-  const thisMonth = now.toLocaleString('default', { month: 'short' });
-  // console.log(todayDate + ' ' + thisMonth);
 
   const presentOrders = [];
   const previousOrders = [];
 
   for (let i = 0; i < Data.length; i++) {
     const dropOffDate = Data[i].dropOff;
-    var splittedDropOffDate = dropOffDate.split(/(\s+)/);
-    const getDropOffDateData = Date.parse(
-      `${splittedDropOffDate[2]} ${splittedDropOffDate[4]} ${splittedDropOffDate[6]} `
-    );
-    console.log(getDropOffDateData);
+    const getDropOffDateData = Date.parse(dropOffDate);
+    console.log(JSON.stringify(Data[i].dropOff).substring(1, 11));
+    Data[i].dropOff = JSON.stringify(Data[i].dropOff).substring(1, 11);
+    Data[i].pickup = JSON.stringify(Data[i].pickup).substring(1, 11);
+
     if (getDropOffDateData >= now.getTime()) {
       presentOrders.push(Data[i]);
     } else {
       previousOrders.push(Data[i]);
     }
   }
-  console.log('present orders ', presentOrders);
-  console.log('previous orders ', previousOrders);
+
+  const defaultOptionsLottie = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
 
   return (
     <Container maxW='8xl' py='3rem'>
-      <Heading fontSize={{ base: '4xl', md: '5xl' }}>Your Orders</Heading>
+      <Stack
+        w='100%'
+        justify={{ base: 'start', sm: 'space-between' }}
+        align={{ base: 'start', sm: 'center' }}
+        direction={{ base: 'column', sm: 'row' }}
+      >
+        <Heading fontSize={{ base: '4xl', md: '5xl' }}>Your Orders</Heading>
+        <Box as='button'>
+          {Data.length > 0 ? (
+            <Link to='/'>
+              <ArrowButton variant='dark'>Create Order</ArrowButton>
+            </Link>
+          ) : (
+            ''
+          )}
+        </Box>
+      </Stack>
       {Data.length > 0 ? (
         <Container
           overflow='hidden'
@@ -124,7 +99,12 @@ const Orders = () => {
             >
               Current Orders
             </Heading>
-            <Table variant='striped' colorScheme='blue' rounded='0'>
+            <Table
+              //color='gray.400'
+              variant='simple'
+              colorScheme='blue'
+              rounded='0'
+            >
               <Thead>
                 <Tr>
                   <Th>Address</Th>
@@ -136,17 +116,19 @@ const Orders = () => {
                 {presentOrders.map((order) => (
                   <Tr>
                     <Td px={{ base: '8px', md: '14px' }}>
-                      <Text>{order.address}</Text>
+                      <Text isTruncated maxW={{ base: '6rem', sm: '15rem' }}>
+                        {order.address}
+                      </Text>
                     </Td>
                     <Td>
                       <Text>
-                        {order.pickup.substring(0, 15)} - {order.pickupTime}
+                        {order.pickup} - {order.pickupTime}
                       </Text>
                     </Td>
                     <Td>
                       {' '}
                       <Text>
-                        {order.dropOff.substring(0, 15)} - {order.dropOffTime}
+                        {order.dropOff} - {order.dropOffTime}
                       </Text>
                     </Td>
                   </Tr>
@@ -162,7 +144,7 @@ const Orders = () => {
             >
               Previous Orders
             </Heading>
-            <Table variant='striped' colorScheme='blue' rounded='0'>
+            <Table variant='simple' colorScheme='blue' rounded='0'>
               <Thead>
                 <Tr>
                   <Th>Address</Th>
@@ -174,17 +156,19 @@ const Orders = () => {
                 {previousOrders.map((order) => (
                   <Tr>
                     <Td px={{ base: '8px', md: '14px' }}>
-                      <Text>{order.address}</Text>
+                      <Text isTruncated maxW={{ base: '6rem', sm: '15rem' }}>
+                        {order.address}
+                      </Text>
                     </Td>
                     <Td>
                       <Text>
-                        {order.pickup.substring(0, 15)} - {order.pickupTime}
+                        {order.pickup} - {order.pickupTime}
                       </Text>
                     </Td>
                     <Td>
                       {' '}
                       <Text>
-                        {order.dropOff.substring(0, 15)} - {order.dropOffTime}
+                        {order.dropOff} - {order.dropOffTime}
                       </Text>
                     </Td>
                   </Tr>
@@ -194,14 +178,21 @@ const Orders = () => {
           </Box>
         </Container>
       ) : (
-        <Box my='5rem'>
-          <Text fontSize={'xl'} my='1rem'>
-            You havent made any orders
-          </Text>
-          <Link to='/'>
-            <ArrowButton variant='dark'>Book Now</ArrowButton>
-          </Link>
-        </Box>
+        <Center
+          // gap={{ base: '2rem', md: '3rem' }}
+          flexDirection='column'
+          h='50vh'
+        >
+          <Lottie options={defaultOptionsLottie} height={300} width={250} />
+          <Heading fontSize={{ base: 'xl', md: '2xl' }}>
+            Create Your First Order with us
+          </Heading>
+          <Box as='button' my='1rem'>
+            <Link to='/'>
+              <ArrowButton variant='dark'>Create Order</ArrowButton>
+            </Link>
+          </Box>
+        </Center>
       )}
     </Container>
   );

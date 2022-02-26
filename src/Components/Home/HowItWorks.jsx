@@ -18,11 +18,10 @@ import {
 } from 'react-icons/ri';
 
 const MotionCenter = motion(Center);
-const MotionVStack = motion(VStack);
 
 const variant = {
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1, delay: 0.5 } },
+  hidden: { opacity: 0, x: -40 },
 };
 
 const HowItWorks = () => {
@@ -43,20 +42,17 @@ const HowItWorks = () => {
       mt={{ base: '3rem', md: '8rem' }}
       spacing='0'
     >
-      <Center
-        //ref={ref}
-        //animate={controls}
-        //variants={variant}
-        //initial='hidden'
-        overflow={'hidden'}
-        w={{ base: '80%', md: '50%' }}
-      >
-        <Image src={WMImage} maxW={{ base: '360px', md: '600px' }} p='4rem' />
-      </Center>
       <MotionCenter
         ref={ref}
         animate={controls}
         variants={variant}
+        initial='hidden'
+        overflow={'hidden'}
+        w={{ base: '80%', md: '50%' }}
+      >
+        <Image src={WMImage} maxW={{ base: '360px', md: '600px' }} p='4rem' />
+      </MotionCenter>
+      <MotionCenter
         flexDirection='column'
         w={{ base: '90%', md: '50%' }}
         m='2rem'

@@ -7,13 +7,22 @@ import {
   Button,
   MenuGroup,
   MenuDivider,
+  Box,
 } from '@chakra-ui/react';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { signout } from '../../Helpers/auth';
 
-const Profile = () => {
+const Profile = ({ userProfilePicture, profilePictureData }) => {
+  const navigate = useNavigate();
+  const [profilePicture, setprofilePicture] = useState(userProfilePicture);
+
+  useEffect(() => {
+    setprofilePicture(profilePicture);
+  }, [profilePicture]);
+
   return (
-    <Menu shadow='xl'>
+    <Menu shadow='sm' rounded='0'>
       <MenuButton
         as={Button}
         rounded={'full'}
@@ -23,22 +32,46 @@ const Profile = () => {
       >
         <Avatar
           showBorder
+          borderColor={'white'}
           size={'md'}
-          src='https://avatars.githubusercontent.com/u/74172466?v=4'
+          src={profilePicture}
         />
       </MenuButton>
-      <MenuList color='spinwash.500'>
+      <MenuList bgColor='white' color='spinwash.500'>
         <MenuGroup title='Account'>
-          <MenuItem fontSize='md' px='2rem'>
+          <MenuItem
+            _hover={{ bgColor: 'spinwash.100' }}
+            fontSize='md'
+            px='2rem'
+          >
+            <Link to='/'>Home</Link>
+          </MenuItem>
+          <MenuItem
+            _hover={{ bgColor: 'spinwash.100' }}
+            fontSize='md'
+            px='2rem'
+          >
             <Link to='/profile'>Profile</Link>
           </MenuItem>
-          <MenuItem fontSize='md' px='2rem'>
+          <MenuItem
+            _hover={{ bgColor: 'spinwash.100' }}
+            fontSize='md'
+            px='2rem'
+          >
             <Link to='/orders'>Orders</Link>
           </MenuItem>
         </MenuGroup>
-        <MenuDivider />
-        <MenuItem fontSize='md' px='1rem'>
-          Logout
+        <MenuDivider color='spinwash.500' />
+        <MenuItem _hover={{ bgColor: 'spinwash.100' }} fontSize='md' px='1rem'>
+          <Box
+            as='button'
+            onClick={() => {
+              signout();
+              navigate('/');
+            }}
+          >
+            Logout
+          </Box>
         </MenuItem>
       </MenuList>
     </Menu>

@@ -14,6 +14,7 @@ const ButtonHOC = (props) => {
       p='0.5rem 1.5rem'
       color={props.variant === 'dark' ? 'white' : 'spinwash.500'}
       fontWeight={'600'}
+      fontSize={{ base: 'sm', md: 'md' }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >

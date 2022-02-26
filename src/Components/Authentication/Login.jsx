@@ -2,7 +2,6 @@ import {
   Box,
   Center,
   ModalContent,
-  ModalHeader,
   Button,
   ModalBody,
   ModalCloseButton,
@@ -26,6 +25,8 @@ import { VscEye, VscEyeClosed } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 import ArrowButton from '../HOC/ArrowButton';
 import { ForgotPassword } from './ForgotPassword';
+import axios from 'axios';
+import { authenticate } from '../../Helpers/auth';
 
 const AlertPop = (props) => {
   return (
@@ -38,7 +39,7 @@ const AlertPop = (props) => {
   );
 };
 
-const Login = ({ closeModel }) => {
+const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
   const [loader, setLoader] = useState(false);
   const [showForgotPasswordScreen, setShowForgotPasswordScreen] =
     useState(false);
@@ -56,8 +57,34 @@ const Login = ({ closeModel }) => {
   const onSubmit = () => {
     console.log('Submitted');
   };
-  const googleSuccess = () => {
-    console.log('google success');
+  const googleSuccess = (tokenId) => {
+    setLoaderGoogle(true);
+    axios
+      .post('/api/googlelogin', {
+        idToken: tokenId.tokenId,
+      })
+      .then((res) => {
+        toast({
+          title: 'Google Login Success',
+          status: 'success',
+          duration: 3000,
+        });
+        setLoaderGoogle(false);
+
+        //successfully logedin
+        authenticate(res);
+        //setLoggedIn(true);
+        closeModel();
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          title: 'Google Login Error',
+          status: 'error',
+          duration: 3000,
+        });
+        setLoaderGoogle(false);
+      });
   };
   const googleFailure = () => {
     console.log('google failure');
@@ -85,7 +112,7 @@ const Login = ({ closeModel }) => {
               Login
             </Heading>
             <GoogleLogin
-              clientId='185902963184-6ojahsp82t3sbs7j1r2nll8r54g5uv61.apps.googleusercontent.com'
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               onSuccess={googleSuccess}
               onFailure={googleFailure}
               cookiePolicy={'single_host_origin'}

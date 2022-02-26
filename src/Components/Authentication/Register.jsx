@@ -29,6 +29,8 @@ import { FcGoogle } from 'react-icons/fc';
 import { VscEye, VscEyeClosed } from 'react-icons/vsc';
 import ArrowButton from '../HOC/ArrowButton';
 import Login from './Login';
+import axios from 'axios';
+import { authenticate } from '../../Helpers/auth';
 
 const AlertPop = (props) => {
   return (
@@ -63,9 +65,34 @@ const Register = () => {
   const onSubmit = () => {
     console.log('Submitted');
   };
-  const googleSuccess = () => {
-    console.log('google success');
+
+  const googleSuccess = (tokenId) => {
+    setLoaderGoogle(true);
+    axios
+      .post('/api/googlelogin', {
+        idToken: tokenId.tokenId,
+      })
+      .then((res) => {
+        toast({
+          title: 'Google Signin Successful',
+          status: 'success',
+          duration: 3000,
+        });
+        //successfully logedin
+         authenticate(res);
+        // navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          title: 'Google Login Error',
+          status: 'error',
+          duration: 3000,
+        });
+      });
+    setLoaderGoogle(false);
   };
+
   const googleFailure = () => {
     console.log('google failure');
   };
@@ -91,7 +118,7 @@ const Register = () => {
           Signup
         </Heading>
         <GoogleLogin
-          clientId='185902963184-6ojahsp82t3sbs7j1r2nll8r54g5uv61.apps.googleusercontent.com'
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           onSuccess={googleSuccess}
           onFailure={googleFailure}
           cookiePolicy={'single_host_origin'}
@@ -110,7 +137,7 @@ const Register = () => {
                 bgColor: 'gray.100',
               }}
               onClick={renderProps.onClick}
-              // isLoading={loaderGoogle}
+              isLoading={loaderGoogle}
             >
               <Center
                 fontWeight={'500'}

@@ -1,5 +1,5 @@
 import HeroImage from '../Images/Hero.png';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Heading,
@@ -11,10 +11,27 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import BookingBar from './BookingBar';
+import axios from 'axios';
+import { isAuth } from '../../Helpers/auth';
 
 const MotionBox = motion(Box);
 
 const Hero = () => {
+  const [addressData, setAddressData] = useState(
+    '47 cours Franklin Roosevelt, Marseille'
+  );
+  const id = isAuth()?.id;
+
+  useEffect(() => {
+    axios
+      .get(`/api/user/${id}`)
+      .then((res) => {
+        setAddressData(res.data.address);
+        //console.log(addressData);
+      })
+      .catch((err) => console.log(err));
+  });
+
   return (
     <Stack
       direction={{ base: 'column', lg: 'row' }}
@@ -68,11 +85,11 @@ const Hero = () => {
             y: 0,
             transition: { duration: 0.6, delay: 1, ease: 'easeInOut' },
           }}
-          w={{ base: '80vw', md: '60vw', lg: '36vw' }}
+          w={{ base: '75vw', sm: '80vw', md: '64vw', lg: '38vw' }}
           alignSelf={'start'}
           display='flex'
         >
-          <BookingBar />
+          <BookingBar addressData={addressData} />
         </MotionBox>
       </VStack>
       <Center>

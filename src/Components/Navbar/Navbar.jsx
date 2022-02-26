@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Logo from '../Logos/Logo';
 import LogoDark from '../Logos/LogoDark';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
@@ -24,24 +24,11 @@ import {
 import Login from '../Authentication/Login';
 import { useLocation } from 'react-router-dom';
 import Profile from './Profile';
+import { isAuth } from '../../Helpers/auth';
 
-const MobileNav = ({ isAuth }) => {
-  const [navbarDark, setNavbarDark] = useState(1);
-  const { pathname } = useLocation();
+const MobileNav = ({ isAuth, navbarDark, profilePicture }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  useEffect(() => {
-    console.log('useEffect of navbar called');
-    if (pathname === '/') {
-      setNavbarDark(0);
-    }
-    if (pathname === '/about') {
-      setNavbarDark(0);
-    } else {
-      setNavbarDark(1);
-    }
-    console.log(navbarDark);
-  }, [pathname]);
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
@@ -68,9 +55,12 @@ const MobileNav = ({ isAuth }) => {
       <Center display={{ base: 'none', sm: 'flex' }}>
         {navbarDark ? <LogoDark /> : <Logo />}
       </Center>
-      {isAuth ? (
+      {isAuth() ? (
         <Box zIndex='10'>
-          <Profile />
+          <Profile
+            userProfilePicture={isAuth()?.profilePicture}
+            profilePicture={profilePicture}
+          />
         </Box>
       ) : (
         <Box as='button' onClick={onOpenModal}>
@@ -81,7 +71,7 @@ const MobileNav = ({ isAuth }) => {
       )}
       <Modal isOpen={isOpenModal} size='full' onClose={onCloseModal} isCentered>
         <ModalOverlay />
-        <Login />
+        <Login closeModel={onCloseModal} />
       </Modal>
       <Drawer
         isOpen={isOpen}
@@ -116,22 +106,7 @@ const MobileNav = ({ isAuth }) => {
     </Container>
   );
 };
-const DeskNavbar = ({ isAuth }) => {
-  const [navbarDark, setNavbarDark] = useState(1);
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    if (pathname === '/') {
-      setNavbarDark(0);
-    }
-    if (pathname === '/about') {
-      setNavbarDark(0);
-    }
-    if (pathname === '/order') {
-      setNavbarDark(0);
-    }
-  }, [pathname]);
-
+const DeskNavbar = ({ isAuth, navbarDark, profilePicture }) => {
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
@@ -162,8 +137,11 @@ const DeskNavbar = ({ isAuth }) => {
           <Text>Service</Text>
           <Text>Areas</Text>
           <Text>Pricing</Text>
-          {isAuth ? (
-            <Profile />
+          {isAuth() ? (
+            <Profile
+              userProfilePicture={isAuth()?.profilePicture}
+              profilePictureData={profilePicture}
+            />
           ) : (
             <Box as='button' onClick={onOpenModal}>
               <ButtonHOC variant={{ navbarDark } ? 'dark' : 'light'}>
@@ -186,13 +164,32 @@ const DeskNavbar = ({ isAuth }) => {
   );
 };
 
-const Navbar = () => {
-  const isAuth = true;
+const Navbar = ({ profilePicture }) => {
+  const [navbarDark, setNavbarDark] = useState(1);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname === '/') {
+      setNavbarDark(0);
+    } else if (pathname === '/about') {
+      setNavbarDark(0);
+    } else {
+      setNavbarDark(1);
+    }
+  }, [navbarDark, pathname, isAuth]);
 
   return (
     <>
-      <MobileNav isAuth={isAuth} />
-      <DeskNavbar isAuth={isAuth} />
+      <MobileNav
+        isAuth={isAuth}
+        navbarDark={navbarDark}
+        profilePicture={profilePicture}
+      />
+      <DeskNavbar
+        isAuth={isAuth}
+        navbarDark={navbarDark}
+        profilePicture={profilePicture}
+      />
     </>
   );
 };
