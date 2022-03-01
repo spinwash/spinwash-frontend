@@ -1,26 +1,14 @@
-import {
-  Center,
-  Heading,
-  HStack,
-  Image,
-  Stack,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import { Center, Image, Stack } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import WMImage from '../Images/WashingMachene.png';
-import {
-  RiSmartphoneLine,
-  RiShoppingBagLine,
-  RiTruckLine,
-} from 'react-icons/ri';
+import HowItWorksText from './HowItWorksText';
 
 const MotionCenter = motion(Center);
 
 const variant = {
-  visible: { opacity: 1, x: 0, transition: { duration: 1, delay: 0.5 } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.5 } },
   hidden: { opacity: 0, x: -40 },
 };
 
@@ -43,84 +31,16 @@ const HowItWorks = () => {
       spacing='0'
     >
       <MotionCenter
-        ref={ref}
+       
         animate={controls}
         variants={variant}
         initial='hidden'
         overflow={'hidden'}
         w={{ base: '80%', md: '50%' }}
       >
-        <Image src={WMImage} maxW={{ base: '360px', md: '600px' }} p='4rem' />
+        <Image ref={ref} src={WMImage} maxW={{ base: '360px', md: '600px' }} p='4rem' />
       </MotionCenter>
-      <MotionCenter
-        flexDirection='column'
-        w={{ base: '90%', md: '50%' }}
-        m='2rem'
-        alignItems='start'
-      >
-        <Heading fontWeight={'500'} fontSize={{ base: 'xl', md: '3xl' }}>
-          How It Works ?
-        </Heading>
-        <Text
-          maxW='36rem'
-          fontWeight={'300'}
-          fontSize={{ base: 'xs', md: 'md' }}
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-          purus sit amet luctus venenatis, lectus magna fringilla urna,
-          porttitor
-        </Text>
-        <Center flexDirection='column' p='1rem'>
-          <HStack align='base-line' p='0.8rem 1rem' spacing='1rem'>
-            <RiSmartphoneLine size={40} />
-            <VStack align='start'>
-              <Text fontWeight={'500'} fontSize={{ base: 'md', md: 'xl' }}>
-                Schedule a Pickup
-              </Text>
-              <Text
-                maxW='24rem'
-                fontWeight={'300'}
-                fontSize={{ base: 'xs', md: 'md' }}
-              >
-                Choose when and where you wish us to collect & deliver your
-                laundry.
-              </Text>
-            </VStack>
-          </HStack>
-          <HStack align='base-line' p='0.8rem 1rem' spacing='1rem'>
-            <RiShoppingBagLine size={40} />
-            <VStack align='start'>
-              <Text fontWeight={'500'} fontSize={{ base: 'sm', md: 'md' }}>
-                Collection
-              </Text>
-              <Text
-                maxW='24rem'
-                fontWeight={'300'}
-                fontSize={{ base: 'xs', md: 'md' }}
-              >
-                We collect your bag, list and clean your items according to your
-                requirements.
-              </Text>
-            </VStack>
-          </HStack>
-          <HStack align='base-line' p='0.8rem 1rem' spacing='1rem'>
-            <RiTruckLine size={40} />
-            <VStack align='start'>
-              <Text fontWeight={'500'} fontSize={{ base: 'sm', md: 'md' }}>
-                Delivery
-              </Text>
-              <Text
-                maxW='24rem'
-                fontWeight={'300'}
-                fontSize={{ base: 'xs', md: 'md' }}
-              >
-                We deliver your items cleaned within 24 hours and at the time
-                required.
-              </Text>
-            </VStack>
-          </HStack>
-        </Center>
-      </MotionCenter>
+      <HowItWorksText />
     </Stack>
   );
 };

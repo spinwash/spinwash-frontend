@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import Logo from '../Logos/Logo';
 import LogoDark from '../Logos/LogoDark';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';
-import ButtonHOC from '../HOC/Button.HOC';
+import ArrowButton from '../HOC/ArrowButton';
 import {
   HStack,
   Container,
@@ -22,7 +22,7 @@ import {
   Box,
 } from '@chakra-ui/react';
 import Login from '../Authentication/Login';
-import { useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Profile from './Profile';
 import { isAuth } from '../../Helpers/auth';
 
@@ -64,9 +64,9 @@ const MobileNav = ({ isAuth, navbarDark, profilePicture }) => {
         </Box>
       ) : (
         <Box as='button' onClick={onOpenModal}>
-          <ButtonHOC variant={{ navbarDark } ? 'dark' : 'light'}>
+          <ArrowButton variant={{ navbarDark } ? 'dark' : 'light'}>
             Login
-          </ButtonHOC>
+          </ArrowButton>
         </Box>
       )}
       <Modal isOpen={isOpenModal} size='full' onClose={onCloseModal} isCentered>
@@ -94,10 +94,10 @@ const MobileNav = ({ isAuth, navbarDark, profilePicture }) => {
               spacing='0.8rem'
               fontWeight={'500'}
             >
-              <Text>Order</Text>
-              <Text>Service</Text>
-              <Text>Areas</Text>
-              <Text>Pricing</Text>
+              <NavLink to='/'>Order</NavLink>
+              <NavLink to='/pricing'>Pricing</NavLink>
+              <NavLink to='/service'>Service</NavLink>
+              <NavLink to='/areas'>Areas</NavLink>
             </VStack>
           </DrawerBody>
           <DrawerFooter>{navbarDark ? <Logo /> : <LogoDark />}</DrawerFooter>
@@ -133,10 +133,31 @@ const DeskNavbar = ({ isAuth, navbarDark, profilePicture }) => {
           color={navbarDark ? 'spinwash.500' : 'white'}
           alignItems={'center'}
         >
-          <Text>Order</Text>
-          <Text>Service</Text>
-          <Text>Areas</Text>
-          <Text>Pricing</Text>
+          <NavLink to='/'>
+            <Text _hover={{ color: 'spinwash.400', transition: 'all 0.3s' }}>
+              Order
+            </Text>
+          </NavLink>
+          <NavLink to='/pricing'>
+            <Text _hover={{ color: 'spinwash.400', transition: 'all 0.3s' }}>
+              Pricing
+            </Text>
+          </NavLink>
+          <NavLink to='/areas'>
+            <Text _hover={{ color: 'spinwash.400', transition: 'all 0.3s' }}>
+              Areas
+            </Text>
+          </NavLink>
+          <NavLink to='/about'>
+            <Text _hover={{ color: 'spinwash.400', transition: 'all 0.3s' }}>
+              About
+            </Text>
+          </NavLink>
+          <NavLink to='/contact'>
+            <Text _hover={{ color: 'spinwash.400', transition: 'all 0.3s' }}>
+              Contact
+            </Text>
+          </NavLink>
           {isAuth() ? (
             <Profile
               userProfilePicture={isAuth()?.profilePicture}
@@ -144,9 +165,9 @@ const DeskNavbar = ({ isAuth, navbarDark, profilePicture }) => {
             />
           ) : (
             <Box as='button' onClick={onOpenModal}>
-              <ButtonHOC variant={{ navbarDark } ? 'dark' : 'light'}>
+              <ArrowButton variant={{ navbarDark } ? 'dark' : 'light'}>
                 Login
-              </ButtonHOC>
+              </ArrowButton>
             </Box>
           )}
           <Modal
@@ -172,6 +193,8 @@ const Navbar = ({ profilePicture }) => {
     if (pathname === '/') {
       setNavbarDark(0);
     } else if (pathname === '/about') {
+      setNavbarDark(0);
+    } else if (pathname === '/pricing') {
       setNavbarDark(0);
     } else {
       setNavbarDark(1);
