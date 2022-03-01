@@ -60,7 +60,7 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
   const googleSuccess = (tokenId) => {
     setLoaderGoogle(true);
     axios
-      .post('/api/googlelogin', {
+      .post('https://spinwash.herokuapp.com/api/googlelogin', {
         idToken: tokenId.tokenId,
       })
       .then((res) => {

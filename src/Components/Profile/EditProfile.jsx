@@ -50,7 +50,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
     console.log(data);
 
     axios
-      .put('/api/user/update', data)
+      .put('https://spinwash.herokuapp.com/api/user/update', data)
       .then((res) => {
         setData(res.data);
         toast({

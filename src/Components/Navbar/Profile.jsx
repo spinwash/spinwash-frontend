@@ -29,6 +29,8 @@ const Profile = ({ userProfilePicture, profilePictureData }) => {
         variant={'link'}
         cursor={'pointer'}
         minW={0}
+        display={'flex'}
+        flexDirection={'column'}
       >
         <Avatar
           showBorder
@@ -37,6 +39,7 @@ const Profile = ({ userProfilePicture, profilePictureData }) => {
           src={profilePicture}
         />
       </MenuButton>
+
       <MenuList bgColor='white' color='spinwash.500'>
         <MenuGroup title='Account'>
           <MenuItem

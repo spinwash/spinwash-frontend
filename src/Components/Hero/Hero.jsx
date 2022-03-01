@@ -24,7 +24,7 @@ const Hero = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/user/${id}`)
+      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
       .then((res) => {
         setAddressData(res.data.address);
         //console.log(addressData);

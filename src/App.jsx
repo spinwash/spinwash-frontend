@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`/api/user/${id}`)
+      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
       .then((res) => {
         console.log(res.data.order);
         setOrderData(res.data.order);
