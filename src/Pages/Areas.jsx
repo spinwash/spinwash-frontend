@@ -179,7 +179,10 @@ const Areas = () => {
               transition: { duration: 0.6, ease: 'easeInOut' },
             }}
           >
-            <Heading fontWeight={'600'} fontSize={{ base: '4xl', xl: '7xl' }}>
+            <Heading
+              fontWeight={'600'}
+              fontSize={{ base: '4xl', lg: '6xl', xl: '7xl' }}
+            >
               Areas & Postcodes We Cover
             </Heading>
           </MotionBox>
@@ -209,15 +212,14 @@ const Areas = () => {
       </Stack>
       <Container
         maxW='8xl'
-        p={{ base: '2rem 0rem 0rem 0rem', lg: '8rem 2rem 4rem 2rem' }}
+        p={{ base: '1rem 0rem 0rem 0rem', xl: '0' }}
         my='4rem'
       >
         <Wrap
           align={{ base: 'center', sm: 'start' }}
           justify={{ base: 'center', lg: 'space-between' }}
-          maxW='3xl'
-          border='2px solid red'
-          mr={'auto'}
+          maxW='4xl'
+          mx={{ base: 'auto', lg: 'auto', xl: '0' }}
         >
           <MotionVStack
             initial={{ opacity: 0, y: 60 }}
@@ -227,7 +229,7 @@ const Areas = () => {
               transition: { duration: 0.4, delay: 0.8, ease: 'easeInOut' },
             }}
             alignItems={'start'}
-            minW={{ base: '14rem', sm: '10rem' }}
+            minW={{ base: '18rem', sm: '14rem', xl: '15rem' }}
           >
             <Heading fontWeight={'500'} fontSize={{ base: 'xl', md: '3xl' }}>
               Bromley
@@ -248,7 +250,7 @@ const Areas = () => {
               y: 0,
               transition: { duration: 0.4, delay: 1.2, ease: 'easeInOut' },
             }}
-            minW={{ base: '14rem', sm: '10rem' }}
+            minW={{ base: '18rem', sm: '14rem', xl: '15rem' }}
             alignItems={'start'}
           >
             <Heading fontWeight={'500'} fontSize={{ base: 'xl', md: '3xl' }}>
@@ -270,7 +272,7 @@ const Areas = () => {
               y: 0,
               transition: { duration: 0.4, delay: 1.6, ease: 'easeInOut' },
             }}
-            minW={{ base: '14rem', sm: '10rem' }}
+            minW={{ base: '18rem', sm: '14rem', xl: '15rem' }}
             alignItems={'start'}
           >
             <Heading fontWeight={'500'} fontSize={{ base: 'xl', md: '3xl' }}>
