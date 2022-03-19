@@ -9,17 +9,12 @@ import {
   MenuDivider,
   Box,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signout } from '../../Helpers/auth';
 
-const Profile = ({ userProfilePicture, profilePictureData }) => {
+const Profile = ({ userProfilePicture }) => {
   const navigate = useNavigate();
-  const [profilePicture, setprofilePicture] = useState(userProfilePicture);
-
-  useEffect(() => {
-    setprofilePicture(profilePicture);
-  }, [profilePicture]);
 
   return (
     <Menu shadow='sm' rounded='0'>
@@ -36,7 +31,7 @@ const Profile = ({ userProfilePicture, profilePictureData }) => {
           showBorder
           borderColor={'white'}
           size={'md'}
-          src={profilePicture}
+          src={userProfilePicture}
         />
       </MenuButton>
 

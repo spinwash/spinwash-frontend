@@ -6,10 +6,25 @@ import {
   Wrap,
   Checkbox,
 } from '@chakra-ui/react';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { isAuth } from '../../Helpers/auth';
 
 const UserProfile = ({ data }) => {
-  console.log(data);
+  const [coupenState, setCoupenState] = useState(true);
+  const id = isAuth()?._id;
+
+  useEffect(() => {
+    axios
+      .get(`/api/user/${id}`)
+      .then((res) => {
+        setCoupenState(res.data.referralCodeUsed);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
   return (
     <>
       <VStack alignItems={'start'} gap='2rem'>
@@ -55,6 +70,25 @@ const UserProfile = ({ data }) => {
               </Heading>
               <Text fontWeight={300}>{data?.address}</Text>
             </VStack>
+            {!coupenState && (
+              <VStack
+                alignItems='start'
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
+                <Heading fontSize={{ base: 'xl', md: '2xl' }} fontWeight={500}>
+                  Referral Code
+                </Heading>
+                <Text
+                  border={'2px dashed #1B4D7A'}
+                  rounded='md'
+                  p='1rem'
+                  bg='spinwash.100'
+                  fontWeight={400}
+                >
+                  {data?._id.slice(0, data?._id.length / 2)}
+                </Text>
+              </VStack>
+            )}
           </Wrap>
         </VStack>
       </VStack>
@@ -89,9 +123,36 @@ const UserProfile = ({ data }) => {
                   size='md'
                   outline='1px solid #1B4D7A'
                   colorScheme='white'
-                  defaultChecked={'true'}
+                  defaultChecked={data.shirtFolded}
                 />
                 <Text as='span'>Shirt Folded</Text>
+              </HStack>
+              <HStack pl='1rem'>
+                <Checkbox
+                  size='md'
+                  outline='1px solid #1B4D7A'
+                  colorScheme='white'
+                  defaultChecked={data.shirtDryCleanAndPress}
+                />
+                <Text as='span'>shirt DryClean And Press</Text>
+              </HStack>
+              <HStack pl='1rem'>
+                <Checkbox
+                  size='md'
+                  outline='1px solid #1B4D7A'
+                  colorScheme='white'
+                  defaultChecked={data.shirtPressOnly}
+                />
+                <Text as='span'>shirtPressOnly</Text>
+              </HStack>
+              <HStack pl='1rem'>
+                <Checkbox
+                  size='md'
+                  outline='1px solid #1B4D7A'
+                  colorScheme='white'
+                  defaultChecked={data.shirtWashAndPress}
+                />
+                <Text as='span'>shirt Wash And Press</Text>
               </HStack>
             </VStack>
             <VStack

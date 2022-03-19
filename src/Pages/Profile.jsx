@@ -5,22 +5,22 @@ import ArrowButton from '../Components/HOC/ArrowButton';
 import { EditProfile, UserProfile } from '../Components/Profile/Index';
 import { isAuth } from '../Helpers/auth';
 
-const Profile = (props) => {
+const Profile = () => {
   const { _id } = isAuth();
   const [editMode, setEditMode] = useState(false);
-  const [Data, setData] = useState(props.profileData);
+  const [Data, setData] = useState(isAuth());
 
   useEffect(() => {
     axios
-      .get(`https://spinwash.herokuapp.com/api/user/${_id}`)
+      .get(`/api/user/${_id}`)
       .then((res) => {
         setData(res.data);
-        console.log('data inside profile component - ', Data);
+        console.log('data inside profile page - ', Data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [_id, editMode, setEditMode, setData]);
+  }, [_id, editMode, setEditMode]);
 
   return (
     <Container maxW='8xl' py='3rem'>

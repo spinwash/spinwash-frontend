@@ -6,12 +6,9 @@ import {
   Text,
   Heading,
   FormControl,
-  FormLabel,
   Alert,
   AlertIcon,
   AlertTitle,
-  FormErrorMessage,
-  FormHelperText,
   VStack,
   Container,
   Tooltip,
@@ -31,6 +28,7 @@ import ArrowButton from '../HOC/ArrowButton';
 import Login from './Login';
 import axios from 'axios';
 import { authenticate } from '../../Helpers/auth';
+import { useNavigate } from 'react-router-dom';
 
 const AlertPop = (props) => {
   return (
@@ -48,6 +46,7 @@ const Register = () => {
   const [loaderGoogle, setLoaderGoogle] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
+  const navigate = useNavigate();
 
   const {
     isOpen: isOpenModal,
@@ -62,14 +61,40 @@ const Register = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const onSubmit = () => {
-    console.log('Submitted');
+  const onSubmit = (data) => {
+    setLoader(true);
+    console.log(data);
+    axios
+      .post(`/api/register`, data)
+      .then((res) => {
+        toast({
+          title: res.data.message,
+          status: 'success',
+          duration: 4000,
+        });
+        setLoader(false);
+        // on signup send message and redirect to login page
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        setError('email', {
+          type: 'server',
+          message: err.response.data.message,
+        });
+        toast({
+          title: err.response.data.message,
+          status: 'error',
+          duration: 2000,
+        });
+        setLoader(false);
+      });
   };
 
   const googleSuccess = (tokenId) => {
     setLoaderGoogle(true);
     axios
-      .post('https://spinwash.herokuapp.com/api/googlelogin', {
+      .post(`/api/googlelogin`, {
         idToken: tokenId.tokenId,
       })
       .then((res) => {
@@ -79,8 +104,8 @@ const Register = () => {
           duration: 3000,
         });
         //successfully logedin
-         authenticate(res);
-        // navigate('/');
+        authenticate(res);
+        navigate('/');
       })
       .catch((err) => {
         console.log(err);
@@ -251,6 +276,21 @@ const Register = () => {
                 </InputGroup>
               </Tooltip>
               {errors.password && <AlertPop title={errors.password.message} />}
+            </FormControl>
+            <FormControl w='full' mb='1rem'>
+              <Input
+                outline='2px solid #1B4D7A'
+                type={'text'}
+                mb={'1rem'}
+                borderRadius={'0'}
+                bg={'white'}
+                px='0.5rem'
+                h={{ base: '3rem', md: '3.6rem' }}
+                size={{ base: 'sm', md: 'lg' }}
+                placeholder='Promo Code'
+                _placeholder={{ color: 'gray.400' }}
+                {...register('promocode')}
+              />
             </FormControl>
             <Box
               as='button'

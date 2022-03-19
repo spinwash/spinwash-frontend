@@ -19,7 +19,7 @@ import { useForm } from 'react-hook-form';
 import ChangeProfilePicture from './ChangeProfilePicture';
 import ArrowButton from '../HOC/ArrowButton';
 import axios from 'axios';
-import { isAuth } from '../../Helpers/auth';
+import { isAuth, setLocalStorage } from '../../Helpers/auth';
 
 const EditProfile = ({ data, setEditMode, setData }) => {
   const [newImage, setNewImage] = useState(isAuth()?.profilePicture);
@@ -32,11 +32,14 @@ const EditProfile = ({ data, setEditMode, setData }) => {
       phoneNumber: data.phoneNumber,
       address: data.address,
       preferences: data.preferences,
-      shirtHung: data.shirtHung,
-      shirtFolded: data.shirtFolded,
       beddingPressOnly: data.beddingPressOnly,
       beddingWashAndFold: data.beddingWashAndFold,
       beddingWashAndPress: data.beddingWashAndPress,
+      shirtHung: data.shirtHung,
+      shirtFolded: data.shirtFolded,
+      shirtDryCleanAndPress: data.shirtDryCleanAndPress,
+      shirtWashAndPress: data.shirtWashAndPress,
+      shirtPressOnly: data.shirtPressOnly,
     },
   });
 
@@ -50,9 +53,10 @@ const EditProfile = ({ data, setEditMode, setData }) => {
     console.log(data);
 
     axios
-      .put('https://spinwash.herokuapp.com/api/user/update', data)
+      .put(`/api/user/update`, data)
       .then((res) => {
         setData(res.data);
+        setLocalStorage('user', res.data);
         toast({
           title: 'Changes Saved Successfully',
           description: 'It will take time to reflect the changes',
@@ -61,6 +65,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
           isClosable: true,
         });
       })
+
       .catch((err) => console.log(err));
 
     setEditMode(false);
@@ -207,6 +212,39 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                     {...register('shirtFolded')}
                   />
                   <Text as='span'>Shirt Folded</Text>
+                </HStack>
+                <HStack pl='1rem'>
+                  <Checkbox
+                    outline='1px solid #1B4D7A'
+                    color='spinwash.500'
+                    size='lg'
+                    colorScheme='black'
+                    defaultChecked={data.shirtDryCleanAndPress}
+                    {...register('shirtDryCleanAndPress')}
+                  />
+                  <Text as='span'>shirt DryClean And Press</Text>
+                </HStack>
+                <HStack pl='1rem'>
+                  <Checkbox
+                    outline='1px solid #1B4D7A'
+                    color='spinwash.500'
+                    size='lg'
+                    colorScheme='black'
+                    defaultChecked={data.shirtPressOnly}
+                    {...register('shirtPressOnly')}
+                  />
+                  <Text as='span'>shirt Press Only</Text>
+                </HStack>
+                <HStack pl='1rem'>
+                  <Checkbox
+                    outline='1px solid #1B4D7A'
+                    color='spinwash.500'
+                    size='lg'
+                    colorScheme='black'
+                    defaultChecked={data.beddingPressOnly}
+                    {...register('beddingPressOnly')}
+                  />
+                  <Text as='span'>bedding Press Only</Text>
                 </HStack>
               </VStack>
               <VStack

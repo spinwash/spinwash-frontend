@@ -8,7 +8,7 @@ import HowItWorksText from './HowItWorksText';
 const MotionCenter = motion(Center);
 
 const variant = {
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.5 } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
   hidden: { opacity: 0, x: -40 },
 };
 
@@ -31,14 +31,18 @@ const HowItWorks = () => {
       spacing='0'
     >
       <MotionCenter
-       
         animate={controls}
         variants={variant}
         initial='hidden'
         overflow={'hidden'}
         w={{ base: '80%', md: '50%' }}
       >
-        <Image ref={ref} src={WMImage} maxW={{ base: '360px', md: '600px' }} p='4rem' />
+        <Image
+          ref={ref}
+          src={WMImage}
+          maxW={{ base: '360px', md: '600px' }}
+          p='4rem'
+        />
       </MotionCenter>
       <HowItWorksText />
     </Stack>

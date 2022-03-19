@@ -21,12 +21,13 @@ import axios from 'axios';
 import { isAuth } from '../Helpers/auth';
 
 const Orders = (props) => {
-  const [Data, setData] = useState(props.Data);
+  const [Data, setData] = useState(isAuth());
   const id = isAuth()?._id;
+  console.log(Data);
 
   useEffect(() => {
     axios
-      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
+      .get(`/api/user/${id}`)
       .then((res) => {
         setData(res.data.order);
       })

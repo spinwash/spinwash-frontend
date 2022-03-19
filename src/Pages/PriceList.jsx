@@ -14,9 +14,10 @@ import {
 import Data from '../Data/PriceListData.json';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import HeroImage from '../Components/Images/Hero.png';
+import HeroImage from '../Components/Images/Hero.webp';
 import BookNow from '../Components/Home/BookNow';
 import SearchBar from '../Components/Price List/SearchBar';
+import SearchData from '../Data/SearchData.json';
 
 const MotionBox = motion(Box);
 const MotionVStack = motion(VStack);
@@ -90,18 +91,19 @@ const PriceList = () => {
               transition: { duration: 0.6, delay: 0.6, ease: 'easeInOut' },
             }}
           >
-            <Center
+            <Box
               w={['70vw', '50vw', '30vw']}
               bg='white'
               mt={'1rem'}
-              h={{ base: '1rem', md: '4rem' }}
+              maxH={{ base: '1rem', md: '4.08rem' }}
             >
               <SearchBar
+                setItem={setCategory}
                 dark={false}
-                data={Data}
+                Data={SearchData}
                 placeholder='Search for Item'
               />
-            </Center>
+            </Box>
           </MotionBox>
         </VStack>
         <Center>

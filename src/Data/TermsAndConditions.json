@@ -1,0 +1,37 @@
+[
+    {
+        "heading": "Information About us",
+        "points": [
+            "This Website is owned and operated by Spinwash LTD. We are registered as limited company under company number 12731639"
+        ]
+    },
+    {
+        "heading": "Information about the Terms and Conditions",
+        "points": [
+            "By placing an order with us you agree to all the terms and conditions listed. ",
+            "An order can be placed with us through our website, email or phone."
+        ]
+    },
+    {
+        "heading": "Payment",
+        "points": [
+            "The customer agrees to make their payment before the agreed delivery time. ",
+            "The customer understands that if an order total is below £20, they will be charged a fee to meet the minimum delivery point.",
+            "The customer understands that in the event that a payment is not made 75 minutes prior to the agreed delivery time, the customers clothing items will not be delivered",
+            "If payment is made after the initial delivery time a second delivery can be arranged by contacting Spinwash through email or customer support line",
+            "Spinwash reserves the right to delay delivery of clothes should payment have not been received due to not receiving a payment.",
+            "The customer agrees to make payment using the payment infrastructure included with the invoice sent to the customer ",
+            "Where evidence suggests that payment may have been made fraudulently the company reserves the right to request a bank transfer as opposed to card payment"
+        ]
+    },
+    {
+        "heading": "Liability",
+        "points": [
+            "The customer is responsible for removing collar stiffeners and cuff links from shirts.",
+            "The customer is responsible for ensuring pockets are empty.",
+            "The customer is responsible for making sure all items given for a service wash are able to be washed and tumble dried. ",
+            "The customers items will be held for no longer than 3 months; once this period is over the items will be given to charity. ",
+            "The customers understands that there is a risk in getting their items cleaned and there is a risk of their items getting damaged, we will try our best to make sure this does not occur. We will cover 10 times the cost of cleaning the item in case of any damage. "
+        ]
+    }
+]

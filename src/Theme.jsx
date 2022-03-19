@@ -22,7 +22,6 @@ const theme = extendTheme({
   styles: {
     global: {
       'html, body': {
-        // fontFamily: 'sans',
         background: '#ffffff',
         color: '#1B4D7A',
       },

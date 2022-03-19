@@ -3,10 +3,10 @@ import Register from '../Components/Authentication/Register';
 
 const RegisterPage = () => {
   return (
-    <div>
+    <>
       <Register />
-    </div>
+    </>
   );
 };
 
-export {RegisterPage};
+export { RegisterPage };

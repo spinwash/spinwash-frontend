@@ -17,6 +17,7 @@ import { motion } from 'framer-motion';
 import SearchBar from '../Components/Price List/SearchBar';
 import Lottie from 'react-lottie';
 import * as animationData from '../Components/LottieFiles/lf30_editor_g9cdecsk.json';
+import SearchData from '../Data/AreasData.json';
 
 const MotionBox = motion(Box);
 const MotionVStack = motion(VStack);
@@ -196,17 +197,19 @@ const Areas = () => {
               transition: { duration: 0.6, delay: 0.7, ease: 'easeInOut' },
             }}
           >
-            <Center
+            <Box
               w={['70vw', '50vw', '30vw']}
-              bg='spinwash.500'
-              h={{ base: '1rem', md: '4rem' }}
+              bg='white'
+              mt={'1rem'}
+              maxH={{ base: '1rem', md: '4.08rem' }}
             >
               <SearchBar
+                //setItem={setCategory}
+                Data={SearchData}
                 dark={true}
-                data={Data}
-                placeholder='Search for Item'
+                placeholder='Search for Place'
               />
-            </Center>
+            </Box>
           </MotionBox>
         </VStack>
       </Stack>

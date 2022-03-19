@@ -1,4 +1,4 @@
-import HeroImage from '../Images/Hero.png';
+import HeroImage from '../Images/Hero.webp';
 import React, { useEffect, useState } from 'react';
 import {
   Box,
@@ -17,17 +17,15 @@ import { isAuth } from '../../Helpers/auth';
 const MotionBox = motion(Box);
 
 const Hero = () => {
-  const [addressData, setAddressData] = useState(
-    '47 cours Franklin Roosevelt, Marseille'
-  );
+  const [addressData, setAddressData] = useState();
   const id = isAuth()?.id;
 
   useEffect(() => {
     axios
-      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
+      .get(`/api/user/${id}`)
       .then((res) => {
         setAddressData(res.data.address);
-        //console.log(addressData);
+        console.log(addressData);
       })
       .catch((err) => console.log(err));
   });
@@ -72,9 +70,11 @@ const Hero = () => {
           }}
         >
           <Text pb='1rem' fontSize={{ base: 'sm', md: 'md' }}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id nisi
-            iure atque, nemo dolorem eius excepturi deleniti molestias earum
-            iusto. Repellendus debitis dolores odio sapiente.
+            We here at Spinwash strive to provide our customers with the finest
+            dry cleaning and laundry service. With over 20 years of experience
+            we will provide you with the best cleaning possible. We collect,
+            clean and deliver your clothes without you having to leave the
+            comfort of your home
           </Text>
         </MotionBox>
         <MotionBox

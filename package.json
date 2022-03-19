@@ -2,8 +2,9 @@
   "name": "spinwash-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://spinwash.herokuapp.com/",
+  "proxy": "http://localhost:8080",
   "dependencies": {
+    "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.3",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
@@ -25,6 +26,7 @@
     "react-lottie": "^1.2.3",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-slick": "^0.28.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -26,8 +26,9 @@ import { NavLink, useLocation } from 'react-router-dom';
 import Profile from './Profile';
 import { isAuth } from '../../Helpers/auth';
 
-const MobileNav = ({ isAuth, navbarDark, profilePicture }) => {
+const MobileNav = ({ isAuth, navbarDark }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const profilePicture = isAuth()?.profilePicture;
 
   const {
     isOpen: isOpenModal,
@@ -106,7 +107,7 @@ const MobileNav = ({ isAuth, navbarDark, profilePicture }) => {
     </Container>
   );
 };
-const DeskNavbar = ({ isAuth, navbarDark, profilePicture }) => {
+const DeskNavbar = ({ isAuth, navbarDark }) => {
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
@@ -117,6 +118,7 @@ const DeskNavbar = ({ isAuth, navbarDark, profilePicture }) => {
     <Container
       zIndex='10'
       maxW='full'
+      pt={'1rem'}
       bg={navbarDark ? 'white' : 'spinwash.300'}
       display={{ base: 'none', lg: 'flex' }}
       flexDirection={'row'}
@@ -161,7 +163,6 @@ const DeskNavbar = ({ isAuth, navbarDark, profilePicture }) => {
           {isAuth() ? (
             <Profile
               userProfilePicture={isAuth()?.profilePicture}
-              profilePictureData={profilePicture}
             />
           ) : (
             <Box as='button' onClick={onOpenModal}>
@@ -185,7 +186,7 @@ const DeskNavbar = ({ isAuth, navbarDark, profilePicture }) => {
   );
 };
 
-const Navbar = ({ profilePicture }) => {
+const Navbar = () => {
   const [navbarDark, setNavbarDark] = useState(1);
   const { pathname } = useLocation();
 
@@ -203,16 +204,8 @@ const Navbar = ({ profilePicture }) => {
 
   return (
     <>
-      <MobileNav
-        isAuth={isAuth}
-        navbarDark={navbarDark}
-        profilePicture={profilePicture}
-      />
-      <DeskNavbar
-        isAuth={isAuth}
-        navbarDark={navbarDark}
-        profilePicture={profilePicture}
-      />
+      <MobileNav isAuth={isAuth} navbarDark={navbarDark} />
+      <DeskNavbar isAuth={isAuth} navbarDark={navbarDark} />
     </>
   );
 };

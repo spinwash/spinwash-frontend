@@ -19,30 +19,54 @@ import {
   VStack,
   Textarea,
 } from '@chakra-ui/react';
-import { Controller, useForm } from 'react-hook-form';
+
 import DatePicker from 'react-datepicker';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../Styles/date-picker.css';
-import { HiOutlineArrowRight } from 'react-icons/hi';
+
 import Login from '../Authentication/Login';
 import ArrowButton from '../HOC/ArrowButton';
+
+import { HiOutlineArrowRight } from 'react-icons/hi';
+import { Controller, useForm } from 'react-hook-form';
 import Lottie from 'react-lottie';
 import * as animationData from '../LottieFiles/lf30_editor_wcn2guyh.json';
 import { isAuth } from '../../Helpers/auth';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+const now = new Date();
+
 export default function BookingBar(props) {
   const [timing, setTiming] = useState(['Select Date First']);
   const [dropOffTiming, setDropOffTiming] = useState(['Select Date First']);
+  const [charges, setCharges] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [hover, setHover] = useState(false);
 
-  const { handleSubmit, register, watch, control } = useForm({
+  function convertTo24Hour(time) {
+    var hours = parseInt(time?.substr(0, 2));
+    if (time?.indexOf('am') != -1 && hours == 12) {
+      time = time?.replace('12', '0');
+    }
+    if (time?.indexOf('pm') != -1 && hours < 12) {
+      time = time?.replace(hours, hours + 12);
+    }
+    return time?.replace(/(am|pm)/, '');
+  }
+
+  const [minDate, setMinDate] = useState(now);
+
+  const {
+    handleSubmit,
+    register,
+    watch,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm({
     defaultOptions: { address: props.addressData },
   });
-
-  console.log(props.addressData);
 
   const {
     isOpen: isOpenModal,
@@ -66,40 +90,54 @@ export default function BookingBar(props) {
 
   const collection = watch('pickup');
   const dropOff = watch('dropOff');
+  const timePickup = convertTo24Hour(watch('pickupTime'));
+  const timedropOff = convertTo24Hour(watch('dropOffTime'));
+
   const collectionDate = JSON.stringify(collection?.getDay());
   const dropOffDate = JSON.stringify(dropOff?.getDay());
 
   useEffect(() => {
+    if (
+      Date.parse(collection) === Date.parse(dropOff) &&
+      timedropOff - timePickup === 12
+    ) {
+      setCharges(true);
+    } else {
+      setCharges(false);
+    }
+  }, [collection, dropOff, timedropOff, timePickup]);
+
+  useEffect(() => {
     if (collectionDate === '6') {
       setTiming([
-        '07 AM',
-        '08 AM',
-        '09 AM',
-        '10 AM',
-        '11 AM',
-        '12 PM',
-        '01 PM',
-        '02 PM',
-        '03 PM',
-        '04 PM',
-        '05 PM',
-        '06 PM',
+        '07 am',
+        '08 am',
+        '09 am',
+        '10 am',
+        '11 am',
+        '12 pm',
+        '01 pm',
+        '02 pm',
+        '03 pm',
+        '04 pm',
+        '05 pm',
+        '06 pm',
       ]);
     } else {
       setTiming([
-        '07 AM',
-        '08 AM',
-        '09 AM',
-        '10 AM',
-        '11 AM',
-        '12 PM',
-        '01 PM',
-        '02 PM',
-        '03 PM',
-        '04 PM',
-        '05 PM',
-        '06 PM',
-        '07 PM',
+        '07 am',
+        '08 am',
+        '09 am',
+        '10 am',
+        '11 am',
+        '12 pm',
+        '01 pm',
+        '02 pm',
+        '03 pm',
+        '04 pm',
+        '05 pm',
+        '06 pm',
+        '07 pm',
       ]);
     }
   }, [collectionDate]);
@@ -107,44 +145,47 @@ export default function BookingBar(props) {
   useEffect(() => {
     if (dropOffDate === '6') {
       setDropOffTiming([
-        '07 AM',
-        '08 AM',
-        '09 AM',
-        '10 AM',
-        '11 AM',
-        '12 PM',
-        '01 PM',
-        '02 PM',
-        '03 PM',
-        '04 PM',
-        '05 PM',
-        '06 PM',
+        '07 am',
+        '08 am',
+        '09 am',
+        '10 am',
+        '11 am',
+        '12 pm',
+        '01 pm',
+        '02 pm',
+        '03 pm',
+        '04 pm',
+        '05 pm',
+        '06 pm',
       ]);
     } else {
       setDropOffTiming([
-        '07 AM',
-        '08 AM',
-        '09 AM',
-        '10 AM',
-        '11 AM',
-        '12 PM',
-        '01 PM',
-        '02 PM',
-        '03 PM',
-        '04 PM',
-        '05 PM',
-        '06 PM',
-        '07 PM',
+        '07 am',
+        '08 am',
+        '09 am',
+        '10 am',
+        '11 am',
+        '12 pm',
+        '01 pm',
+        '02 pm',
+        '03 pm',
+        '04 pm',
+        '05 pm',
+        '06 pm',
+        '07 pm',
       ]);
     }
   }, [dropOffDate]);
 
+  useEffect(() => {
+    setMinDate(dropOff);
+  }, [dropOff]);
+
   const onSubmit = (data) => {
-    console.log(data);
+    console.log('errors - ', errors);
     axios
-      .post(`https://spinwash.herokuapp.com/api/user/createOrder/${isAuth()._id}`, data)
+      .post(`/api/user/createOrder/${isAuth()._id}`, data)
       .then((res) => {
-        console.log(res);
         setOrderPlaced(true);
       })
       .catch((err) => console.log(err));
@@ -159,12 +200,12 @@ export default function BookingBar(props) {
       >
         <form id='hook-form' onSubmit={handleSubmit(onSubmit)}>
           <HStack
-            p={{ base: '0.4rem', sm: '1rem'}}
+            p={{ base: '0.4rem', sm: '1rem' }}
             spacing={{ base: 'auto', sm: '4' }}
             justify='space-between'
             w={{ base: '74vw', sm: '80vw', md: '64vw', lg: '38vw' }}
           >
-            <FormControl display={{ base: 'none', sm: 'block' }}>
+            <FormControl display={{ base: 'none', sm: 'block' }} isRequired>
               <Input
                 h={{ base: '3rem', sm: '4rem' }}
                 minW='4rem'
@@ -173,11 +214,13 @@ export default function BookingBar(props) {
                 }}
                 p={{ base: '0.5rem', sm: '1rem' }}
                 bg='spinwash.100'
-                border='0'
+                border={errors.address ? '2px solid red' : '0'}
                 rounded='0'
                 placeholder='Address'
                 size={{ base: 'md', sm: 'lg' }}
-                {...register('address')}
+                {...register('address', {
+                  required: true,
+                })}
               />
             </FormControl>
             <Stack
@@ -189,6 +232,7 @@ export default function BookingBar(props) {
                 <Center h={{ base: '1.6rem', sm: '2.2rem' }}>
                   <Controller
                     control={control}
+                    rules={{ required: true }}
                     name='pickup'
                     render={({ field }) => (
                       <DatePicker
@@ -196,6 +240,7 @@ export default function BookingBar(props) {
                         dateFormat='dd-eee'
                         placeholderText='Pickup'
                         onChange={(date) => field.onChange(date)}
+                        minDate={now}
                         selected={field.value}
                       />
                     )}
@@ -209,16 +254,10 @@ export default function BookingBar(props) {
                     _active={{ border: '0px' }}
                     _focus={{ border: '0px' }}
                     name='pickupTime'
-                    {...register('pickupTime')}
+                    {...register('pickupTime', { required: true })}
                   >
                     {timing.map((time) => (
-                      <option
-                        border='1px solid green'
-                        //border='0px solid white'
-                        color='black'
-                        backgroundColor='white'
-                        value={time}
-                      >
+                      <option style={{ backgroundColor: 'white' }} value={time}>
                         {time}
                       </option>
                     ))}
@@ -229,6 +268,7 @@ export default function BookingBar(props) {
                 <Center h={{ base: '1.6rem', sm: '2.2rem' }}>
                   <Controller
                     control={control}
+                    rules={{ required: true }}
                     name='dropOff'
                     render={({ field }) => (
                       <DatePicker
@@ -249,10 +289,12 @@ export default function BookingBar(props) {
                     _active={{ border: '0px' }}
                     _focus={{ border: '0px' }}
                     name='dropOffTime'
-                    {...register('dropOffTime')}
+                    {...register('dropOffTime', { required: true })}
                   >
                     {dropOffTiming.map((time) => (
-                      <option value={time}>{time}</option>
+                      <option style={{ backgroundColor: 'white' }} value={time}>
+                        {time}
+                      </option>
                     ))}
                   </Select>
                 </Center>
@@ -316,7 +358,7 @@ export default function BookingBar(props) {
                           </Heading>
                           <Text maxW='24rem' textAlign={'center'}>
                             You will receive a order Confirmation mail with
-                            order details soon.
+                            order details soon. Thanks for using our service.
                           </Text>
                         </VStack>
                       </Center>
@@ -344,6 +386,21 @@ export default function BookingBar(props) {
                             let us know the details
                           </Text>
                         </VStack>
+                        {charges && (
+                          <VStack>
+                            <Text
+                              border={'2px dotted #d6d6d6'}
+                              rounded='md'
+                              bg='spinwash.100'
+                              p='1rem'
+                              maxW='24rem'
+                              textAlign={'center'}
+                              fontSize={{ base: 'md', md: 'xl' }}
+                            >
+                              Extra Charges for same day delivery
+                            </Text>
+                          </VStack>
+                        )}
                         <FormControl display={{ base: 'block', sm: 'none' }}>
                           <Input
                             h={{ base: '3rem', sm: '4rem' }}
