@@ -65,7 +65,7 @@ const Register = () => {
     setLoader(true);
     console.log(data);
     axios
-      .post(`/api/register`, data)
+      .post(`https://spinwash.herokuapp.com/api/register`, data)
       .then((res) => {
         toast({
           title: res.data.message,

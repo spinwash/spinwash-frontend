@@ -27,7 +27,7 @@ const Orders = (props) => {
 
   useEffect(() => {
     axios
-      .get(`/api/user/${id}`)
+      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
       .then((res) => {
         setData(res.data.order);
       })

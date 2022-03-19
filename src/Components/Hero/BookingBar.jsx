@@ -184,7 +184,7 @@ export default function BookingBar(props) {
   const onSubmit = (data) => {
     console.log('errors - ', errors);
     axios
-      .post(`/api/user/createOrder/${isAuth()._id}`, data)
+      .post(`https://spinwash.herokuapp.com/api/user/createOrder/${isAuth()._id}`, data)
       .then((res) => {
         setOrderPlaced(true);
       })
