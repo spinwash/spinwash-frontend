@@ -22,7 +22,7 @@ const Hero = () => {
 
   useEffect(() => {
     axios
-      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
+      .get(`/api/user/${id}`)
       .then((res) => {
         setAddressData(res.data.address);
         console.log(addressData);
@@ -66,7 +66,7 @@ const Hero = () => {
           animate={{
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, delay: 0.7, ease: 'easeInOut' },
+            transition: { duration: 0.6, delay: 0.4, ease: 'easeInOut' },
           }}
         >
           <Text pb='1rem' fontSize={{ base: 'sm', md: 'md' }}>
@@ -83,7 +83,7 @@ const Hero = () => {
           animate={{
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, delay: 1, ease: 'easeInOut' },
+            transition: { duration: 0.6, delay: 0.6, ease: 'easeInOut' },
           }}
           w={{ base: '75vw', sm: '80vw', md: '64vw', lg: '38vw' }}
           alignSelf={'start'}
@@ -92,7 +92,16 @@ const Hero = () => {
           <BookingBar addressData={addressData} />
         </MotionBox>
       </VStack>
-      <Center>
+      <MotionBox
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: { duration: 0.6, delay: 2, ease: 'easeInOut' },
+        }}
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+      >
         <Image
           zIndex={'0'}
           src={HeroImage}
@@ -101,7 +110,7 @@ const Hero = () => {
           mt='auto'
           //maxW={{ base: '40rem', lg: '60rem' }}
         />
-      </Center>
+      </MotionBox>
     </Stack>
   );
 };
