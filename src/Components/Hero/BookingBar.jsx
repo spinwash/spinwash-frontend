@@ -18,6 +18,7 @@ import {
   Heading,
   VStack,
   Textarea,
+  Button,
 } from '@chakra-ui/react';
 
 import DatePicker from 'react-datepicker';
@@ -42,6 +43,7 @@ export default function BookingBar(props) {
   const [timing, setTiming] = useState(['Select Date First']);
   const [dropOffTiming, setDropOffTiming] = useState(['Select Date First']);
   const [charges, setCharges] = useState(false);
+  const [notPossible, setNotPossible] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [hover, setHover] = useState(false);
 
@@ -97,13 +99,33 @@ export default function BookingBar(props) {
   const dropOffDate = JSON.stringify(dropOff?.getDay());
 
   useEffect(() => {
-    if (
-      Date.parse(collection) === Date.parse(dropOff) &&
-      timedropOff - timePickup === 12
-    ) {
-      setCharges(true);
-    } else {
-      setCharges(false);
+    console.log('time diff  👉🏻 ', timedropOff - timePickup);
+
+    // if the date is same only then this code snippet will run
+    if (Date.parse(collection) === Date.parse(dropOff)) {
+      // console.log(
+      //   'same date choosen',
+      //    Date.parse(collection) === Date.parse(dropOff)
+      //   );
+      if (timedropOff - timePickup >= 0) {
+        //console.log('positive time choosen');// as the time is negative we will check if its less than 12 or greater than 12
+        if (timedropOff - timePickup === 12) {
+          // console.log('equal to 12 choosen');
+          setCharges(true);
+          setNotPossible(false);
+        } else if (timedropOff - timePickup < 12) {
+          // console.log('less than 12 choosen');
+          setNotPossible(true);
+          setCharges(false);
+        } else {
+          //console.log('greater than 12 choosen');
+          setCharges(false);
+          setNotPossible(false);
+        }
+      } else {
+        //console.log('Negative time choosen');
+        setNotPossible(true);
+      }
     }
   }, [collection, dropOff, timedropOff, timePickup]);
 
@@ -184,7 +206,7 @@ export default function BookingBar(props) {
   const onSubmit = (data) => {
     console.log('errors - ', errors);
     axios
-      .post(`https://spinwash.herokuapp.com/api/user/createOrder/${isAuth()._id}`, data)
+      .post(`/api/user/createOrder/${isAuth()._id}`, data)
       .then((res) => {
         setOrderPlaced(true);
       })
@@ -275,6 +297,7 @@ export default function BookingBar(props) {
                         filterDate={isWeekday}
                         placeholderText='DropOff'
                         dateFormat='dd-eee'
+                        minDate={collection}
                         onChange={(date) => field.onChange(date)}
                         selected={field.value}
                       />
@@ -386,20 +409,26 @@ export default function BookingBar(props) {
                             let us know the details
                           </Text>
                         </VStack>
-                        {charges && (
+                        {charges || notPossible ? (
                           <VStack>
                             <Text
                               border={'2px dotted #d6d6d6'}
+                              borderColor={notPossible ? 'red.500' : '#d6d6d6'}
                               rounded='md'
-                              bg='spinwash.100'
+                              bg={notPossible ? 'red.100' : 'spinwash.100'}
+                              color={notPossible ? 'red.500' : 'spinwash.500'}
                               p='1rem'
                               maxW='24rem'
                               textAlign={'center'}
                               fontSize={{ base: 'md', md: 'xl' }}
                             >
-                              Extra Charges for same day delivery
+                              {notPossible
+                                ? 'Minimum delivery time is 12 hrs'
+                                : 'Extra Charges for same day delivery'}
                             </Text>
                           </VStack>
+                        ) : (
+                          ''
                         )}
                         <FormControl display={{ base: 'block', sm: 'none' }}>
                           <Input
@@ -445,13 +474,18 @@ export default function BookingBar(props) {
                         </Center>
                       </Box>
                     ) : (
-                      <Box w='full' as='button' type='submit' form='hook-form'>
+                      <Button
+                        w='full'
+                        type='submit'
+                        form='hook-form'
+                        isDisabled={notPossible}
+                      >
                         <Center>
                           <ArrowButton variant='dark'>
                             Confirm Order
                           </ArrowButton>
                         </Center>
-                      </Box>
+                      </Button>
                     )}
                   </ModalFooter>
                 </>
