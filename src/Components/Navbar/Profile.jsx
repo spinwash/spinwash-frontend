@@ -1,3 +1,4 @@
+import { ArrowForwardIcon, Icon } from '@chakra-ui/icons';
 import {
   Menu,
   MenuButton,
@@ -6,7 +7,6 @@ import {
   Avatar,
   Button,
   MenuGroup,
-  MenuDivider,
   Box,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -35,8 +35,15 @@ const Profile = ({ userProfilePicture }) => {
         />
       </MenuButton>
 
-      <MenuList bgColor='white' color='spinwash.500'>
-        <MenuGroup title='Account'>
+      <MenuList
+        border='0px'
+        outline='0px'
+        rounded='0'
+        shadow='2xl'
+        bgColor='white'
+        color='spinwash.500'
+      >
+        <MenuGroup fontSize='lg' fontWeight={'500'} title='Account'>
           <MenuItem
             _hover={{ bgColor: 'spinwash.100' }}
             fontSize='md'
@@ -59,16 +66,32 @@ const Profile = ({ userProfilePicture }) => {
             <Link to='/orders'>Orders</Link>
           </MenuItem>
         </MenuGroup>
-        <MenuDivider color='spinwash.500' />
         <MenuItem _hover={{ bgColor: 'spinwash.100' }} fontSize='md' px='1rem'>
           <Box
-            as='button'
-            onClick={() => {
-              signout();
-              navigate('/');
-            }}
+            w='full'
+            role='group'
+            display='flex'
+            justifyContent={'space-between'}
+            alignItems='center'
+            flexDirection={'row'}
           >
-            Logout
+            <Box
+              as='button'
+              fontWeight={'500'}
+              onClick={() => {
+                signout();
+                navigate('/');
+              }}
+            >
+              Logout
+            </Box>
+            <Icon
+              as={ArrowForwardIcon}
+              transition={'all .25s ease-in-out'}
+              w={5}
+              h={5}
+              _groupHover={{ transform: 'translateX(8px)' }}
+            />
           </Box>
         </MenuItem>
       </MenuList>

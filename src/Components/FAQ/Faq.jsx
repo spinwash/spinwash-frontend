@@ -4,10 +4,8 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  AccordionIcon,
   Heading,
   Container,
-  Text,
   Box,
 } from '@chakra-ui/react';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
@@ -36,7 +34,7 @@ const Faq = () => {
                     textAlign='left'
                     pr={'1rem'}
                   >
-                    quis nostrud exercitation ?
+                    Is there a shop where I can drop or collect my clothes at?
                   </Box>
                   {isExpanded ? (
                     <MinusIcon fontSize='12px' />
@@ -50,10 +48,8 @@ const Faq = () => {
                 fontWeight={'300'}
                 pb={4}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+                No, there isn’t a shop where you can drop or collect your
+                clothes. We will collect and drop off your clothes.
               </AccordionPanel>
             </>
           )}
@@ -70,8 +66,7 @@ const Faq = () => {
                     textAlign='left'
                     pr={'1rem'}
                   >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                    aliquam, ?
+                    Which areas do you currently operate in?
                   </Box>
                   {isExpanded ? (
                     <MinusIcon fontSize='12px' />
@@ -85,10 +80,8 @@ const Faq = () => {
                 fontWeight={'300'}
                 pb={4}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+                You can check which areas we cover in the section labelled
+                ‘Areas Covered’.
               </AccordionPanel>
             </>
           )}
@@ -105,7 +98,7 @@ const Faq = () => {
                     textAlign='left'
                     pr={'1rem'}
                   >
-                    Lorem ipsum dolor sit amet, consectetur ut aliquam, ?
+                    What days and time do you operate in?
                   </Box>
                   {isExpanded ? (
                     <MinusIcon fontSize='12px' />
@@ -119,9 +112,8 @@ const Faq = () => {
                 fontWeight={'300'}
                 pb={4}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam
+                We operate from 7:00am to 8:00pm between Monday to Friday and
+                from 8:00am to 6:00pm on Saturdays.
               </AccordionPanel>
             </>
           )}
@@ -138,8 +130,7 @@ const Faq = () => {
                     textAlign='left'
                     pr={'1rem'}
                   >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                    aliquam, purus sit amet luctus
+                    How does this whole process work?
                   </Box>
                   {isExpanded ? (
                     <MinusIcon fontSize='12px' />
@@ -153,8 +144,10 @@ const Faq = () => {
                 fontWeight={'300'}
                 pb={4}
               >
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                Firstly you place an order with us through our, once we have
+                received your order one of our drivers will collect the clothes
+                from your address. After that we clean your clothes and drop
+                them back off to you.
               </AccordionPanel>
             </>
           )}
@@ -171,7 +164,7 @@ const Faq = () => {
                     textAlign='left'
                     pr={'1rem'}
                   >
-                    amet, consectetur ut aliquam, ?
+                    How do I pay?
                   </Box>
                   {isExpanded ? (
                     <MinusIcon fontSize='12px' />
@@ -185,10 +178,107 @@ const Faq = () => {
                 fontWeight={'300'}
                 pb={4}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
+                Once we have collected your clothes we will send you an invoice
+                on the email you provide us with which will have a payment link
+                you can follow.
+              </AccordionPanel>
+            </>
+          )}
+        </AccordionItem>
+        <AccordionItem my='1rem' border='0'>
+          {({ isExpanded }) => (
+            <>
+              <h2>
+                <AccordionButton>
+                  <Box
+                    fontWeight={'500'}
+                    fontSize={{ base: 'sm', md: 'lg' }}
+                    flex='1'
+                    textAlign='left'
+                    pr={'1rem'}
+                  >
+                    How long do you require for suede, fur & leather cleaning?
+                  </Box>
+                  {isExpanded ? (
+                    <MinusIcon fontSize='12px' />
+                  ) : (
+                    <AddIcon fontSize='12px' />
+                  )}
+                </AccordionButton>
+              </h2>
+              <AccordionPanel
+                fontSize={{ base: 'xs', md: 'md' }}
+                fontWeight={'300'}
+                pb={4}
+              >
+                We require a minimum of 7 working days to clean suede, fur or
+                leather items.
+              </AccordionPanel>
+            </>
+          )}
+        </AccordionItem>
+        <AccordionItem my='1rem' border='0'>
+          {({ isExpanded }) => (
+            <>
+              <h2>
+                <AccordionButton>
+                  <Box
+                    fontWeight={'500'}
+                    fontSize={{ base: 'sm', md: 'lg' }}
+                    flex='1'
+                    textAlign='left'
+                    pr={'1rem'}
+                  >
+                    How do I let you know any requirements I have for my order/
+                    items?
+                  </Box>
+                  {isExpanded ? (
+                    <MinusIcon fontSize='12px' />
+                  ) : (
+                    <AddIcon fontSize='12px' />
+                  )}
+                </AccordionButton>
+              </h2>
+              <AccordionPanel
+                fontSize={{ base: 'xs', md: 'md' }}
+                fontWeight={'300'}
+                pb={4}
+              >
+                You can let us know in the additional information section when
+                placing your order or you can let our driver know when he
+                collects the order.
+              </AccordionPanel>
+            </>
+          )}
+        </AccordionItem>
+        <AccordionItem my='1rem' border='0'>
+          {({ isExpanded }) => (
+            <>
+              <h2>
+                <AccordionButton>
+                  <Box
+                    fontWeight={'500'}
+                    fontSize={{ base: 'sm', md: 'lg' }}
+                    flex='1'
+                    textAlign='left'
+                    pr={'1rem'}
+                  >
+                    Do I need to do anything before my order?
+                  </Box>
+                  {isExpanded ? (
+                    <MinusIcon fontSize='12px' />
+                  ) : (
+                    <AddIcon fontSize='12px' />
+                  )}
+                </AccordionButton>
+              </h2>
+              <AccordionPanel
+                fontSize={{ base: 'xs', md: 'md' }}
+                fontWeight={'300'}
+                pb={4}
+              >
+                Yes, remove any collar stiffeners and empty the pockets of the
+                items.
               </AccordionPanel>
             </>
           )}

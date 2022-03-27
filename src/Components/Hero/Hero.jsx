@@ -1,40 +1,57 @@
 import HeroImage from '../Images/Hero.webp';
-import React, { useEffect, useState } from 'react';
-import {
-  Box,
-  Heading,
-  Image,
-  Center,
-  Text,
-  VStack,
-  Stack,
-} from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { Box, Heading, Image, Text, VStack, Stack } from '@chakra-ui/react';
+import { motion, useAnimation } from 'framer-motion';
 import BookingBar from './BookingBar';
 import axios from 'axios';
 import { isAuth } from '../../Helpers/auth';
+import { useInView } from 'react-intersection-observer';
 
 const MotionBox = motion(Box);
+const MotionStack = motion(Stack);
 
 const Hero = () => {
-  const [addressData, setAddressData] = useState();
-  const id = isAuth()?.id;
+  const [addressData, setAddressData] = useState('');
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  const id = isAuth()?._id;
 
   useEffect(() => {
     axios
-      .get(`/api/user/${id}`)
+      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
       .then((res) => {
         setAddressData(res.data.address);
-        console.log(addressData);
+        console.log('user address', addressData);
       })
       .catch((err) => console.log(err));
   });
 
+  const useHasBeenViewed = () => {
+    const [reference, inView] = useInView();
+    const prevInView = useRef(false);
+    const hasBeenViewed = prevInView.current || inView;
+    useEffect(() => {
+      prevInView.current = inView;
+    });
+
+    return [hasBeenViewed, reference];
+  };
+
+  const [hasBeenViewed, reference] = useHasBeenViewed();
+  //console.log(hasBeenViewed);
+
   return (
-    <Stack
+    <MotionStack
+      ref={reference}
+      viewport={{ once: true }}
+      initial={{ opacity: hasBeenViewed ? 1 : 0 }}
+      animate={{
+        opacity: 1,
+        transition: { duration: 0.3, ease: 'easeInOut' },
+      }}
+      maxW='9xl'
       direction={{ base: 'column', lg: 'row' }}
       justifyContent='space-between'
-      maxW='9xl'
       mx='auto'
       bg='spinwash.300'
       padding='0'
@@ -43,7 +60,7 @@ const Hero = () => {
       <VStack
         zIndex={'1'}
         color='white'
-        p={{ base: '2rem 0rem 0rem 0rem', lg: '8rem 2rem 4rem 2rem' }}
+        p={{ base: '02rem 0rem 0rem 0rem', lg: '8rem 2rem 4rem 2rem' }}
         spacing={{ base: '1rem', md: '1.5rem', xl: '2rem' }}
         ml={{ base: 'auto', xl: '8rem' }}
         mr={{ base: 'auto', xl: '-20rem' }}
@@ -54,7 +71,7 @@ const Hero = () => {
           animate={{
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, ease: 'easeInOut' },
+            transition: { delay: 0.2, duration: 0.6, ease: 'easeInOut' },
           }}
         >
           <Heading fontSize={{ base: '4xl', xl: '8xl' }}>
@@ -66,7 +83,7 @@ const Hero = () => {
           animate={{
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, delay: 0.4, ease: 'easeInOut' },
+            transition: { duration: 0.6, delay: 0.8, ease: 'easeInOut' },
           }}
         >
           <Text pb='1rem' fontSize={{ base: 'sm', md: 'md' }}>
@@ -83,7 +100,7 @@ const Hero = () => {
           animate={{
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, delay: 0.6, ease: 'easeInOut' },
+            transition: { duration: 0.6, delay: 0.9, ease: 'easeInOut' },
           }}
           w={{ base: '75vw', sm: '80vw', md: '64vw', lg: '38vw' }}
           alignSelf={'start'}
@@ -100,7 +117,7 @@ const Hero = () => {
         }}
         display='flex'
         alignItems='center'
-        justifyContent='center'
+        justifyContent={{ base: 'flex-end', md: 'center' }}
       >
         <Image
           zIndex={'0'}
@@ -111,7 +128,7 @@ const Hero = () => {
           //maxW={{ base: '40rem', lg: '60rem' }}
         />
       </MotionBox>
-    </Stack>
+    </MotionStack>
   );
 };
 

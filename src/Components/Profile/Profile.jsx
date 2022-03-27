@@ -1,30 +1,6 @@
-import {
-  Heading,
-  HStack,
-  Text,
-  VStack,
-  Wrap,
-  Checkbox,
-} from '@chakra-ui/react';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { isAuth } from '../../Helpers/auth';
+import { Heading, HStack, Text, VStack, Wrap } from '@chakra-ui/react';
 
 const UserProfile = ({ data }) => {
-  const [coupenState, setCoupenState] = useState(true);
-  const id = isAuth()?._id;
-
-  useEffect(() => {
-    axios
-      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
-      .then((res) => {
-        setCoupenState(res.data.referralCodeUsed);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id]);
-
   return (
     <>
       <VStack alignItems={'start'} gap='2rem'>
@@ -70,25 +46,6 @@ const UserProfile = ({ data }) => {
               </Heading>
               <Text fontWeight={300}>{data?.address}</Text>
             </VStack>
-            {!coupenState && (
-              <VStack
-                alignItems='start'
-                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
-              >
-                <Heading fontSize={{ base: 'xl', md: '2xl' }} fontWeight={500}>
-                  Referral Code
-                </Heading>
-                <Text
-                  border={'2px dashed #1B4D7A'}
-                  rounded='md'
-                  p='1rem'
-                  bg='spinwash.100'
-                  fontWeight={400}
-                >
-                  {data?._id.slice(0, data?._id.length / 2)}
-                </Text>
-              </VStack>
-            )}
           </Wrap>
         </VStack>
       </VStack>
@@ -107,53 +64,11 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Shirts
+                Shirt Folding Preferences
               </Heading>
-              <HStack pl='1rem'>
-                <Checkbox
-                  size='md'
-                  outline='1px solid #1B4D7A'
-                  colorScheme='white'
-                  defaultChecked={data?.shirtHung === 'true' ? true : false}
-                />
-                <Text as='span'>Shirt Hung</Text>
-              </HStack>
-              <HStack pl='1rem'>
-                <Checkbox
-                  size='md'
-                  outline='1px solid #1B4D7A'
-                  colorScheme='white'
-                  defaultChecked={data.shirtFolded}
-                />
-                <Text as='span'>Shirt Folded</Text>
-              </HStack>
-              <HStack pl='1rem'>
-                <Checkbox
-                  size='md'
-                  outline='1px solid #1B4D7A'
-                  colorScheme='white'
-                  defaultChecked={data.shirtDryCleanAndPress}
-                />
-                <Text as='span'>shirt DryClean And Press</Text>
-              </HStack>
-              <HStack pl='1rem'>
-                <Checkbox
-                  size='md'
-                  outline='1px solid #1B4D7A'
-                  colorScheme='white'
-                  defaultChecked={data.shirtPressOnly}
-                />
-                <Text as='span'>shirtPressOnly</Text>
-              </HStack>
-              <HStack pl='1rem'>
-                <Checkbox
-                  size='md'
-                  outline='1px solid #1B4D7A'
-                  colorScheme='white'
-                  defaultChecked={data.shirtWashAndPress}
-                />
-                <Text as='span'>shirt Wash And Press</Text>
-              </HStack>
+              <Text fontWeight={400} px='1rem'>
+                {data?.shirtFoldingPreference}
+              </Text>
             </VStack>
             <VStack
               alignItems='start'
@@ -164,35 +79,26 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Bedding
+                Shirt Washing Preferences
               </Heading>
-              <HStack pl='1rem'>
-                <Checkbox
-                  outline='1px solid #1B4D7A'
-                  size='md'
-                  colorScheme='white'
-                  defaultChecked={data?.beddingWashAndPress}
-                />
-                <Text as='span'>Wash and Press</Text>
-              </HStack>
-              <HStack pl='1rem'>
-                <Checkbox
-                  size='md'
-                  outline='1px solid #1B4D7A'
-                  colorScheme='white'
-                  defaultChecked={data?.beddingWashAndFold}
-                />
-                <Text as='span'>Wash and fold</Text>
-              </HStack>
-              <HStack pl='1rem'>
-                <Checkbox
-                  size='md'
-                  outline='1px solid #1B4D7A'
-                  colorScheme='white'
-                  defaultChecked={data?.beddingPressOnly}
-                />
-                <Text as='span'>Press only</Text>
-              </HStack>
+              <Text fontWeight={400} px='1rem'>
+                {data?.shirtWashingPreference}
+              </Text>
+            </VStack>
+            <VStack
+              alignItems='start'
+              w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+            >
+              <Heading
+                my='0.5rem'
+                fontSize={{ base: 'xl', md: '2xl' }}
+                fontWeight={500}
+              >
+                Bedding Preferences
+              </Heading>
+              <Text fontWeight={400} px='1rem'>
+                {data?.beddingPreference}
+              </Text>
             </VStack>
             <VStack
               alignItems='start'
@@ -206,9 +112,38 @@ const UserProfile = ({ data }) => {
                 Any Personal Cleaning, Pressing & Packaging, Preferences
               </Heading>
               <HStack pl='1rem'>
-                <Text>{data?.preferences}</Text>
+                <Text fontWeight={400} px='1rem'>
+                  {data?.preferences}
+                </Text>
               </HStack>
             </VStack>
+            {!data?.referralCodeUsed && (
+              <VStack
+                alignItems='start'
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
+                <Heading
+                  pb='0.5rem'
+                  fontSize={{ base: 'xl', md: '2xl' }}
+                  fontWeight={500}
+                >
+                  Referral Code{' '}
+                  <Text fontSize='md' fontWeight={'300'}>
+                    ( Refer a friend and get £10 off )
+                  </Text>
+                </Heading>
+                <Text
+                  border={'2px dashed #1B4D7A'}
+                  rounded='md'
+                  p='1rem 2rem'
+                  my='1rem'
+                  bg='spinwash.100'
+                  fontWeight={400}
+                >
+                  {data?._id.slice(0, data?._id.length / 2)}
+                </Text>
+              </VStack>
+            )}
           </Wrap>
         </VStack>
       </VStack>

@@ -5,6 +5,7 @@ import {
   VStack,
   ListItem,
   UnorderedList,
+  OrderedList,
   Stack,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
@@ -70,7 +71,7 @@ const TermsAndConditions = () => {
                 >
                   {item.heading}
                 </Heading>
-                <UnorderedList alignItems={'start'}>
+                <OrderedList alignItems={'start'}>
                   {item.points.map((point, key) => (
                     <ListItem
                       fontWeight={'300'}
@@ -81,7 +82,7 @@ const TermsAndConditions = () => {
                       {point}
                     </ListItem>
                   ))}
-                </UnorderedList>
+                </OrderedList>
               </VStack>
             ))}
           </MotionBox>

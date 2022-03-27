@@ -4,7 +4,7 @@ import {
   Text,
   VStack,
   Wrap,
-  Checkbox,
+  Select,
   Stack,
   FormControl,
   FormLabel,
@@ -32,14 +32,9 @@ const EditProfile = ({ data, setEditMode, setData }) => {
       phoneNumber: data.phoneNumber,
       address: data.address,
       preferences: data.preferences,
-      beddingPressOnly: data.beddingPressOnly,
-      beddingWashAndFold: data.beddingWashAndFold,
-      beddingWashAndPress: data.beddingWashAndPress,
-      shirtHung: data.shirtHung,
-      shirtFolded: data.shirtFolded,
-      shirtDryCleanAndPress: data.shirtDryCleanAndPress,
-      shirtWashAndPress: data.shirtWashAndPress,
-      shirtPressOnly: data.shirtPressOnly,
+      shirtFoldingPreference: data.shirtFoldingPreference,
+      shirtWashingPreference: data.shirtWashingPreference,
+      beddingPreference: data.beddingPreference,
     },
   });
 
@@ -53,7 +48,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
     console.log(data);
 
     axios
-      .put(`https://spinwash.herokuapp.com/api/user/update`, data)
+      .put(`/api/user/update`, data)
       .then((res) => {
         setData(res.data);
         setLocalStorage('user', res.data);
@@ -65,7 +60,6 @@ const EditProfile = ({ data, setEditMode, setData }) => {
           isClosable: true,
         });
       })
-
       .catch((err) => console.log(err));
 
     setEditMode(false);
@@ -189,63 +183,17 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                   fontSize={{ base: 'xl', md: '2xl' }}
                   fontWeight={500}
                 >
-                  Shirts
+                  Shirt Folding Preferences
                 </Heading>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    outline='1px solid #1B4D7A'
-                    color='spinwash.500'
-                    size='lg'
-                    colorScheme='black'
-                    defaultChecked={data.shirtHung}
-                    {...register('shirtHung')}
-                  />
-                  <Text as='span'>Shirt Hung</Text>
-                </HStack>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    outline='1px solid #1B4D7A'
-                    color='spinwash.500'
-                    size='lg'
-                    colorScheme='black'
-                    defaultChecked={data.shirtFolded}
-                    {...register('shirtFolded')}
-                  />
-                  <Text as='span'>Shirt Folded</Text>
-                </HStack>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    outline='1px solid #1B4D7A'
-                    color='spinwash.500'
-                    size='lg'
-                    colorScheme='black'
-                    defaultChecked={data.shirtDryCleanAndPress}
-                    {...register('shirtDryCleanAndPress')}
-                  />
-                  <Text as='span'>shirt DryClean And Press</Text>
-                </HStack>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    outline='1px solid #1B4D7A'
-                    color='spinwash.500'
-                    size='lg'
-                    colorScheme='black'
-                    defaultChecked={data.shirtPressOnly}
-                    {...register('shirtPressOnly')}
-                  />
-                  <Text as='span'>shirt Press Only</Text>
-                </HStack>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    outline='1px solid #1B4D7A'
-                    color='spinwash.500'
-                    size='lg'
-                    colorScheme='black'
-                    defaultChecked={data.beddingPressOnly}
-                    {...register('beddingPressOnly')}
-                  />
-                  <Text as='span'>bedding Press Only</Text>
-                </HStack>
+                <VStack pl='1rem'>
+                  <Select
+                    placeholder={data?.shirtFoldingPreference}
+                    {...register('shirtFoldingPreference')}
+                  >
+                    <option value='Hung'>ShirtHung</option>
+                    <option value='Folded'>ShirtFold</option>
+                  </Select>{' '}
+                </VStack>
               </VStack>
               <VStack
                 alignItems='start'
@@ -256,40 +204,42 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                   fontSize={{ base: 'xl', md: '2xl' }}
                   fontWeight={500}
                 >
-                  Bedding
+                  Shirt Washing Preferences
                 </Heading>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    outline='1px solid #1B4D7A'
-                    size='lg'
-                    colorScheme='black'
-                    defaultChecked={data.beddingWashAndPress}
-                    {...register('beddingWashAndPress')}
-                  />
-                  <Text as='span'>Wash and Press</Text>
-                </HStack>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    outline='1px solid #1B4D7A'
-                    color='black'
-                    size='lg'
-                    colorScheme='black'
-                    defaultChecked={data.beddingWashAndFold}
-                    {...register('beddingWashAndFold')}
-                  />
-                  <Text as='span'>Wash and fold</Text>
-                </HStack>
-                <HStack pl='1rem'>
-                  <Checkbox
-                    outline='1px solid #1B4D7A'
-                    color='black'
-                    size='lg'
-                    colorScheme='black'
-                    defaultChecked={data.beddingPressOnly}
-                    {...register('beddingPressOnly')}
-                  />
-                  <Text as='span'>Press only</Text>
-                </HStack>
+                <VStack pl='1rem'>
+                  <Select
+                    placeholder={data?.shirtWashingPreference}
+                    {...register('shirtWashingPreference')}
+                  >
+                    <option value='Press Only'>Press Only</option>
+                    <option value='Dry Clean And Press'>
+                      Dry Clean and Press
+                    </option>
+                    <option value='Wash And Press'>Wash and Press</option>
+                  </Select>{' '}
+                </VStack>
+              </VStack>
+              <VStack
+                alignItems='start'
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
+                <Heading
+                  my='0.5rem'
+                  fontSize={{ base: 'xl', md: '2xl' }}
+                  fontWeight={500}
+                >
+                  Bedding Preferences
+                </Heading>
+                <VStack pl='1rem'>
+                  <Select
+                    placeholder={data?.beddingPreference}
+                    {...register('beddingPreference')}
+                  >
+                    <option value='Press Only'>Press Only</option>
+                    <option value='Wash And Fold'>Wash And Fold</option>
+                    <option value='Wash And Press'>Wash And Press</option>
+                  </Select>{' '}
+                </VStack>
               </VStack>
               <VStack
                 alignItems='start'

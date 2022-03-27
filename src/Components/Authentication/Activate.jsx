@@ -18,6 +18,7 @@ import Lottie from 'react-lottie';
 import * as animationData from '../LottieFiles/lf30_editor_g9cdecsk.json';
 
 const Activate = () => {
+  const [loader, setLoader] = useState(false);
   const [formData, setFormData] = useState({ token: '', show: true });
   const navigate = useNavigate();
   const toast = useToast();
@@ -40,10 +41,10 @@ const Activate = () => {
   }, [token]);
 
   const handleSubmit = (e) => {
+    setLoader(true);
     e.preventDefault();
-    console.log(formData);
     axios
-      .post(`https://spinwash.herokuapp.com/api/activation`, {
+      .post(`/api/activation`, {
         token,
       })
       .then((res) => {
@@ -58,14 +59,15 @@ const Activate = () => {
         });
         authenticate(res);
         navigate('/profile');
+        setLoader(false);
       })
       .catch((err) => {
-        console.log('error while activation is ' + err);
         toast({
           title: err.response.data.errors,
           status: 'error',
           duration: 5000,
         });
+        setLoader(false);
       });
   };
 
@@ -106,7 +108,8 @@ const Activate = () => {
         </Center>
         <VStack>
           <form onSubmit={handleSubmit}>
-            <Box
+            <Button
+              variant={'unstyled'}
               as='button'
               display='flex'
               justifyContent={'center'}
@@ -114,9 +117,10 @@ const Activate = () => {
               width='fit-content'
               mx='auto'
               alignSelf={'center'}
+              isLoading={loader}
             >
               <ButtonHOC variant='dark'>Activate Account</ButtonHOC>
-            </Box>
+            </Button>
           </form>
           <Text fontSize={'sm'} py={'1rem'}>
             {' '}

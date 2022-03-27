@@ -9,14 +9,17 @@ function SearchBar({ placeholder, dark, setItem, Data }) {
   const handleFilter = (event) => {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
+
     const newFilter = Data.filter((value) => {
+      console.log(value.name.toLowerCase().includes(searchWord.toLowerCase()));
       return value.name.toLowerCase().includes(searchWord.toLowerCase());
     });
-
+    console.log('filtered data - ', newFilter);
     if (searchWord === '') {
       setFilteredData([]);
     } else {
       setFilteredData(newFilter);
+      console.log(filteredData);
     }
   };
 
@@ -75,29 +78,40 @@ function SearchBar({ placeholder, dark, setItem, Data }) {
           sx={{
             '&::-webkit-scrollbar': {
               borderRadius: '0px',
-              backgroundColor: `#1B4D7A`,
+              backgroundColor: `#ffffff`,
             },
             '&::-webkit-scrollbar-thumb': {
-              backgroundColor: `#1B4D7A`,
+              backgroundColor: `#ffffff`,
             },
           }}
         >
           {filteredData.slice(0, 15).map((value, key) => {
             return (
               <Box
+                id={key}
                 w='100%'
                 display='flex'
                 alignItems='start'
                 justifyContent={'space-between'}
                 as='button'
                 onClick={() => {
-                  setItem(value.parentId);
+                  // setItem(value.id);
                   clearInput();
                 }}
                 py='0.3rem'
                 fontSize={{ base: 'md', md: 'xl' }}
               >
-                <Box>{value.name}</Box> <Box>{value.price}</Box>
+                <Box
+                  display={'flex'}
+                  flexDirection='row'
+                  alignItems={'start'}
+                  justifyContent='space-between'
+                >
+                  <Text noOfLines={1} pe='2rem' textAlign={'start'}>
+                    {value.name} {value.parentId && ` - ${value.parentId}`}
+                  </Text>
+                </Box>{' '}
+                <Text fontWeight={'500'}>{value.price}</Text>
               </Box>
             );
           })}

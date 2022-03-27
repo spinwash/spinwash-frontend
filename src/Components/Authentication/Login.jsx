@@ -57,6 +57,7 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
   const onSubmit = () => {
     console.log('Submitted');
   };
+  
   const googleSuccess = (tokenId) => {
     setLoaderGoogle(true);
     axios

@@ -1,4 +1,5 @@
 import { Box, Container, Heading, Stack, Text, VStack } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import ArrowButton from '../HOC/ArrowButton';
 
 const Footer = () => {
@@ -43,9 +44,18 @@ const Footer = () => {
             >
               Navigate
             </Heading>
-            <Text>Services</Text>
-            <Text>Pricing</Text>
-            <Text>Areas we Serve</Text>
+            <Link to='about'>
+              <Text>About</Text>
+            </Link>
+            <Link to='areas'>
+              <Text>Areas we Serve</Text>
+            </Link>
+            <Link to='pricing'>
+              <Text>Pricing</Text>
+            </Link>
+            <Link to='t&c'>
+              <Text>Terms & Conditions</Text>
+            </Link>
           </VStack>
         </Stack>
         <VStack
@@ -56,9 +66,11 @@ const Footer = () => {
           <Heading fontSize={{ base: 'xl', md: '2xl' }} fontWeight={'400'}>
             Book Our Service Now
           </Heading>
-          <Box as='button'>
-            <ArrowButton variant='dark'>Order Now</ArrowButton>
-          </Box>
+          <Link to='/'>
+            <Box w='fit-content' as='button'>
+              <ArrowButton variant='dark'>Order Now</ArrowButton>
+            </Box>
+          </Link>
         </VStack>
       </Stack>
     </Container>

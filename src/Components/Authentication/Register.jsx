@@ -94,7 +94,7 @@ const Register = () => {
   const googleSuccess = (tokenId) => {
     setLoaderGoogle(true);
     axios
-      .post(`/api/googlelogin`, {
+      .post(`https://spinwash.herokuapp.com/api/googlelogin`, {
         idToken: tokenId.tokenId,
       })
       .then((res) => {
@@ -106,6 +106,7 @@ const Register = () => {
         //successfully logedin
         authenticate(res);
         navigate('/');
+        setLoaderGoogle(false);
       })
       .catch((err) => {
         console.log(err);
@@ -114,8 +115,8 @@ const Register = () => {
           status: 'error',
           duration: 3000,
         });
+        setLoaderGoogle(false);
       });
-    setLoaderGoogle(false);
   };
 
   const googleFailure = () => {
@@ -292,7 +293,12 @@ const Register = () => {
                 {...register('promocode')}
               />
             </FormControl>
-            <Box
+            <Button
+              variant={'unstyled'}
+              border='2px solid'
+              w='fit-content'
+              borderColor='spinwash.500'
+              rounded='0'
               as='button'
               display='flex'
               justifyContent={'center'}
@@ -300,9 +306,10 @@ const Register = () => {
               width='fit-content'
               mx='auto'
               alignSelf={'center'}
+              isLoading={loader}
             >
               <ArrowButton variant='dark'>Signup</ArrowButton>
-            </Box>
+            </Button>
           </form>
         </VStack>
         <Text fontSize={{ base: 'sm', md: 'md' }} py={'1rem'}>

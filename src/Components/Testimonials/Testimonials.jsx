@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   IconButton,
   useBreakpointValue,
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText,
   Stack,
   Center,
   Text,
@@ -11,6 +14,7 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import Slider from 'react-slick';
+import axios from 'axios';
 
 const settings = {
   dots: true,
@@ -32,29 +36,19 @@ const settings = {
 
 export default function Testimonials() {
   const [slider, setSlider] = useState();
+  const [cards, setCards] = useState([]);
 
-  const top = useBreakpointValue({ base: '90%', md: '50%' });
-  const side = useBreakpointValue({ base: '30%', md: '40px' });
 
-  const cards = [
-    {
-      title: 'Lorem ipsum dolor',
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
-      image: 'https://miro.medium.com/max/785/0*Ggt-XwliwAO6QURi.jpg',
-    },
-    {
-      title: 'Lorem ipsum dolor',
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
-      image:
-        'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    },
-    {
-      title: 'Lorem ipsum dolor',
-      text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh-J04gXCOsTHzwjH5Ay2IWfnWBzFfBlP0sg&usqp=CAU',
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get(`https://spinwash.herokuapp.com/api/reviews`)
+      .then((res) => {
+        const data = JSON.parse(res.data);
+        console.log(data.result.reviews);
+        setCards(data.result.reviews);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <Container maxW='9xl'>
@@ -89,33 +83,35 @@ export default function Testimonials() {
 
         {/* Slider */}
         <Slider {...settings} ref={(slider) => setSlider(slider)}>
-          {cards.map((card, index) => (
-            <Box key={index} position='relative'>
-              <Center p={{ base: '1rem', xl: '4rem 6rem' }}>
-                <Stack
-                  spacing={6}
-                  w={'full'}
-                  alignItems={'center'}
-                  bg={'spinwash.100'}
-                  p={{ base: '1rem', lg: '4rem 6rem' }}
+          {cards?.map((card, index) => (
+          <Box key={index} position='relative'>
+            <Center p={{ base: '1rem', xl: '4rem 6rem' }}>
+              <Stack
+                h={{ base: '12rem', md: '14rem', lg: '22rem' }}
+                spacing={6}
+                w={'full'}
+                alignItems={'center'}
+                bg={'spinwash.100'}
+                p={{ base: '1rem', lg: '4rem 6rem' }}
+              >
+                <Avatar src={card.profile_photo_url} />
+                <Text
+                  textAlign={'center'}
+                  fontSize={{ base: 'xs', lg: 'sm' }}
+                  color='GrayText'
+                  noOfLines={'3'}
                 >
-                  <Avatar src={card.image} />
-                  <Text
-                    textAlign={'center'}
-                    fontSize={{ base: 'xs', lg: 'sm' }}
-                    color='GrayText'
-                  >
-                    {card.text}
-                  </Text>
-                  <Text
-                    textAlign={'center'}
-                    fontSize={{ base: 'md', md: 'xl', lg: '2xl' }}
-                  >
-                    {card.title}
-                  </Text>
-                </Stack>
-              </Center>
-            </Box>
+                  {card.text}
+                </Text>
+                <Text
+                  textAlign={'center'}
+                  fontSize={{ base: 'md', md: 'xl', lg: '2xl' }}
+                >
+                  {card.author_name}
+                </Text>
+              </Stack>
+            </Center>
+          </Box>
           ))}
         </Slider>
       </Box>

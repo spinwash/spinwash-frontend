@@ -46,6 +46,7 @@ export default function BookingBar(props) {
   const [notPossible, setNotPossible] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [hover, setHover] = useState(false);
+  const [submitSpinner, setSubmitSpinner] = useState(false);
 
   function convertTo24Hour(time) {
     var hours = parseInt(time?.substr(0, 2));
@@ -59,6 +60,7 @@ export default function BookingBar(props) {
   }
 
   const [minDate, setMinDate] = useState(now);
+  console.log('address data - ', props.addressData);
 
   const {
     handleSubmit,
@@ -92,47 +94,72 @@ export default function BookingBar(props) {
 
   const collection = watch('pickup');
   const dropOff = watch('dropOff');
+  const collectionDateData = watch('collectionDate');
+  const dropOffDateData = watch('dropOffDate');
   const timePickup = convertTo24Hour(watch('pickupTime'));
   const timedropOff = convertTo24Hour(watch('dropOffTime'));
 
   const collectionDate = JSON.stringify(collection?.getDay());
   const dropOffDate = JSON.stringify(dropOff?.getDay());
 
-  useEffect(() => {
-    console.log('time diff  👉🏻 ', timedropOff - timePickup);
+  function addedTime(t) {
+    const timeData = t.toString().split(' ');
+    let value = '';
+    if (parseInt(timeData[0]) === 11) {
+      value = 12;
+      return value + ' pm';
+    } else if (parseInt(timeData[0]) === 12) {
+      value = 1;
+      return value + ' ' + timeData[1];
+    } else {
+      value = parseInt(timeData[0]) + 1;
+      return value + ' ' + timeData[1];
+    }
+  }
 
+  useEffect(() => {
+    //console.log('time diff  👉🏻 ', timedropOff - timePickup);
     // if the date is same only then this code snippet will run
     if (Date.parse(collection) === Date.parse(dropOff)) {
-      // console.log(
-      //   'same date choosen',
-      //    Date.parse(collection) === Date.parse(dropOff)
-      //   );
+      console.log(
+        'same date choosen',
+        Date.parse(collection) === Date.parse(dropOff)
+      );
       if (timedropOff - timePickup >= 0) {
-        //console.log('positive time choosen');// as the time is negative we will check if its less than 12 or greater than 12
+        console.log('positive time choosen'); // as the time is negative we will check if its less than 12 or greater than 12
         if (timedropOff - timePickup === 12) {
-          // console.log('equal to 12 choosen');
+          console.log('equal to 12 choosen');
           setCharges(true);
           setNotPossible(false);
         } else if (timedropOff - timePickup < 12) {
-          // console.log('less than 12 choosen');
+          console.log('less than 12 choosen');
           setNotPossible(true);
           setCharges(false);
         } else {
-          //console.log('greater than 12 choosen');
+          console.log('greater than 12 choosen');
           setCharges(false);
           setNotPossible(false);
         }
       } else {
-        //console.log('Negative time choosen');
+        console.log('Negative time choosen');
         setNotPossible(true);
       }
+    } else {
+      setCharges(false);
+      setNotPossible(false);
     }
-  }, [collection, dropOff, timedropOff, timePickup]);
+  }, [
+    collection,
+    dropOff,
+    timedropOff,
+    timePickup,
+    collectionDateData,
+    dropOffDateData,
+  ]);
 
   useEffect(() => {
     if (collectionDate === '6') {
       setTiming([
-        '07 am',
         '08 am',
         '09 am',
         '10 am',
@@ -204,13 +231,17 @@ export default function BookingBar(props) {
   }, [dropOff]);
 
   const onSubmit = (data) => {
-    console.log('errors - ', errors);
+    setSubmitSpinner(true);
     axios
-      .post(`/api/user/createOrder/${isAuth()._id}`, data)
+      .post(`https://spinwash.herokuapp.com/api/user/createOrder/${isAuth()._id}`, data)
       .then((res) => {
         setOrderPlaced(true);
+        setSubmitSpinner(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setSubmitSpinner(false);
+      });
   };
 
   return (
@@ -239,6 +270,7 @@ export default function BookingBar(props) {
                 border={errors.address ? '2px solid red' : '0'}
                 rounded='0'
                 placeholder='Address'
+                defaultValue={props.addressData}
                 size={{ base: 'md', sm: 'lg' }}
                 {...register('address', {
                   required: true,
@@ -402,6 +434,12 @@ export default function BookingBar(props) {
                             textAlign={'center'}
                             px={{ base: '0rem', md: '2rem' }}
                           >
+                            Your Items will be picked up between{' '}
+                            {watch('pickupTime')
+                              ? `${watch('pickupTime')} to ${addedTime(
+                                  watch('pickupTime')
+                                )}.`
+                              : '1 hr of selected time. '}{' '}
                             Please confirm if your items are for dry clean/wash
                             and press, press only (ironing) or service wash (
                             wash dry and fold). Also if you require any
@@ -418,13 +456,13 @@ export default function BookingBar(props) {
                               bg={notPossible ? 'red.100' : 'spinwash.100'}
                               color={notPossible ? 'red.500' : 'spinwash.500'}
                               p='1rem'
-                              maxW='24rem'
+                                maxW='26rem'
                               textAlign={'center'}
-                              fontSize={{ base: 'md', md: 'xl' }}
+                              fontSize={{ base: 'sm', md: 'md' }}
                             >
                               {notPossible
                                 ? 'Minimum delivery time is 12 hrs'
-                                : 'Extra Charges for same day delivery'}
+                                : '20% Extra will be Charged for same day delivery'}
                             </Text>
                           </VStack>
                         ) : (
@@ -442,6 +480,7 @@ export default function BookingBar(props) {
                             bg='spinwash.100'
                             border='0'
                             rounded='0'
+                            defaultValue={props.addressData}
                             placeholder='Address'
                             size={{ base: 'md', sm: 'lg' }}
                             {...register('address')}
@@ -461,7 +500,7 @@ export default function BookingBar(props) {
                   <ModalFooter
                     display='flex'
                     alignItems={'center'}
-                    justify='center'
+                    justifyContent='center'
                   >
                     {orderPlaced ? (
                       <Box h='10vh' w='full' as='button'>
@@ -475,10 +514,16 @@ export default function BookingBar(props) {
                       </Box>
                     ) : (
                       <Button
-                        w='full'
+                        mt='1rem'
+                        mb='2rem'
+                        display='flex'
+                        alignSelf='center'
+                        w='fit-content'
+                        variant='unstyled'
                         type='submit'
                         form='hook-form'
                         isDisabled={notPossible}
+                        isLoading={submitSpinner}
                       >
                         <Center>
                           <ArrowButton variant='dark'>

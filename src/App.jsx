@@ -9,20 +9,21 @@ import {
   Profile,
   PriceList,
   Areas,
+  Services,
+  About,
   TermsAndConditions,
 } from './Pages/Index';
 import { Activate, ResetPassword } from './Components/Authentication/Index';
 import Footer from './Components/Footer/Footer';
 
 function App() {
-
-
   return (
     <>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='about' element={''} />
+        <Route path='service/:service' element={<Services />} />
+        <Route path='about' element={<About />} />
         <Route path='register' element={<RegisterPage />} />
         <Route path='users/activate/:token' element={<Activate />} />
         <Route path='profile' element={<Profile />} />

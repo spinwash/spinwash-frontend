@@ -16,7 +16,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-//import axios from 'axios';
+import axios from 'axios';
 import ArrowButton from '../HOC/ArrowButton';
 
 const AlertPop = (props) => {
@@ -40,8 +40,28 @@ const ForgotPassword = (props) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = () => {
-    console.log('submit');
+  const onSubmit = (data) => {
+    setloader(true);
+    console.log('submit - ' + data);
+    axios
+      .post(`https://spinwash.herokuapp.com/api/password/forget`, data)
+      .then((res) => {
+        console.log(res);
+        toast({
+          title: 'Please Check Your email',
+          status: 'success',
+          duration: 4000,
+        });
+        setloader(false);
+      })
+      .catch((err) => {
+        console.log('err - ', err);
+        setError('password', {
+          type: 'server',
+          message: err,
+        });
+        setloader(false);
+      });
   };
 
   return (
@@ -84,7 +104,9 @@ const ForgotPassword = (props) => {
           />
           {errors.email && <AlertPop title={errors.email.message} />}
         </FormControl>
-        <Box
+        <Button
+          isLoading={loader}
+          variant={'unstyled'}
           as='button'
           display='flex'
           justifyContent={'center'}
@@ -94,7 +116,7 @@ const ForgotPassword = (props) => {
           alignSelf={'center'}
         >
           <ArrowButton variant='dark'>Get Reset Link</ArrowButton>
-        </Box>
+        </Button>
       </form>
 
       <Box
