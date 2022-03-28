@@ -22,7 +22,7 @@ import GoogleLogin from 'react-google-login';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { VscEye, VscEyeClosed } from 'react-icons/vsc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ArrowButton from '../HOC/ArrowButton';
 import { ForgotPassword } from './ForgotPassword';
 import axios from 'axios';
@@ -47,17 +47,51 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast();
 
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     register,
     setError,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
 
-  const onSubmit = () => {
-    console.log('Submitted');
+  const onSubmit = (data) => {
+    setLoader(true);
+    axios
+      .post(`https://spinwash.herokuapp.com/api/login`, data)
+      .then((res) => {
+        toast({
+          title: 'Login Successful',
+          status: 'success',
+          duration: 3000,
+        });
+
+        //successfully logedin
+        authenticate(res);
+        setLoader(false);
+        navigate('/');
+        closeModel();
+      })
+      .catch((err) => {
+        // setValue({});
+        console.log(err);
+        if (err.response.data.at == 'password') {
+          setError('password', {
+            type: 'server',
+            message: err.response.data.errors,
+          });
+        }
+        if (err.response.data.at == 'email') {
+          setError('email', {
+            type: 'server',
+            message: err.response.data.errors,
+          });
+        }
+        setLoader(false);
+      });
   };
-  
+
   const googleSuccess = (tokenId) => {
     setLoaderGoogle(true);
     axios
@@ -132,7 +166,7 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
                     bgColor: 'gray.100',
                   }}
                   onClick={renderProps.onClick}
-                  // isLoading={loaderGoogle}
+                  isLoading={loaderGoogle}
                 >
                   <Center
                     fontWeight={'500'}
@@ -213,8 +247,9 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
                     <AlertPop title={errors.password.message} />
                   )}
                 </FormControl>
-                <Box
-                  as='button'
+                <Button
+                  isLoading={loader}
+                  variant={'unstyled'}
                   display='flex'
                   justifyContent={'center'}
                   alignItems='center'
@@ -223,7 +258,7 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
                   alignSelf={'center'}
                 >
                   <ArrowButton variant='dark'>Login</ArrowButton>
-                </Box>
+                </Button>
               </form>
               <Box
                 as='button'
