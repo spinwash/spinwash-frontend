@@ -44,7 +44,7 @@ const Activate = () => {
     setLoader(true);
     e.preventDefault();
     axios
-      .post(`/api/activation`, {
+      .post(`https://spinwash.herokuapp.com/api/activation`, {
         token,
       })
       .then((res) => {
