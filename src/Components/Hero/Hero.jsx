@@ -12,19 +12,19 @@ const MotionStack = motion(Stack);
 
 const Hero = () => {
   const [addressData, setAddressData] = useState('');
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
   const id = isAuth()?._id;
 
   useEffect(() => {
-    axios
-      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
-      .then((res) => {
-        setAddressData(res.data.address);
-        console.log('user address', addressData);
-      })
-      .catch((err) => console.log(err));
-  });
+    if (id) {
+      axios
+        .get(`https://spinwash.herokuapp.com/api/user/${id}`)
+        .then((res) => {
+          setAddressData(res.data.address);
+          console.log('user address', addressData);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [addressData, id]);
 
   const useHasBeenViewed = () => {
     const [reference, inView] = useInView();
