@@ -140,7 +140,7 @@ const UserProfile = ({ data }) => {
                   bg='spinwash.100'
                   fontWeight={400}
                 >
-                  {data?._id.slice(0, data?._id.length / 2)}
+                  {data?._id?.slice(0, data?._id?.length / 2)}
                 </Text>
               </VStack>
             )}
