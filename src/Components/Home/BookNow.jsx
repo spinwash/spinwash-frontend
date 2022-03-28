@@ -1,6 +1,8 @@
 import { VStack, Heading } from '@chakra-ui/react';
 import React from 'react';
 import ArrowButton from '../HOC/ArrowButton';
+import { Link } from 'react-router-dom';
+
 const BookNow = () => {
   return (
     <VStack
@@ -17,7 +19,9 @@ const BookNow = () => {
       >
         The Best Dry Cleaning Delivered directly to your door
       </Heading>
-      <ArrowButton variant='dark'>Book Now</ArrowButton>
+      <Link to='/'>
+        <ArrowButton variant='dark'>Book Now</ArrowButton>
+      </Link>
     </VStack>
   );
 };

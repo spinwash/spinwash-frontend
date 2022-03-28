@@ -1,4 +1,4 @@
-import HeroImage from '../Images/Hero.webp';
+import HeroImage from '../Images/spinwash.webp';
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Heading, Image, Text, VStack, Stack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
@@ -60,11 +60,16 @@ const Hero = () => {
       <VStack
         zIndex={'1'}
         color='white'
-        p={{ base: '02rem 0rem 0rem 0rem', lg: '8rem 2rem 4rem 2rem' }}
+        p={{
+          base: '2rem 0rem 0rem 0rem',
+          sm: '6rem 0rem 6rem 0rem',
+          lg: '8rem 2rem 4rem 2rem',
+        }}
         spacing={{ base: '1rem', md: '1.5rem', xl: '2rem' }}
         ml={{ base: 'auto', xl: '8rem' }}
         mr={{ base: 'auto', xl: '-20rem' }}
-        maxW={{ base: '80vw', xl: '44vw' }}
+        maxW={{ base: '80vw', xl: '50vw' }}
+        alignItems='flex-start'
       >
         <MotionBox
           initial={{ opacity: 0, y: 40 }}
@@ -86,7 +91,11 @@ const Hero = () => {
             transition: { duration: 0.6, delay: 0.8, ease: 'easeInOut' },
           }}
         >
-          <Text pb='1rem' fontSize={{ base: 'sm', md: 'md' }}>
+          <Text
+            maxW={{ base: '80vw', xl: '40vw' }}
+            pb='1rem'
+            fontSize={{ base: 'sm', md: 'md' }}
+          >
             We here at Spinwash strive to provide our customers with the finest
             dry cleaning and laundry service. With over 20 years of experience
             we will provide you with the best cleaning possible. We collect,
@@ -115,14 +124,14 @@ const Hero = () => {
           opacity: 1,
           transition: { duration: 0.6, delay: 2, ease: 'easeInOut' },
         }}
-        display='flex'
+        display={{ base: 'flex', sm: 'none', lg: 'hidden' }}
         alignItems='center'
-        justifyContent={{ base: 'flex-end', md: 'center' }}
+        justifyContent={{ base: 'flex-end', sm: 'flex-end', lg: 'center' }}
       >
         <Image
           zIndex={'0'}
           src={HeroImage}
-          w='clamp(20rem, 80vw,70rem)'
+          w='clamp(15rem, 40vw,35rem)'
           align={'flex-end'}
           mt='auto'
           //maxW={{ base: '40rem', lg: '60rem' }}
