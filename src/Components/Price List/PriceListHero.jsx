@@ -1316,8 +1316,8 @@ const PriceListHero = () => {
         </VStack>
         <MotionBox
           display='flex'
-          justifyContent='center'
-          alignItems='center'
+          justifyContent='end'
+          alignItems='end'
           initial={{ opacity: 0 }}
           animate={{
             opacity: 1,

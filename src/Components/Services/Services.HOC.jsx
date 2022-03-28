@@ -82,10 +82,9 @@ const ServicesHOC = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/user/${id}`)
+      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
       .then((res) => {
         setAddressData(res.data.address);
-        // console.log(addressData);
       })
       .catch((err) => console.log(err));
   });
@@ -105,12 +104,16 @@ const ServicesHOC = () => {
         <VStack
           zIndex={'1'}
           color='white'
-          p={{ base: '2rem 0rem 0rem 0rem', lg: '4rem 2rem 4rem 2rem' }}
+          p={{
+            base: '2rem 0rem 4rem 0rem',
+            sm: '6rem 2rem 6rem 2rem',
+            lg: '4rem 2rem 4rem 2rem',
+          }}
           spacing={{ base: '1rem', md: '1.5rem', xl: '2rem' }}
           ml={{ base: 'auto', xl: '8rem' }}
           mr={{ base: 'auto', xl: '-20rem' }}
           maxW={{ base: '80vw', xl: '44vw' }}
-          alignItems={{ base: 'center', md: 'start' }}
+          alignItems={'start'}
         >
           <MotionBox
             initial={{ opacity: 0, y: 40 }}
