@@ -132,7 +132,10 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
         mb={{ base: '0', md: '3rem' }}
       >
         {showForgotPasswordScreen ? (
-          <ForgotPassword showScreenFunction={setShowForgotPasswordScreen} />
+          <ForgotPassword
+            showScreenFunction={setShowForgotPasswordScreen}
+            closeModel={closeModel}
+          />
         ) : (
           <VStack
             spacing={{ base: '1.2rem', md: '2rem' }}

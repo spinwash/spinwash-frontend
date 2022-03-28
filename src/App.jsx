@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import { Box } from '@chakra-ui/react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './Components/Navbar/Navbar';
 import {
   Home,
@@ -31,7 +29,7 @@ function App() {
         <Route path='areas' element={<Areas />} />
         <Route path='orders' element={<Orders />} />
         <Route path='t&c' element={<TermsAndConditions />} />
-        <Route path='user/reset-password' element={<RegisterPage />} />
+        <Route path='users/password/reset/:token' element={<ResetPassword />} />
       </Routes>
       <Footer />
     </>

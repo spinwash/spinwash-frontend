@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Heading, Image, Text, VStack, Stack } from '@chakra-ui/react';
+import { Box, Heading, Text, VStack, Stack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import BookingBar from '../Hero/BookingBar';

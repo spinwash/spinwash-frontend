@@ -1,7 +1,7 @@
 import HeroImage from '../Images/Hero.webp';
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Heading, Image, Text, VStack, Stack } from '@chakra-ui/react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import BookingBar from './BookingBar';
 import axios from 'axios';
 import { isAuth } from '../../Helpers/auth';

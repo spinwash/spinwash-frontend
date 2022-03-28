@@ -1,13 +1,4 @@
-import {
-  Box,
-  Container,
-  Heading,
-  Input,
-  Stack,
-  Text,
-  VStack,
-  Wrap,
-} from '@chakra-ui/react';
+import { Box, Heading, Stack, Text, VStack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import { useCallback, useState } from 'react';

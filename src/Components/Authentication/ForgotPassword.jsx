@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 import {
-  FormLabel,
   FormControl,
   Input,
   Heading,
@@ -15,7 +14,6 @@ import {
   VStack,
   useToast,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ArrowButton from '../HOC/ArrowButton';
 
@@ -42,7 +40,7 @@ const ForgotPassword = (props) => {
 
   const onSubmit = (data) => {
     setloader(true);
-    console.log('submit - ' + data);
+    console.log('submit - ', data);
     axios
       .post(`https://spinwash.herokuapp.com/api/password/forget`, data)
       .then((res) => {
@@ -53,12 +51,12 @@ const ForgotPassword = (props) => {
           duration: 4000,
         });
         setloader(false);
+        props.closeModel();
       })
       .catch((err) => {
         console.log('err - ', err);
-        setError('password', {
-          type: 'server',
-          message: err,
+        setError('email', {
+          message: 'Email Does Not Exist',
         });
         setloader(false);
       });
@@ -68,7 +66,7 @@ const ForgotPassword = (props) => {
     <VStack p={['1rem', '1rem', '2rem']} pb={'4rem'}>
       <Center my={'1rem'} flexDirection={'column'}>
         <Heading fontWeight={'400'} mb={'0.5rem'} letterSpacing={'wider'}>
-          Reset Password
+          Forgot Password
         </Heading>
         <Center py={[2, 2, 4]} w={'full'}></Center>
         <Text
@@ -76,7 +74,6 @@ const ForgotPassword = (props) => {
           maxW={'25rem'}
           textAlign={'center'}
         >
-          {' '}
           Enter the email address you've used to sign up with us and we'll send
           you a reset link!
         </Text>

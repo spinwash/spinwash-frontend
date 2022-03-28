@@ -2,7 +2,6 @@ import {
   Box,
   Container,
   Heading,
-  Input,
   Stack,
   Text,
   VStack,

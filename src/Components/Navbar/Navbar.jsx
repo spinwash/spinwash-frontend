@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../Logos/Logo';
 import LogoDark from '../Logos/LogoDark';
 import { HiOutlineMenuAlt2 } from 'react-icons/hi';

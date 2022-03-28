@@ -1,7 +1,5 @@
 import {
   Heading,
-  HStack,
-  Text,
   VStack,
   Wrap,
   Select,

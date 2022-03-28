@@ -14,16 +14,16 @@ const Footer = () => {
           direction={{ base: 'column', md: 'row' }}
         >
           <VStack fontSize={{ base: 'sm', md: 'md' }} alignItems={'start'}>
-            <Heading
-              mb={{ base: '0.5rem', md: '1rem' }}
-              fontSize={{ base: 'xl', md: '2xl' }}
-              fontWeight={'400'}
-            >
-              We are here
-            </Heading>
-            <Text maxW='15rem'>
-              Head Office: 523A Upper Elmers End Road, Beckenham, Kent, BR3 3DE
-            </Text>
+              <Heading
+                mb={{ base: '0.5rem', md: '1rem' }}
+                fontSize={{ base: 'xl', md: '2xl' }}
+                fontWeight={'400'}
+              >
+                We are here
+              </Heading>
+              <Text maxW='15rem'>
+                Head Office: 523A Upper Elmers End Road, Beckenham, Kent, BR3 3DE
+              </Text>
           </VStack>
           <VStack fontSize={{ base: 'sm', md: 'md' }} alignItems={'start'}>
             <Heading

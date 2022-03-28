@@ -7,7 +7,6 @@ import {
   Container,
   VStack,
   useToast,
-  Box,
 } from '@chakra-ui/react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';

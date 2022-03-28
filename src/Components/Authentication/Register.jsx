@@ -58,7 +58,7 @@ const Register = () => {
     handleSubmit,
     register,
     setError,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
@@ -70,7 +70,7 @@ const Register = () => {
         toast({
           title: res.data.message,
           status: 'success',
-          duration: 4000,
+          duration: 9000,
         });
         setLoader(false);
         // on signup send message and redirect to login page

@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
   Box,
-  IconButton,
-  useBreakpointValue,
-  Skeleton,
-  SkeletonCircle,
-  SkeletonText,
   Stack,
   Center,
   Text,
@@ -37,7 +32,6 @@ const settings = {
 export default function Testimonials() {
   const [slider, setSlider] = useState();
   const [cards, setCards] = useState([]);
-
 
   useEffect(() => {
     axios
@@ -84,34 +78,34 @@ export default function Testimonials() {
         {/* Slider */}
         <Slider {...settings} ref={(slider) => setSlider(slider)}>
           {cards?.map((card, index) => (
-          <Box key={index} position='relative'>
-            <Center p={{ base: '1rem', xl: '4rem 6rem' }}>
-              <Stack
-                h={{ base: '12rem', md: '14rem', lg: '22rem' }}
-                spacing={6}
-                w={'full'}
-                alignItems={'center'}
-                bg={'spinwash.100'}
-                p={{ base: '1rem', lg: '4rem 6rem' }}
-              >
-                <Avatar src={card.profile_photo_url} />
-                <Text
-                  textAlign={'center'}
-                  fontSize={{ base: 'xs', lg: 'sm' }}
-                  color='GrayText'
-                  noOfLines={'3'}
+            <Box key={index} position='relative'>
+              <Center p={{ base: '1rem', xl: '4rem 6rem' }}>
+                <Stack
+                  h={{ base: '12rem', md: '14rem', lg: '22rem' }}
+                  spacing={6}
+                  w={'full'}
+                  alignItems={'center'}
+                  bg={'spinwash.100'}
+                  p={{ base: '1rem', lg: '4rem 6rem' }}
                 >
-                  {card.text}
-                </Text>
-                <Text
-                  textAlign={'center'}
-                  fontSize={{ base: 'md', md: 'xl', lg: '2xl' }}
-                >
-                  {card.author_name}
-                </Text>
-              </Stack>
-            </Center>
-          </Box>
+                  <Avatar src={card.profile_photo_url} />
+                  <Text
+                    textAlign={'center'}
+                    fontSize={{ base: 'xs', lg: 'sm' }}
+                    color='GrayText'
+                    noOfLines={'3'}
+                  >
+                    {card.text}
+                  </Text>
+                  <Text
+                    textAlign={'center'}
+                    fontSize={{ base: 'md', md: 'xl', lg: '2xl' }}
+                  >
+                    {card.author_name}
+                  </Text>
+                </Stack>
+              </Center>
+            </Box>
           ))}
         </Slider>
       </Box>

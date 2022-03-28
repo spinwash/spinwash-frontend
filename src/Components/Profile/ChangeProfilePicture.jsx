@@ -1,8 +1,7 @@
-import { Box, Input, Image, Text, Center, FormLabel } from '@chakra-ui/react';
+import { Box, Input, Image, Center, FormLabel } from '@chakra-ui/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { TiCamera } from 'react-icons/ti';
 import { useDropzone } from 'react-dropzone';
-//import { isAuth } from '../../Helpers/auth';
 
 const ChangeProfilePicture = ({ sendDataToParent }) => {
   const [image, setImage] = useState('');

@@ -1,4 +1,4 @@
-import { VStack, Text, Heading } from '@chakra-ui/react';
+import { VStack, Heading } from '@chakra-ui/react';
 import React from 'react';
 import ArrowButton from '../HOC/ArrowButton';
 const BookNow = () => {
