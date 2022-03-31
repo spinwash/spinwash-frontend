@@ -66,10 +66,15 @@ export default function BookingBar(props) {
     register,
     watch,
     control,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultOptions: { address: props.addressData },
   });
+
+  useEffect(() => {
+    setValue('address', `${props.addressData}`);
+  }, [props.addressData, setValue]);
 
   const {
     isOpen: isOpenModal,
@@ -90,8 +95,6 @@ export default function BookingBar(props) {
     const day = date.getDay(date);
     return day !== 0;
   };
-  console.log('component rendered');
-  console.log(watch('pickup'));
   const collection = watch('pickup');
   const dropOff = watch('dropOff');
   const collectionDateData = watch('collectionDate');
@@ -121,27 +124,27 @@ export default function BookingBar(props) {
     //console.log('time diff  👉🏻 ', timedropOff - timePickup);
     // if the date is same only then this code snippet will run
     if (Date.parse(collection) === Date.parse(dropOff)) {
-      console.log(
-        'same date choosen',
-        Date.parse(collection) === Date.parse(dropOff)
-      );
+      // console.log(
+      //   'same date choosen',
+      //   Date.parse(collection) === Date.parse(dropOff)
+      // );
       if (timedropOff - timePickup >= 0) {
-        console.log('positive time choosen'); // as the time is negative we will check if its less than 12 or greater than 12
+        // console.log('positive time choosen'); // as the time is negative we will check if its less than 12 or greater than 12
         if (timedropOff - timePickup === 12) {
-          console.log('equal to 12 choosen');
+          // console.log('equal to 12 choosen');
           setCharges(true);
           setNotPossible(false);
         } else if (timedropOff - timePickup < 12) {
-          console.log('less than 12 choosen');
+          //  console.log('less than 12 choosen');
           setNotPossible(true);
           setCharges(false);
         } else {
-          console.log('greater than 12 choosen');
+          // console.log('greater than 12 choosen');
           setCharges(false);
           setNotPossible(false);
         }
       } else {
-        console.log('Negative time choosen');
+        // console.log('Negative time choosen');
         setNotPossible(true);
       }
     } else {
@@ -269,11 +272,11 @@ export default function BookingBar(props) {
                 }}
                 p={{ base: '0.5rem', sm: '1rem' }}
                 bg='spinwash.100'
-                border={errors.address ? '2px solid red' : '0'}
                 rounded='0'
+                //border={errors.address ? '2px solid red' : '0'}
                 placeholder='Address'
-                defaultValue={props.addressData}
                 size={{ base: 'md', sm: 'lg' }}
+                defaultValue={props.addressData}
                 {...register('address', {
                   required: true,
                 })}

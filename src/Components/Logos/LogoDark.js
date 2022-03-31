@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 
 const LogoDark = () => {
   return (
-    <Center width={{ base: '10rem', lg: '16rem' }}>
+    <Center
+      display={{ base: 'none', xs: 'flex' }}
+      width={{ base: '10rem', lg: '16rem' }}
+    >
       <Link to='/'>
         <svg
           viewBox='0 0 214 34'

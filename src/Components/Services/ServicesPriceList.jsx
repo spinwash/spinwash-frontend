@@ -17,7 +17,6 @@ const ServicesPriceList = ({ data: serviceKey }) => {
   }
   useEffect(() => {
     setPriceListData(search(serviceKey));
-    console.log(priceListData);
   }, [priceListData, serviceKey]);
 
   return (

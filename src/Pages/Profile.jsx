@@ -15,7 +15,6 @@ const Profile = () => {
       .get(`https://spinwash.herokuapp.com/api/user/${_id}`)
       .then((res) => {
         setData(res.data);
-        console.log('Data inside profile page fetched from database - ', Data);
       })
       .catch((err) => {
         console.log(err);

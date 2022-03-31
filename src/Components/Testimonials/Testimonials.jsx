@@ -48,7 +48,6 @@ export default function Testimonials() {
 
   useEffect(() => {
     if (inView) {
-      console.log('inView');
       controls.start('visible');
     }
   }, [controls, inView]);
@@ -58,7 +57,7 @@ export default function Testimonials() {
       .get(`https://spinwash.herokuapp.com/api/reviews`)
       .then((res) => {
         const data = JSON.parse(res.data);
-        console.log(data.result.reviews);
+       // console.log(data.result.reviews);
         setCards(data.result.reviews);
       })
       .catch((err) => console.log(err));

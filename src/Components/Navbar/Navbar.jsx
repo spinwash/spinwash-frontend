@@ -308,15 +308,7 @@ const DeskNavbar = ({ isAuth, navbarDark }) => {
       alignItems='center'
     >
       <Center mx='auto' justifyContent={'space-between'} maxW='8xl' w='full'>
-        {menu ? (
-          <Center>
-            <Lottie options={defaultOptionsLottie} height={90} width={180} />
-          </Center>
-        ) : navbarDark ? (
-          <LogoDark />
-        ) : (
-          <Logo />
-        )}
+        {navbarDark ? <LogoDark /> : <Logo />}
         <HStack
           fontSize={'xl'}
           align='start'

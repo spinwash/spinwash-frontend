@@ -43,7 +43,6 @@ const EditProfile = ({ data, setEditMode, setData }) => {
   const onSubmit = (data) => {
     data._id = isAuth()?._id;
     data.profilePicture = newImage;
-    console.log(data);
 
     axios
       .put(`https://spinwash.herokuapp.com/api/user/update`, data)

@@ -63,7 +63,6 @@ const Register = () => {
 
   const onSubmit = (data) => {
     setLoader(true);
-    console.log(data);
     axios
       .post(`https://spinwash.herokuapp.com/api/register`, data)
       .then((res) => {
@@ -77,7 +76,6 @@ const Register = () => {
         navigate('/');
       })
       .catch((err) => {
-        console.log(err.response.data);
         setError('email', {
           type: 'server',
           message: err.response.data.message,
@@ -109,7 +107,6 @@ const Register = () => {
         setLoaderGoogle(false);
       })
       .catch((err) => {
-        console.log(err);
         toast({
           title: 'Google Login Error',
           status: 'error',

@@ -56,7 +56,6 @@ const ResetPassword = () => {
         newPassword: data.password,
       })
       .then((res) => {
-        console.log(res);
         toast({
           title: res.data.message,
           status: 'success',
@@ -66,7 +65,6 @@ const ResetPassword = () => {
         navigate('/');
       })
       .catch((err) => {
-        console.log('error is ' + err);
         toast({
           title: err.response.data.error,
           status: 'error',

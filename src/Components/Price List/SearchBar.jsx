@@ -11,15 +11,13 @@ function SearchBar({ placeholder, dark, setItem, Data }) {
     setWordEntered(searchWord);
 
     const newFilter = Data.filter((value) => {
-      console.log(value.name.toLowerCase().includes(searchWord.toLowerCase()));
+     // console.log(value.name.toLowerCase().includes(searchWord.toLowerCase()));
       return value.name.toLowerCase().includes(searchWord.toLowerCase());
     });
-    console.log('filtered data - ', newFilter);
     if (searchWord === '') {
       setFilteredData([]);
     } else {
       setFilteredData(newFilter);
-      console.log(filteredData);
     }
   };
 

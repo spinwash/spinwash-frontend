@@ -74,8 +74,6 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
         closeModel();
       })
       .catch((err) => {
-        // setValue({});
-        console.log(err);
         if (err.response.data.at == 'password') {
           setError('password', {
             type: 'server',
@@ -112,7 +110,6 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
         closeModel();
       })
       .catch((err) => {
-        console.log(err);
         toast({
           title: 'Google Login Error',
           status: 'error',

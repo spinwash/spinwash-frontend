@@ -23,7 +23,6 @@ const Footer = () => {
   }, [controls, inView]);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  console.log(pathname);
   const onClickHandler = () => {
     if (pathname === '/') {
       window.scrollTo({

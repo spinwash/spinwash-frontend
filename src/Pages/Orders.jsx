@@ -23,8 +23,6 @@ import { isAuth } from '../Helpers/auth';
 const Orders = (props) => {
   const [Data, setData] = useState(isAuth());
   const id = isAuth()?._id;
-  console.log(Data);
-
   useEffect(() => {
     axios
       .get(`https://spinwash.herokuapp.com/api/user/${id}`)
@@ -42,7 +40,7 @@ const Orders = (props) => {
   for (let i = 0; i < Data.length; i++) {
     const dropOffDate = Data[i].dropOff;
     const getDropOffDateData = Date.parse(dropOffDate);
-    console.log(JSON.stringify(Data[i].dropOff).substring(1, 11));
+   // console.log(JSON.stringify(Data[i].dropOff).substring(1, 11));
     Data[i].dropOff = JSON.stringify(Data[i].dropOff).substring(1, 11);
     Data[i].pickup = JSON.stringify(Data[i].pickup).substring(1, 11);
 

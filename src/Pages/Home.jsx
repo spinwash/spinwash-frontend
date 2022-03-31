@@ -1,5 +1,5 @@
-import { Box, Center, Stack } from '@chakra-ui/react';
-import React, { useState, useEffect } from 'react';
+import { Box, Stack } from '@chakra-ui/react';
+import React, { useEffect } from 'react';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Hero from '../Components/Hero/Hero';

@@ -40,11 +40,9 @@ const ForgotPassword = (props) => {
 
   const onSubmit = (data) => {
     setloader(true);
-    console.log('submit - ', data);
     axios
       .post(`https://spinwash.herokuapp.com/api/password/forget`, data)
       .then((res) => {
-        console.log(res);
         toast({
           title: 'Please Check Your email',
           status: 'success',
@@ -54,7 +52,6 @@ const ForgotPassword = (props) => {
         props.closeModel();
       })
       .catch((err) => {
-        console.log('err - ', err);
         setError('email', {
           message: 'Email Does Not Exist',
         });
