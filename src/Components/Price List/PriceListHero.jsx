@@ -10,7 +10,7 @@ import {
   Wrap,
 } from '@chakra-ui/react';
 import Data from '../../Data/PriceListData.json';
-import HeroImage from '../Images/Hero.webp';
+import HeroImage from '../Images/spinwash.webp';
 import SearchBar from './SearchBar';
 import { motion } from 'framer-motion';
 
@@ -1260,22 +1260,25 @@ const PriceListHero = () => {
   return (
     <>
       <Stack
-        direction={{ base: 'column', lg: 'row' }}
+        direction={{ base: 'column', sm: 'row' }}
         justifyContent='space-between'
         maxW='9xl'
         mx='auto'
         bg='spinwash.300'
-        padding='0'
-        spacing='0'
       >
         <VStack
           zIndex={'1'}
           color='white'
-          p={{ base: '2rem 0rem 0rem 0rem', lg: '8rem 2rem 4rem 2rem' }}
+          p={{
+            base: '4rem 1rem 1rem 1rem',
+            sm: '4rem 1rem 6rem 1rem',
+            md: '4rem 0rem 4rem 4rem',
+            lg: '8rem 2rem 4rem 2rem',
+          }}
           spacing={{ base: '1rem', md: '1.5rem', xl: '2rem' }}
-          ml={{ base: 'auto', xl: '8rem' }}
-          mr={{ base: 'auto', xl: '-20rem' }}
-          maxW={{ base: '80vw', xl: '44vw' }}
+          ml={{ base: '0', sm: 'auto', xl: '8rem' }}
+          mr={{ base: '0', sm: 'auto', xl: '-20rem' }}
+          maxW={{ base: 'full', sm: '80vw', xl: '44vw' }}
         >
           <MotionBox
             initial={{ opacity: 0, y: 40 }}
@@ -1315,7 +1318,7 @@ const PriceListHero = () => {
           </MotionBox>
         </VStack>
         <MotionBox
-          display='flex'
+          display={{ base: 'flex', sm: 'none', md: 'flex' }}
           justifyContent='end'
           alignItems='end'
           initial={{ opacity: 0 }}
@@ -1327,7 +1330,8 @@ const PriceListHero = () => {
           <Image
             zIndex={'0'}
             src={HeroImage}
-            w='clamp(20rem, 34vw,70rem)'
+            pt='2rem'
+            w='clamp(24rem, 28vw,45rem)'
             align={'flex-end'}
             mt='auto'
           />
@@ -1335,8 +1339,8 @@ const PriceListHero = () => {
       </Stack>
       <Wrap
         maxW='9xl'
-        p={['1rem', '2rem', '3rem', '4rem']}
-        spacing={{ base: '0.4rem', md: '1rem' }}
+        p={['2rem 0.5rem', '2rem', '3rem', '4rem']}
+        spacing={{ base: '3vw', sm: '0.5rem', md: '1rem' }}
         align={'center'}
         justify='center'
       >
@@ -1404,12 +1408,15 @@ const PriceListHero = () => {
           {Data[category].items.map((item) => (
             <HStack
               fontSize={{ base: 'xm', md: 'xl' }}
-              minW={{ base: '20rem', md: '40rem' }}
+              minW={{ base: '12rem', lg: '26rem' }}
+              w={{ base: '100%', lg: '30vw' }}
               justifyContent={'space-between'}
               alignItems='center'
             >
               <Text>{item.name}</Text>
-              <Text fontWeight={'500'}>{item.price}</Text>
+              <Text fontWeight={'500'} textAlign='end'>
+                {item.price}
+              </Text>
             </HStack>
           ))}
         </Wrap>
@@ -1422,12 +1429,9 @@ const PriceListHero = () => {
           >
             <Text
               w='full'
-              //border='2px dashed'
               p={{ base: '1rem 2rem', md: '2rem 3rem' }}
               textAlign={'center'}
-              // borderColor={'spinwash.500'}
               bg='spinwash.100'
-              //  rounded='md'
               fontWeight={'500'}
               fontSize={{ base: 'md', md: 'xl' }}
             >

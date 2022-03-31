@@ -10,10 +10,20 @@ import {
 } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import axios from 'axios';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
+const MotionContainer = motion(Container);
+
+const variant = {
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 40 },
+};
 
 const settings = {
   dots: true,
   infinite: true,
+  autoplay: true,
   speed: 500,
   slidesToShow: 2,
   slidesToScroll: 1,
@@ -22,6 +32,7 @@ const settings = {
       breakpoint: 768,
       settings: {
         slidesToShow: 1,
+        autoplay: true,
         slidesToScroll: 1,
         initialSlide: 1,
       },
@@ -32,6 +43,15 @@ const settings = {
 export default function Testimonials() {
   const [slider, setSlider] = useState();
   const [cards, setCards] = useState([]);
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      console.log('inView');
+      controls.start('visible');
+    }
+  }, [controls, inView]);
 
   useEffect(() => {
     axios
@@ -45,7 +65,12 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <Container maxW='9xl'>
+    <MotionContainer
+      maxW='9xl'
+      animate={controls}
+      variants={variant}
+      initial='hidden'
+    >
       <Box maxW={'8xl'} mx='auto' px={{ base: '1rem', md: '2rem' }} pt='4rem'>
         <Heading fontWeight={'500'} fontSize={{ base: '2xl', md: '4xl' }}>
           Testimonials
@@ -61,7 +86,7 @@ export default function Testimonials() {
           porttitor
         </Text>
       </Box>
-      <Box width={'full'} overflow={'hidden'}>
+      <Box ref={ref} width={'full'} overflow={'hidden'}>
         {/* CSS files for react-slick */}
         <link
           rel='stylesheet'
@@ -109,7 +134,7 @@ export default function Testimonials() {
           ))}
         </Slider>
       </Box>
-      <Stack
+      {/*  <Stack
         p='4rem 1rem'
         maxW='7xl'
         mx='auto'
@@ -135,7 +160,7 @@ export default function Testimonials() {
           porttitor rhoncus dolor purus non enim praesent elementum facilisis
           leo, vel
         </Text>
-      </Stack>
-    </Container>
+          </Stack>*/}
+    </MotionContainer>
   );
 }

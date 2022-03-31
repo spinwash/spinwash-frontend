@@ -58,11 +58,11 @@ const TermsAndConditions = () => {
               transition: { duration: 0.6, delay: 0.7, ease: 'easeInOut' },
             }}
           >
-            {Data.map((item, key) => (
+            {Data.map((item, parentKey) => (
               <VStack
                 p={{ base: '1rem', md: '2rem' }}
                 alignItems={'start'}
-                key={key}
+                key={parentKey}
               >
                 <Heading
                   fontWeight={'500'}
@@ -70,9 +70,17 @@ const TermsAndConditions = () => {
                 >
                   {item.heading}
                 </Heading>
-                <OrderedList alignItems={'start'}>
+                <OrderedList
+                  alignItems={'start'}
+                  sx={{ listStyleType: 'none' }}
+                >
                   {item.points.map((point, key) => (
                     <ListItem
+                      _before={{
+                        content: `'${parentKey + 1}.${key + 1}'`,
+                        fontWeight: '400',
+                        paddingRight: '0.7em',
+                      }}
                       fontWeight={'300'}
                       fontSize={{ base: 'sm', md: '18px' }}
                       p={{ base: '0.2rem', md: '0.4rem' }}

@@ -36,6 +36,7 @@ const ExtraServices = () => {
       align='center'
       justifyContent='space-between'
       my={{ base: '2rem', md: '6rem' }}
+      spacing={{ base: '2rem', md: '' }}
     >
       <BookNow />
       <VStack
@@ -46,7 +47,9 @@ const ExtraServices = () => {
         mx='auto'
         p='2rem'
       >
-        <Heading fontWeight={'500'}>Extra Services</Heading>
+        <Heading fontWeight={'500'} fontSize={{ base: '2xl', md: '3xl' }}>
+          Extra Services
+        </Heading>
         <Text
           maxW='36rem'
           fontWeight={'300'}

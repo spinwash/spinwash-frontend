@@ -29,7 +29,7 @@ function SearchBar({ placeholder, dark, setItem, Data }) {
   };
 
   return (
-    <VStack w='100%'>
+    <VStack w='full' minW={{ base: '16rem', sm: '20rem' }}>
       <HStack
         background={dark ? 'spinwash.500' : 'spinwash.100'}
         className='searchInputs'

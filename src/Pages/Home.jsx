@@ -28,7 +28,7 @@ const Home = () => {
   }, [controls, inView]);
 
   return (
-    <Box>
+    <Box overflow={'hidden'}>
       <Hero />
       <HowItWorks />
       <MotionStack

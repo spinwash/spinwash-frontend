@@ -1,19 +1,42 @@
 import { Box, Heading, Stack, Text, VStack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  Polygon,
+} from '@react-google-maps/api';
 import { useCallback, useState } from 'react';
 
 const MotionBox = motion(Box);
 
 const containerStyle = {
-  width: '100%',
-  height: '100%',
+  width: 'full',
+  height: '24rem',
 };
 
-const position = {
-  lat: 51.39081119999999,
-  lng: -0.02787189999999999,
+const position = { lat: 18.466, lng: -66.118 };
+
+const options = {
+  fillColor: '#E1F6FF',
+  fillOpacity: 0.3,
+  strokeColor: '#1B4D7A',
+  strokeOpacity: 1,
+  strokeWeight: 1,
+  clickable: false,
+  draggable: false,
+  editable: false,
+  geodesic: false,
+  zIndex: 1,
 };
+
+const paths = [
+  { lat: 25.774, lng: -80.19 },
+  { lat: 18.466, lng: -66.118 },
+  { lat: 32.321, lng: -64.757 },
+  { lat: 35.774, lng: -120.19 },
+  { lat: 25.774, lng: -100.19 },
+];
 
 const AboutHero = () => {
   const { isLoaded } = useJsApiLoader({
@@ -23,11 +46,9 @@ const AboutHero = () => {
 
   const [map, setMap] = useState(null);
 
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map);
-  }, []);
+  const onLoad = (polygon) => {
+    console.log('polygon: ', polygon);
+  };
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
@@ -75,7 +96,13 @@ const AboutHero = () => {
             we'll always contact you to get your permission before going ahead
             with the work.
           </Text>
-          <Box w='full' minH={'18rem'} h='full' bg='gray.100' mt={'2rem'}>
+          <Box
+            w='full'
+            minH={{ base: '20rem', md: '24rem' }}
+            h='full'
+            bg='gray.100'
+            mt={'2rem'}
+          >
             {isLoaded ? (
               <GoogleMap
                 mapContainerStyle={containerStyle}
@@ -84,7 +111,7 @@ const AboutHero = () => {
                 onLoad={onLoad}
                 onUnmount={onUnmount}
               >
-                <Marker position={position} />
+                <Polygon onLoad={onLoad} paths={paths} options={options} />
               </GoogleMap>
             ) : (
               ''
@@ -126,7 +153,6 @@ const AboutHero = () => {
             <Text>020 8125 3074</Text>
             <Text>info@spinwash.co.uk</Text>
             <Text>Instagram</Text>
-            <Text>Twitter</Text>
             <Text>Facebook</Text>
           </VStack>
         </MotionBox>

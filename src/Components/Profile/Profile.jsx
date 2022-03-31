@@ -64,12 +64,12 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Shirt Folding Preferences
+                Shirt Washing Preferences
               </Heading>
               <Text fontWeight={400} px='1rem'>
-                {data?.shirtFoldingPreference}
+                {data?.shirtWashingPreference}
               </Text>
-            </VStack>
+            </VStack>{' '}
             <VStack
               alignItems='start'
               w={{ base: '80vw', md: '40vw', xl: '34rem' }}
@@ -79,10 +79,10 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Shirt Washing Preferences
+                Shirt Folding Preferences
               </Heading>
               <Text fontWeight={400} px='1rem'>
-                {data?.shirtWashingPreference}
+                {data?.shirtFoldingPreference}
               </Text>
             </VStack>
             <VStack
@@ -128,9 +128,6 @@ const UserProfile = ({ data }) => {
                   fontWeight={500}
                 >
                   Referral Code{' '}
-                  <Text fontSize='md' fontWeight={'300'}>
-                    ( Refer a friend and get £10 off )
-                  </Text>
                 </Heading>
                 <Text
                   border={'2px dashed #1B4D7A'}
@@ -141,6 +138,11 @@ const UserProfile = ({ data }) => {
                   fontWeight={400}
                 >
                   {data?._id?.slice(0, data?._id?.length / 2)}
+                </Text>
+                <Text maxW='24rem' py='0.5rem'>
+                  Refer a friend and get £10 off . Promo codes are only applied
+                  once the order total is above £20 after applying the promo
+                  code.{' '}
                 </Text>
               </VStack>
             )}

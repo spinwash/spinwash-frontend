@@ -188,8 +188,8 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                     placeholder={data?.shirtFoldingPreference}
                     {...register('shirtFoldingPreference')}
                   >
-                    <option value='Hung'>ShirtHung</option>
-                    <option value='Folded'>ShirtFold</option>
+                    <option value='Hung'>Shirt Hung</option>
+                    <option value='Folded'>Shirt Fold</option>
                   </Select>{' '}
                 </VStack>
               </VStack>
@@ -209,11 +209,11 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                     placeholder={data?.shirtWashingPreference}
                     {...register('shirtWashingPreference')}
                   >
+                    <option value='Wash And Press'>Wash and Press</option>
                     <option value='Press Only'>Press Only</option>
                     <option value='Dry Clean And Press'>
                       Dry Clean and Press
                     </option>
-                    <option value='Wash And Press'>Wash and Press</option>
                   </Select>{' '}
                 </VStack>
               </VStack>
@@ -233,9 +233,9 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                     placeholder={data?.beddingPreference}
                     {...register('beddingPreference')}
                   >
+                    <option value='Wash And Press'>Wash And Press</option>
                     <option value='Press Only'>Press Only</option>
                     <option value='Wash And Fold'>Wash And Fold</option>
-                    <option value='Wash And Press'>Wash And Press</option>
                   </Select>{' '}
                 </VStack>
               </VStack>

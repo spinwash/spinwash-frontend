@@ -142,19 +142,21 @@ const AreaHero = () => {
     <>
       <Stack
         direction={{ base: 'column', lg: 'row' }}
-        justifyContent='space-between'
-        maxW='9xl'
-        mx='auto'
-        padding='0'
-        spacing='0'
+        p={{ base: '1rem 2rem', md: '1rem' }}
+        mx={{ base: '0', lg: 'auto' }}
+        maxW='8xl'
       >
         <VStack
           zIndex={'1'}
-          p={{ base: '2rem 0rem 0rem 0rem', lg: '8rem 2rem 4rem 2rem' }}
+          p={{
+            base: '2rem 0rem 0rem 0rem',
+            sm: '4rem 0rem 0rem 0rem',
+            lg: '8rem 2rem 4rem 2rem',
+          }}
           spacing={{ base: '1rem', md: '1.5rem', xl: '2rem' }}
-          ml={{ base: 'auto', xl: '8rem' }}
-          mr={{ base: 'auto', xl: '-20rem' }}
           maxW={{ base: '80vw', xl: '44vw' }}
+          alignItems='start'
+          minH='25vh'
         >
           <MotionBox
             initial={{ opacity: 0, y: 30 }}
@@ -172,6 +174,7 @@ const AreaHero = () => {
             </Heading>
           </MotionBox>
           <MotionBox
+            w='full'
             as='flex'
             alignSelf='start'
             initial={{ opacity: 0, y: 20 }}
@@ -182,7 +185,7 @@ const AreaHero = () => {
             }}
           >
             <Box
-              w={['70vw', '50vw', '30vw']}
+              w={['70vw', '80vw', '30vw']}
               bg='white'
               mt={'1rem'}
               maxH={{ base: '1rem', md: '4.08rem' }}
@@ -199,16 +202,18 @@ const AreaHero = () => {
       </Stack>
       <Container
         maxW='8xl'
-        p={{ base: '1rem 0rem 0rem 0rem', xl: '0' }}
+        p={{ base: '2rem 0rem 0rem 0rem', xl: '0' }}
         my='4rem'
       >
         <Wrap
-          align={{ base: 'center', sm: 'start' }}
-          justify={{ base: 'center', lg: 'space-between' }}
+          px={'2rem'}
+          align={{ base: 'start', sm: 'start' }}
+          justify={{ base: 'start', sm: 'space-between', lg: 'space-between' }}
           maxW='4xl'
-          mx={{ base: 'auto', lg: 'auto', xl: '0' }}
+          mx={{ base: 'auto', md: '0', lg: '0', xl: '0' }}
         >
           <MotionVStack
+            pb='1rem'
             initial={{ opacity: 0, y: 20 }}
             animate={{
               opacity: 1,
@@ -231,6 +236,7 @@ const AreaHero = () => {
             )}
           </MotionVStack>
           <MotionVStack
+            pb='1rem'
             initial={{ opacity: 0, y: 40 }}
             animate={{
               opacity: 1,
@@ -253,6 +259,7 @@ const AreaHero = () => {
             )}
           </MotionVStack>
           <MotionVStack
+            pb='1rem'
             initial={{ opacity: 0, y: 60 }}
             animate={{
               opacity: 1,

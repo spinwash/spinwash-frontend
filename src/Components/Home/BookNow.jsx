@@ -1,9 +1,27 @@
-import { VStack, Heading } from '@chakra-ui/react';
+import { VStack, Heading, Box } from '@chakra-ui/react';
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ArrowButton from '../HOC/ArrowButton';
-import { Link } from 'react-router-dom';
 
 const BookNow = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  console.log(pathname);
+  const onClickHandler = () => {
+    if (pathname === '/') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    } else {
+      navigate('/');
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
     <VStack
       alignItems={'start'}
@@ -14,14 +32,14 @@ const BookNow = () => {
     >
       <Heading
         fontWeight={'500'}
-        fontSize={{ base: '2xl', md: '4xl' }}
+        fontSize={{ base: 'xl', md: '4xl' }}
         maxW='36rem'
       >
         The Best Dry Cleaning Delivered directly to your door
       </Heading>
-      <Link to='/'>
+      <Box as='button' onClick={onClickHandler}>
         <ArrowButton variant='dark'>Book Now</ArrowButton>
-      </Link>
+      </Box>
     </VStack>
   );
 };

@@ -7,8 +7,6 @@ const LogoDark = () => {
     <Center width={{ base: '10rem', lg: '16rem' }}>
       <Link to='/'>
         <svg
-          width='214'
-          height='34'
           viewBox='0 0 214 34'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'

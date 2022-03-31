@@ -60,14 +60,13 @@ export default function BookingBar(props) {
   }
 
   const [minDate, setMinDate] = useState(now);
-  console.log('address data - ', props.addressData);
 
   const {
     handleSubmit,
     register,
     watch,
     control,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm({
     defaultOptions: { address: props.addressData },
   });
@@ -91,7 +90,8 @@ export default function BookingBar(props) {
     const day = date.getDay(date);
     return day !== 0;
   };
-
+  console.log('component rendered');
+  console.log(watch('pickup'));
   const collection = watch('pickup');
   const dropOff = watch('dropOff');
   const collectionDateData = watch('collectionDate');
@@ -233,13 +233,15 @@ export default function BookingBar(props) {
   const onSubmit = (data) => {
     setSubmitSpinner(true);
     axios
-      .post(`https://spinwash.herokuapp.com/api/user/createOrder/${isAuth()._id}`, data)
+      .post(
+        `https://spinwash.herokuapp.com/api/user/createOrder/${isAuth()._id}`,
+        data
+      )
       .then((res) => {
         setOrderPlaced(true);
         setSubmitSpinner(false);
       })
       .catch((err) => {
-        console.log(err);
         setSubmitSpinner(false);
       });
   };
@@ -456,7 +458,7 @@ export default function BookingBar(props) {
                               bg={notPossible ? 'red.100' : 'spinwash.100'}
                               color={notPossible ? 'red.500' : 'spinwash.500'}
                               p='1rem'
-                                maxW='26rem'
+                              maxW='26rem'
                               textAlign={'center'}
                               fontSize={{ base: 'sm', md: 'md' }}
                             >

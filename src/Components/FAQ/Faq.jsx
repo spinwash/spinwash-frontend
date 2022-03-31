@@ -9,11 +9,37 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
+import { useAnimation, motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
+
+const MotionContainer = motion(Container);
+
+const variant = {
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 40 },
+};
 
 const Faq = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    }
+  }, [controls, inView]);
+
   return (
-    <Container maxW='7xl' py={{ base: '4rem', md: '8rem' }}>
+    <MotionContainer
+      animate={controls}
+      variants={variant}
+      initial='hidden'
+      maxW='7xl'
+      py={{ base: '4rem', md: '8rem' }}
+    >
       <Heading
+        ref={ref}
         pb={{ base: '1rem', md: '2rem' }}
         textAlign={'center'}
         fontWeight={'500'}
@@ -284,7 +310,7 @@ const Faq = () => {
           )}
         </AccordionItem>
       </Accordion>
-    </Container>
+    </MotionContainer>
   );
 };
 

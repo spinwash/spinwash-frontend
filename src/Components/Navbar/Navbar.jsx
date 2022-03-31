@@ -25,10 +25,11 @@ import {
   Text,
   Stack,
   Box,
+  Button,
   Flex,
 } from '@chakra-ui/react';
 import Login from '../Authentication/Login';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Profile from './Profile';
 import { isAuth } from '../../Helpers/auth';
 import Lottie from 'react-lottie';
@@ -102,6 +103,7 @@ const MobileNav = ({ isAuth, navbarDark }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: isOpenMenu, onToggle: onToggleMenu } = useDisclosure();
   const profilePicture = isAuth()?.profilePicture;
+  const navigate = useNavigate();
 
   const {
     isOpen: isOpenModal,
@@ -164,7 +166,18 @@ const MobileNav = ({ isAuth, navbarDark }) => {
           color={navbarDark ? 'white' : 'spinwash.500'}
         >
           <DrawerCloseButton size={'lg'} />
-          <DrawerHeader>Spin Wash</DrawerHeader>
+          <DrawerHeader>
+            <Box
+              as='button'
+              onClick={() => {
+                navigate('/');
+                onClose();
+              }}
+              fontWeight='500'
+            >
+              Spin Wash
+            </Box>
+          </DrawerHeader>
           <DrawerBody>
             <VStack
               fontSize={'2xl'}
@@ -182,7 +195,7 @@ const MobileNav = ({ isAuth, navbarDark }) => {
                     textDecoration: 'none',
                   }}
                 >
-                  <Text fontWeight={600}>Services</Text>
+                  <Text>Services</Text>
                   <Icon
                     as={ArrowForwardIcon}
                     transition={'all .25s ease-in-out'}
@@ -204,35 +217,67 @@ const MobileNav = ({ isAuth, navbarDark }) => {
                     fontWeight={'400'}
                   >
                     {data.map((child) => (
-                      <Link to={`service/${child.id}`}>{child.name}</Link>
+                      <Box
+                        as='button'
+                        onClick={() => {
+                          navigate(`service/${child.id}`);
+                          onClose();
+                        }}
+                      >
+                        {child.name}
+                      </Box>
                     ))}
                   </Stack>
                 </Collapse>
               </Stack>
-              <NavLink to='/pricing'>
+              <Box
+                w='full'
+                as='button'
+                onClick={() => {
+                  navigate('/pricing');
+                  onClose();
+                }}
+              >
                 <Text
                   _hover={{ color: 'spinwash.400', transition: 'all 0.3s' }}
+                  textAlign='start'
                 >
                   Pricing
                 </Text>
-              </NavLink>
-              <NavLink to='/areas'>
+              </Box>
+              <Box
+                w='full'
+                as='button'
+                onClick={() => {
+                  navigate('/areas');
+                  onClose();
+                }}
+              >
                 <Text
                   _hover={{ color: 'spinwash.400', transition: 'all 0.3s' }}
+                  textAlign='start'
                 >
                   Areas
                 </Text>
-              </NavLink>
-              <NavLink to='/about'>
+              </Box>
+              <Box
+                w='full'
+                as='button'
+                onClick={() => {
+                  navigate('/about');
+                  onClose();
+                }}
+              >
                 <Text
                   _hover={{ color: 'spinwash.400', transition: 'all 0.3s' }}
+                  textAlign='start'
                 >
                   About
                 </Text>
-              </NavLink>
+              </Box>
             </VStack>
           </DrawerBody>
-          <DrawerFooter px='3rem'>
+          <DrawerFooter px='2rem'>
             {navbarDark ? <Logo /> : <LogoDark />}
           </DrawerFooter>
         </DrawerContent>

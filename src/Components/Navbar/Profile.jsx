@@ -8,12 +8,22 @@ import {
   Button,
   MenuGroup,
   Box,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  AlertDialogCloseButton,
+  useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signout } from '../../Helpers/auth';
 
 const Profile = ({ userProfilePicture }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
   const navigate = useNavigate();
 
   return (
@@ -74,17 +84,10 @@ const Profile = ({ userProfilePicture }) => {
             justifyContent={'space-between'}
             alignItems='center'
             flexDirection={'row'}
+            as='button'
+            onClick={onOpen}
           >
-            <Box
-              as='button'
-              fontWeight={'500'}
-              onClick={() => {
-                signout();
-                navigate('/');
-              }}
-            >
-              Logout
-            </Box>
+            <Box fontWeight={'500'}>Logout</Box>
             <Icon
               as={ArrowForwardIcon}
               transition={'all .25s ease-in-out'}
@@ -94,6 +97,50 @@ const Profile = ({ userProfilePicture }) => {
             />
           </Box>
         </MenuItem>
+        <AlertDialog
+          motionPreset='slideInBottom'
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+          isOpen={isOpen}
+          isCentered
+        >
+          <AlertDialogOverlay />
+
+          <AlertDialogContent maxW='22rem' m='1rem' borderRadius={'0'}>
+            <AlertDialogHeader>Logout</AlertDialogHeader>
+            <AlertDialogCloseButton />
+            <AlertDialogBody>Are you sure you want to Logout</AlertDialogBody>
+            <AlertDialogFooter>
+              <Button
+                variant={'unstyled'}
+                bgColor={'gray.100'}
+                rounded='0'
+                p='0rem 1.4rem'
+                ref={cancelRef}
+                onClick={onClose}
+              >
+                No
+              </Button>
+              <Button
+                variant={'unstyled'}
+                border='2px solid'
+                borderColor={'spinwash.500'}
+                bgColor='spinwash.500'
+                color='white'
+                rounded='0'
+                p='0rem 1.4rem'
+                ml={3}
+                onClick={() => {
+                  signout();
+                  onClose();
+                  navigate('/');
+                }}
+              >
+                Yes
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </MenuList>
     </Menu>
   );

@@ -2,7 +2,7 @@ import { Box, Flex, VStack, Text } from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const MotionBox = motion(Box);
 
@@ -14,12 +14,21 @@ const variant = {
 const ServiceWrap = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (inView) {
       controls.start('visible');
     }
   }, [controls, inView]);
+
+  const onClickHandler = (url) => {
+    navigate(url);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <MotionBox
@@ -36,7 +45,7 @@ const ServiceWrap = () => {
         justifyContent={'center'}
         align='center'
       >
-        <Link to={'/service/dryCleaning'}>
+        <Box as='button' onClick={() => onClickHandler('service/dryCleaning')}>
           <VStack
             _hover={{
               shadow: '2xl',
@@ -46,6 +55,7 @@ const ServiceWrap = () => {
             bg='white'
             p={{ base: '2rem', md: '3rem 4rem' }}
             spacing={{ base: '3', md: '5' }}
+            minW='8.5rem'
           >
             <Box
               w={{ base: '3rem', md: '5rem' }}
@@ -81,7 +91,7 @@ const ServiceWrap = () => {
             </Box>
             <Text fontSize={{ base: 'xs', md: 'sm' }}>Dry Cleaning</Text>
           </VStack>
-        </Link>
+        </Box>
         <Link to={'service/bedding'}>
           <VStack
             _hover={{
@@ -92,6 +102,7 @@ const ServiceWrap = () => {
             bg='white'
             p={{ base: '2rem', md: '3rem 4rem' }}
             spacing={{ base: '3', md: '5' }}
+            minW='8.5rem'
           >
             <Box
               w={{ base: '3rem', md: '5rem' }}
@@ -123,6 +134,7 @@ const ServiceWrap = () => {
             bg='white'
             p={{ base: '2rem', md: '3rem 4rem' }}
             spacing={{ base: '3', md: '5' }}
+            minW='8.5rem'
           >
             <Box
               w={{ base: '3rem', md: '5rem' }}
@@ -170,6 +182,7 @@ const ServiceWrap = () => {
             bg='white'
             p={{ base: '2rem', md: '3rem 4rem' }}
             spacing={{ base: '3', md: '5' }}
+            minW='8.5rem'
           >
             <Box
               w={{ base: '3rem', md: '5rem' }}
@@ -238,6 +251,7 @@ const ServiceWrap = () => {
             bg='white'
             p={{ base: '2rem', md: '3rem 4rem' }}
             spacing={{ base: '3', md: '5' }}
+            minW='8.5rem'
           >
             <Box
               w={{ base: '3rem', md: '5rem' }}
@@ -284,6 +298,7 @@ const ServiceWrap = () => {
             bg='white'
             p={{ base: '2rem', md: '3rem 4rem' }}
             spacing={{ base: '3', md: '5' }}
+            minW='8.5rem'
           >
             <Box
               w={{ base: '3rem', md: '5rem' }}
@@ -330,6 +345,7 @@ const ServiceWrap = () => {
             bg='white'
             p={{ base: '2rem', md: '3rem 4rem' }}
             spacing={{ base: '3', md: '5' }}
+            minW='8.5rem'
           >
             <Box
               w={{ base: '3rem', md: '5rem' }}
@@ -381,6 +397,7 @@ const ServiceWrap = () => {
             bg='white'
             p={{ base: '2rem', md: '3rem 4rem' }}
             spacing={{ base: '3', md: '5' }}
+            minW='8.5rem'
           >
             <Box
               w={{ base: '3rem', md: '5rem' }}

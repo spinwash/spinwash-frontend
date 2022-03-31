@@ -20,7 +20,6 @@ const Hero = () => {
         .get(`https://spinwash.herokuapp.com/api/user/${id}`)
         .then((res) => {
           setAddressData(res.data.address);
-          console.log('user address', addressData);
         })
         .catch((err) => console.log(err));
     }
@@ -38,7 +37,6 @@ const Hero = () => {
   };
 
   const [hasBeenViewed, reference] = useHasBeenViewed();
-  //console.log(hasBeenViewed);
 
   return (
     <MotionStack
@@ -131,7 +129,9 @@ const Hero = () => {
         <Image
           zIndex={'0'}
           src={HeroImage}
-          w='clamp(15rem, 40vw,35rem)'
+          w='clamp(18rem, 45vw,40rem)'
+          pt='4rem'
+          pr={{ base: '1rem', md: '0rem', lg: '2rem' }}
           align={'flex-end'}
           mt='auto'
           //maxW={{ base: '40rem', lg: '60rem' }}

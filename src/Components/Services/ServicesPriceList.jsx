@@ -41,12 +41,15 @@ const ServicesPriceList = ({ data: serviceKey }) => {
             {priceListData.items.map((item) => (
               <HStack
                 fontSize={{ base: 'xm', md: 'xl' }}
-                minW={{ base: '20rem', md: '40rem' }}
+                minW={{ base: '12rem', lg: '26rem' }}
+                w={{ base: '100%', lg: '30vw' }}
                 justifyContent={'space-between'}
                 alignItems='center'
               >
                 <Text>{item.name}</Text>
-                <Text fontWeight={'500'}>{item.price}</Text>
+                <Text fontWeight={'500'} textAlign='end'>
+                  {item.price}
+                </Text>
               </HStack>
             ))}
           </Wrap>
