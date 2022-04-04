@@ -37,13 +37,13 @@ const Services = () => {
         textAlign={'center'}
         fontSize={{ base: 'xs', md: 'md' }}
         fontWeight='400'
-        maxW='5xl'
+        maxW='3xl'
         mx='auto'
         p='1.5rem'
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-        purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor
-        rhoncus dolor purus non enim praesent elementum facilisis leo, vel
+        We have a variety of services making sure your clothes/ items get the
+        best service possible along with making sure each requirement of yours
+        is met.
       </Text>
       <Container maxW='5xl'>
         <ServiceWrap />

@@ -57,7 +57,7 @@ export default function Testimonials() {
       .get(`https://spinwash.herokuapp.com/api/reviews`)
       .then((res) => {
         const data = JSON.parse(res.data);
-       // console.log(data.result.reviews);
+        // console.log(data.result.reviews);
         setCards(data.result.reviews);
       })
       .catch((err) => console.log(err));
@@ -70,20 +70,19 @@ export default function Testimonials() {
       variants={variant}
       initial='hidden'
     >
-      <Box maxW={'8xl'} mx='auto' px={{ base: '1rem', md: '2rem' }} pt='4rem'>
-        <Heading fontWeight={'500'} fontSize={{ base: '2xl', md: '4xl' }}>
-          Testimonials
-        </Heading>
-        <Text
-          py={{ base: '1rem', md: '2rem' }}
-          maxW='36rem'
-          fontWeight={'300'}
-          fontSize={{ base: 'xs', md: 'md' }}
+      <Box
+        maxW={'8xl'}
+        mx='auto'
+        px={{ base: '1rem', md: '4rem' }}
+        pt={{ base: '4rem', md: '6rem' }}
+      >
+        <Heading
+          fontWeight={'500'}
+          fontSize={{ base: '2xl', md: '4xl' }}
+          textAlign='center'
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-          purus sit amet luctus venenatis, lectus magna fringilla urna,
-          porttitor
-        </Text>
+          Spinwash Customers Testimonials
+        </Heading>
       </Box>
       <Box ref={ref} width={'full'} overflow={'hidden'}>
         {/* CSS files for react-slick */}

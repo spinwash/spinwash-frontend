@@ -38,10 +38,6 @@ const HowItWorksText = () => {
       <Heading fontWeight={'500'} fontSize={{ base: 'xl', md: '3xl' }}>
         How It Works ?
       </Heading>
-      <Text maxW='36rem' fontWeight={'300'} fontSize={{ base: 'xs', md: 'md' }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-        purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor
-      </Text>
       <Center flexDirection='column' p='1rem'>
         <HStack align='base-line' p='0.8rem 1rem' spacing='1rem'>
           <RiSmartphoneLine size={40} />
@@ -54,8 +50,7 @@ const HowItWorksText = () => {
               fontWeight={'300'}
               fontSize={{ base: 'xs', md: 'md' }}
             >
-              Choose when and where you wish us to collect & deliver your
-              laundry.
+              Choose an hour slot you wish your items to be picked up in.
             </Text>
           </VStack>
         </HStack>
@@ -70,8 +65,8 @@ const HowItWorksText = () => {
               fontWeight={'300'}
               fontSize={{ base: 'xs', md: 'md' }}
             >
-              We collect your bag, list and clean your items according to your
-              requirements.
+              We will collect your items, invoice them for you and clean them
+              according to your requirements.
             </Text>
           </VStack>
         </HStack>
@@ -86,8 +81,8 @@ const HowItWorksText = () => {
               fontWeight={'300'}
               fontSize={{ base: 'xs', md: 'md' }}
             >
-              We deliver your items cleaned within 24 hours and at the time
-              required.
+              We can have your items delivered back to you in only 24 hours or
+              at a time that suits you.
             </Text>
           </VStack>
         </HStack>

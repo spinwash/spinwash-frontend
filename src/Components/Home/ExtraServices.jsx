@@ -3,6 +3,7 @@ import { Box, Heading, Stack, Text, VStack } from '@chakra-ui/react';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import BookNow from './BookNow';
+import { useNavigate } from 'react-router-dom';
 
 const MotionStack = motion(Stack);
 
@@ -14,6 +15,7 @@ const variant = {
 const ExtraServices = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (inView) {
@@ -55,19 +57,31 @@ const ExtraServices = () => {
           fontWeight={'300'}
           fontSize={{ base: 'xs', md: 'md' }}
         >
-          For all leather, suede, fur and shoe cleaning please contact us via
-          phone or email for more information.
+          For any additional service please contact us via email and phone for
+          more information.
         </Text>
         <Text
+          bg={'white'}
+          p='1rem 2rem'
           maxW='40rem'
           fontWeight={'400'}
           fontSize={{ base: 'xs', md: 'md' }}
         >
-          Get £10 off when you spend £40!
+          Get 20% Off with your first order{' '}
+          <Text
+            as='span'
+            fontSize='xs'
+            onClick={() => {
+              navigate('/t&c');
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              });
+            }}
+          >
+            <i>( T&C’s apply ) </i>
+          </Text>
         </Text>
-        <Box bg={'white'} p='1rem 2rem'>
-          MINUS10
-        </Box>
       </VStack>
     </MotionStack>
   );
