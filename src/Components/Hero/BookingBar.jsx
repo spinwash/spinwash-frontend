@@ -235,10 +235,15 @@ export default function BookingBar(props) {
 
   const onSubmit = (data) => {
     setSubmitSpinner(true);
+    const dataToSend = {
+      ...data,
+      pickup: data.pickup.toISOString().split('T')[0],
+      dropOff: data.dropOff.toISOString().split('T')[0],
+    };
     axios
       .post(
         `https://spinwash.herokuapp.com/api/user/createOrder/${isAuth()._id}`,
-        data
+        dataToSend
       )
       .then((res) => {
         setOrderPlaced(true);
