@@ -116,7 +116,7 @@ const Hero = () => {
           <BookingBar addressData={addressData} />
         </MotionBox>
       </VStack>
-      <MotionBox
+      {/*<MotionBox
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
@@ -136,7 +136,7 @@ const Hero = () => {
           mt='auto'
           //maxW={{ base: '40rem', lg: '60rem' }}
         />
-      </MotionBox>
+      </MotionBox>*/}
     </MotionStack>
   );
 };
