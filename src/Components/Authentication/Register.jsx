@@ -76,6 +76,7 @@ const Register = () => {
         navigate('/');
       })
       .catch((err) => {
+        console.log(err);
         setError('email', {
           type: 'server',
           message: err.response.data.message,

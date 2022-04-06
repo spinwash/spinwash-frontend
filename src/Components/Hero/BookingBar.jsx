@@ -69,11 +69,13 @@ export default function BookingBar(props) {
     setValue,
     formState: { errors },
   } = useForm({
-    defaultOptions: { address: props.addressData },
+    defaultOptions: {
+      address: props.addressData && props.addressData,
+    },
   });
 
   useEffect(() => {
-    setValue('address', `${props.addressData}`);
+    setValue('address', props.addressData && props.addressData);
   }, [props.addressData, setValue]);
 
   const {
@@ -121,7 +123,7 @@ export default function BookingBar(props) {
   }
 
   useEffect(() => {
-    //console.log('time diff  👉🏻 ', timedropOff - timePickup);
+    console.log('time diff  👉🏻 ', timedropOff - timePickup);
     // if the date is same only then this code snippet will run
     if (Date.parse(collection) === Date.parse(dropOff)) {
       // console.log(
@@ -148,8 +150,14 @@ export default function BookingBar(props) {
         setNotPossible(true);
       }
     } else {
-      setCharges(false);
-      setNotPossible(false);
+      if (timedropOff - timePickup < 0) {
+        console.log('less than 0 choosen');
+        setCharges(false);
+        setNotPossible(true);
+      } else {
+        setCharges(false);
+        setNotPossible(false);
+      }
     }
   }, [
     collection,
@@ -259,14 +267,14 @@ export default function BookingBar(props) {
       <Center
         alignItems={{ base: 'flex-end', lg: 'center' }}
         color='spinwash.500'
-        w={{ base: '75vw', sm: '80vw', md: '64vw', lg: '38vw' }}
+        w={{ base: '75vw', sm: '80vw', md: '64vw', lg: '50rem' }}
       >
         <form id='hook-form' onSubmit={handleSubmit(onSubmit)}>
           <HStack
             p={{ base: '0.4rem', sm: '1rem' }}
             spacing={{ base: 'auto', sm: '4' }}
             justify='space-between'
-            w={{ base: '74vw', sm: '80vw', md: '64vw', lg: '38vw' }}
+            w={{ base: '74vw', sm: '80vw', md: '64vw', lg: '50rem' }}
           >
             <FormControl display={{ base: 'none', sm: 'block' }} isRequired>
               <Input
@@ -281,7 +289,7 @@ export default function BookingBar(props) {
                 //border={errors.address ? '2px solid red' : '0'}
                 placeholder='Address'
                 size={{ base: 'md', sm: 'lg' }}
-                defaultValue={props.addressData}
+                defaultValue={props.addressData ? '' : props.addressData}
                 {...register('address', {
                   required: true,
                 })}
@@ -471,7 +479,7 @@ export default function BookingBar(props) {
                               fontSize={{ base: 'sm', md: 'md' }}
                             >
                               {notPossible
-                                ? 'Minimum delivery time is 12 hrs'
+                                ? 'Minimum delivery time is 12 Working hrs'
                                 : '20% Extra will be Charged for same day delivery'}
                             </Text>
                           </VStack>

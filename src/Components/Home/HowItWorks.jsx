@@ -1,4 +1,4 @@
-import { Center, Image, Stack } from '@chakra-ui/react';
+import { Center, Container, Image, Stack } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -23,29 +23,33 @@ const HowItWorks = () => {
   }, [controls, inView]);
 
   return (
-    <Stack
-      direction={{ base: 'column-reverse', lg: 'row' }}
-      align='center'
-      my={{ base: '2rem', md: '8rem' }}
-      mt={{ base: '3rem', md: '8rem' }}
-      spacing='0'
-    >
-      <MotionCenter
-        animate={controls}
-        variants={variant}
-        initial='hidden'
-        overflow={'hidden'}
-        w={{ base: '80%', md: '50%' }}
+    <Container maxW='8xl'>
+      <Stack
+        direction={{ base: 'column-reverse', lg: 'row' }}
+        justify='space-around'
+        align='center'
+        my={{ base: '2rem', md: '8rem' }}
+        mt={{ base: '3rem', md: '8rem' }}
+        spacing='0'
       >
-        <Image
-          ref={ref}
-          src={WMImage}
-          maxW={{ base: '360px', md: '600px' }}
-          p='4rem'
-        />
-      </MotionCenter>
-      <HowItWorksText />
-    </Stack>
+        <MotionCenter
+          animate={controls}
+          variants={variant}
+          initial='hidden'
+          overflow={'hidden'}
+          w={{ base: '80%', md: '40%' }}
+        >
+          <Image
+            ref={ref}
+            src={WMImage}
+            maxW={{ base: '360px', md: '600px' }}
+            maxH='350px'
+            //  p='4rem'
+          />
+        </MotionCenter>
+        <HowItWorksText />
+      </Stack>
+    </Container>
   );
 };
 

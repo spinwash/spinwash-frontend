@@ -106,7 +106,12 @@ const Profile = ({ userProfilePicture }) => {
         >
           <AlertDialogOverlay />
 
-          <AlertDialogContent maxW='22rem' m='1rem' borderRadius={'0'}>
+          <AlertDialogContent
+            bg='white'
+            maxW='22rem'
+            m='1rem'
+            borderRadius={'0'}
+          >
             <AlertDialogHeader>Logout</AlertDialogHeader>
             <AlertDialogCloseButton />
             <AlertDialogBody>Are you sure you want to Logout</AlertDialogBody>
