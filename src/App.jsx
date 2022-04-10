@@ -13,6 +13,7 @@ import {
 } from './Pages/Index';
 import { Activate, ResetPassword } from './Components/Authentication/Index';
 import Footer from './Components/Footer/Footer';
+import NotFound from './NotFound';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path='orders' element={<Orders />} />
         <Route path='t&c' element={<TermsAndConditions />} />
         <Route path='users/password/reset/:token' element={<ResetPassword />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

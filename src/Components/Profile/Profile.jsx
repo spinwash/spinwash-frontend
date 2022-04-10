@@ -64,7 +64,7 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Shirt Washing Preferences
+                Shirt Cleaning
               </Heading>
               <Text fontWeight={400} px='1rem'>
                 {data?.shirtWashingPreference}
@@ -79,7 +79,7 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Shirt Folding Preferences
+                Shirt Delivery
               </Heading>
               <Text fontWeight={400} px='1rem'>
                 {data?.shirtFoldingPreference}
@@ -94,7 +94,7 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Bedding Preferences
+                Bedding 
               </Heading>
               <Text fontWeight={400} px='1rem'>
                 {data?.beddingPreference}
@@ -140,9 +140,9 @@ const UserProfile = ({ data }) => {
                   {data?._id?.slice(0, data?._id?.length / 2)}
                 </Text>
                 <Text maxW='24rem' py='0.5rem'>
-                  Refer a friend and get £10 off . Promo codes are only applied
-                  once the order total is above £20 after applying the promo
-                  code.{' '}
+                  <b>Refer a friend and get £10 off for the both of you.</b>{' '}
+                  (Referral Code is only applied once the order total is above
+                  £20 after applying the Referral Code.)
                 </Text>
               </VStack>
             )}

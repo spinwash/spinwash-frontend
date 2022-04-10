@@ -72,7 +72,7 @@ const Register = () => {
           duration: 9000,
         });
         setLoader(false);
-        // on signup send message and redirect to login page
+        // on Sign Up send message and redirect to login page
         navigate('/');
       })
       .catch((err) => {
@@ -139,7 +139,7 @@ const Register = () => {
           mx='auto'
           w='fit-content'
         >
-          Signup
+          Sign Up
         </Heading>
         <GoogleLogin
           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
@@ -168,7 +168,7 @@ const Register = () => {
                 fontSize={{ base: 'sm', md: 'xl' }}
                 pl={'0.5rem'}
               >
-                <Text textColor={'spinwash.500'}>Signup with Google</Text>
+                <Text textColor={'spinwash.500'}>Sign Up with Google</Text>
               </Center>
             </Button>
           )}
@@ -286,7 +286,7 @@ const Register = () => {
                 px='0.5rem'
                 h={{ base: '3rem', md: '3.6rem' }}
                 size={{ base: 'sm', md: 'lg' }}
-                placeholder='Promo Code'
+                placeholder='Referral Code'
                 _placeholder={{ color: 'gray.400' }}
                 {...register('promocode')}
               />
@@ -306,7 +306,7 @@ const Register = () => {
               alignSelf={'center'}
               isLoading={loader}
             >
-              <ArrowButton variant='dark'>Signup</ArrowButton>
+              <ArrowButton variant='dark'>Sign Up</ArrowButton>
             </Button>
           </form>
         </VStack>

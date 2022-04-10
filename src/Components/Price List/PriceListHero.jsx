@@ -221,19 +221,19 @@ const SearchData = [
   },
   {
     name: 'Burberry Coat',
-    price: '£40.50',
+    price: '£40.00',
     parentId: 'Dry Cleaning',
     id: 32,
   },
   {
-    name: 'Canada Boose',
-    price: '£45.50',
+    name: 'Canada Goose Coat',
+    price: '£45.00',
     parentId: 'Dry Cleaning',
     id: 33,
   },
   {
     name: 'Moncler Jacket',
-    price: '£45.50',
+    price: '£45.00',
     parentId: 'Dry Cleaning',
     id: 34,
   },
@@ -256,7 +256,7 @@ const SearchData = [
     id: 37,
   },
   {
-    name: 'Men’s Shirt -10 or More (Wash & Press) x 5',
+    name: 'Men’s Shirt - 10 or More (Wash & Press) ',
     price: '£2.50',
     parentId: 'Shirt Service',
     id: 38,
@@ -1186,7 +1186,7 @@ const SearchData = [
     id: 193,
   },
   {
-    name: 'Canada Goose Jacket',
+    name: 'Canada Goose Coat',
     price: '£45.00',
     parentId: 'Specialist',
     id: 194,

@@ -20,7 +20,7 @@
         "parentId": 0
       },
       {
-        "name": "Trouser (Dry Clean)",
+        "name": "Jacket (Dry Clean)",
         "price": "£7.95",
         "parentId": 0
       },
@@ -74,7 +74,7 @@
   {
     "id": "1",
     "title": "Dry Cleaning",
-    "note": "Children’s Items for ‘Dry Cleaning’ are invoiced at 75% of normal prices",
+    "note": "Children’s items for ‘Dry Cleaning’ are invoiced at 75% of normal prices",
     "subItems": false,
     "items": [
       {
@@ -119,7 +119,7 @@
       },
       {
         "name": "Skirt",
-        "price": "From £6.50",
+        "price": "Starting From £6.50",
         "parentId": 1
       },
       {
@@ -219,17 +219,17 @@
       },
       {
         "name": "Coat",
-        "price": "From £11.95",
+        "price": "Starting From £11.95",
         "parentId": 1
       },
       {
         "name": "Rain Coat/Mac",
-        "price": "from £13.50",
+        "price": "Starting from £13.50",
         "parentId": 1
       },
       {
         "name": "Puffer Jacket",
-        "price": "From £18.50",
+        "price": "Starting From £18.50",
         "parentId": 1
       },
       {
@@ -249,17 +249,17 @@
       },
       {
         "name": "Burberry Coat",
-        "price": "£40.50",
+        "price": "£40.00",
         "parentId": 1
       },
       {
-        "name": "Canada Boose",
-        "price": "£45.50",
+        "name": "Canada Goose Coat",
+        "price": "£45.00",
         "parentId": 1
       },
       {
         "name": "Moncler Jacket",
-        "price": "£45.50",
+        "price": "£45.00",
         "parentId": 1
       },
       {
@@ -285,8 +285,13 @@
         "parentId": 2
       },
       {
-        "name": "Men’s Shirt -10 or More (Wash & Press) x 5",
+        "name": "Men’s Shirt -10 or More (Wash & Press) ",
         "price": "£2.50",
+        "parentId": 2
+      },
+      {
+        "name": "Men’s Shirt (folded)",
+        "price": "+ £0.75 per shirt",
         "parentId": 2
       },
       {
@@ -433,7 +438,7 @@
         "parentId": 3
       },
       {
-        "name": "{Service Wash (Wash, Dry & Fold) Above 5kg",
+        "name": "Service Wash (Wash, Dry & Fold) Above 5kg",
         "price": "£3.50 per kg ",
         "parentId": 3
       }
@@ -796,12 +801,12 @@
       },
       {
         "name": "Dress",
-        "price": "From £8.95",
+        "price": "Starting From £8.95",
         "parentId": 6
       },
       {
         "name": "Skirt",
-        "price": "From £4.95",
+        "price": "Starting From £4.95",
         "parentId": 6
       },
       {
@@ -876,7 +881,7 @@
       },
       {
         "name": "Coat",
-        "price": "From £8.95",
+        "price": "Starting From £8.95",
         "parentId": 6
       },
       {
@@ -886,7 +891,7 @@
       },
       {
         "name": "Rain Coat / Mac",
-        "price": "From £10.50",
+        "price": "Starting From £10.50",
         "parentId": 6
       },
       {
@@ -945,7 +950,7 @@
   },
   {
     "id": "8",
-    "title": "Household Iron",
+    "title": "Bedding Iron Only",
     "subItems": false,
     "items": [
       {
@@ -1120,7 +1125,7 @@
         "parentId": 10
       },
       {
-        "name": "Canada Goose Jacket",
+        "name": "Canada Goose Coat",
         "price": "£45.00",
         "parentId": 10
       },
@@ -1243,7 +1248,8 @@
         "parentId": 11
       },
       {
-        "price": "Coat Runner £9.00",
+        "name": "Coat Runner ",
+        "price": "£9.00",
         "parentId": 11
       },
       {

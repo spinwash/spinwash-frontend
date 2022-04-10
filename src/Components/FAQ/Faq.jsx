@@ -170,10 +170,10 @@ const Faq = () => {
                 fontWeight={'300'}
                 pb={4}
               >
-                Firstly you place an order with us through our, once we have
-                received your order one of our drivers will collect the clothes
-                from your address. After that we clean your clothes and drop
-                them back off to you.
+                Firstly you place an order with us through our website, once we
+                have received your order one of our drivers will collect your
+                items from your address. After that we clean your clothes and
+                drop them back off to you at your chosen time.
               </AccordionPanel>
             </>
           )}
@@ -237,8 +237,8 @@ const Faq = () => {
                 fontWeight={'300'}
                 pb={4}
               >
-                We require a minimum of 7 working days to clean suede, fur or
-                leather items.
+                We require a minimum of 5 working days to clean fur, leather and
+                suede items.
               </AccordionPanel>
             </>
           )}

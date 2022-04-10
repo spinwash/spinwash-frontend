@@ -81,7 +81,7 @@ export default function Testimonials() {
           fontSize={{ base: '2xl', md: '4xl' }}
           textAlign='center'
         >
-          Spinwash Customers Testimonials
+          What our customers think
         </Heading>
       </Box>
       <Box ref={ref} width={'full'} overflow={'hidden'}>

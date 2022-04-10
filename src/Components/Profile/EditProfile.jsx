@@ -180,28 +180,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                   fontSize={{ base: 'xl', md: '2xl' }}
                   fontWeight={500}
                 >
-                  Shirt Folding Preferences
-                </Heading>
-                <VStack pl='1rem'>
-                  <Select
-                    placeholder={data?.shirtFoldingPreference}
-                    {...register('shirtFoldingPreference')}
-                  >
-                    <option value='Hung'>Shirt Hung</option>
-                    <option value='Folded'>Shirt Fold</option>
-                  </Select>{' '}
-                </VStack>
-              </VStack>
-              <VStack
-                alignItems='start'
-                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
-              >
-                <Heading
-                  my='0.5rem'
-                  fontSize={{ base: 'xl', md: '2xl' }}
-                  fontWeight={500}
-                >
-                  Shirt Washing Preferences
+                  Shirt Cleaning
                 </Heading>
                 <VStack pl='1rem'>
                   <Select
@@ -213,6 +192,27 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                     <option value='Dry Clean And Press'>
                       Dry Clean and Press
                     </option>
+                  </Select>{' '}
+                </VStack>
+              </VStack>{' '}
+              <VStack
+                alignItems='start'
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
+                <Heading
+                  my='0.5rem'
+                  fontSize={{ base: 'xl', md: '2xl' }}
+                  fontWeight={500}
+                >
+                  Shirt Delivery
+                </Heading>
+                <VStack pl='1rem'>
+                  <Select
+                    placeholder={data?.shirtFoldingPreference}
+                    {...register('shirtFoldingPreference')}
+                  >
+                    <option value='Hung'>Hung</option>
+                    <option value='Folded'>Fold</option>
                   </Select>{' '}
                 </VStack>
               </VStack>

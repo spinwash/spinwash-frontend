@@ -3,14 +3,13 @@ import React from 'react';
 
 const Count = () => {
   return (
-    <VStack maxW={'fit-content'} mx='auto' p='2rem'>
+    <VStack maxW={'fit-content'} mx='auto' p='2rem' minH={'15rem'}>
       <Text maxW='40rem' fontWeight={'300'} fontSize={{ base: 'xs', md: 'md' }}>
         Spinwash aims to provide an efficient and reliable service. We provide
-        the finest Dry Cleaning & Laundry service. We have different delivery
-        slots to fit the need for each customer as we realise everyone has
-        different needs.
+        the finest Dry Cleaning & Laundry service. We provide a variety of
+        delivery slots to suit the needs of our customers
       </Text>
-      <HStack
+      {/*<HStack
         spacing={{ base: '1.5rem', md: '3rem' }}
         p={{ base: '2rem', md: '3rem' }}
       >
@@ -50,7 +49,7 @@ const Count = () => {
             Services
           </Text>
         </VStack>
-      </HStack>
+  </HStack>*/}
     </VStack>
   );
 };

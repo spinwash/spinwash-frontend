@@ -1,4 +1,4 @@
-import { Box, Heading, Stack, Text, VStack } from '@chakra-ui/react';
+import { Box, Heading, Image, Stack, Text, VStack } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import {
   GoogleMap,
@@ -7,6 +7,8 @@ import {
   Polygon,
 } from '@react-google-maps/api';
 import { useCallback, useState } from 'react';
+import EdenPark from './EDENPARK.svg';
+import Attire from './ATTIRE.svg';
 
 const MotionBox = motion(Box);
 
@@ -59,7 +61,7 @@ const AboutHero = () => {
       <Stack
         zIndex={'1'}
         direction={{ base: 'column', lg: 'row' }}
-        p={{ base: '2rem 0rem 0rem 0rem', lg: '8rem 2rem 4rem 2rem' }}
+        p={{ base: '1rem', sm: '2rem', lg: '8rem 2rem 4rem 2rem' }}
         spacing={{ base: '1rem', md: '1.5rem', xl: '2rem' }}
         maxW='8xl'
         justifyContent={'space-between'}
@@ -88,15 +90,21 @@ const AboutHero = () => {
             Who are We
           </Text>
           <Text fontSize={{ base: 'sm', md: 'xl' }}>
-            You can have almost anything cleaned, pressed or repaired through
-            Spinwash. If you have an item you would like us to take care of but
-            can't see it listed please give us a call on 020 7060 4939 to
-            clarify the price. <br />
-            <br /> For any high value services not listed on the pricing page
-            we'll always contact you to get your permission before going ahead
-            with the work.
+            We work with local dry cleaners to make sure your dry cleaning,
+            alteration and laundry needs are met along with making sure each
+            order is cleaned to the highest standard. <br />
+            <br /> We offer many services such as dry cleaning, laundry service,
+            curtain cleaning, duvet cleaning, repairs, alterations, shirt
+            service and iron only options. We also offer cleaning for fur,
+            leather and suede cleaning.
+            <br />
+            <br />
+            We have listed all the areas we provide our services in at the
+            moment. Our team has amassed over 25 years in this industry making
+            us qualified to deal with any query you can have. Feel free to
+            contact us through the email or phone number listed on our website.
           </Text>
-          <Box
+          {/* <Box
             w='full'
             minH={{ base: '20rem', md: '24rem' }}
             h='full'
@@ -116,7 +124,7 @@ const AboutHero = () => {
             ) : (
               ''
             )}
-          </Box>
+            </Box>*/}
         </MotionBox>
         <MotionBox
           maxW={{ base: 'full', md: '25rem' }}
@@ -137,8 +145,7 @@ const AboutHero = () => {
               Customer Support
             </Text>
             <Text>Monday - Friday : 8:00 am - 8: 00pm</Text>
-            <Text>Saturday : 8:00 am - 7: 00pm</Text>
-            <Text>Sunday : 10:00 am - 4: 00pm</Text>
+            <Text>Saturday : 8:00 am - 6:30pm</Text>
           </VStack>
           <VStack p='1rem' align={'start'}>
             <Text py='0.5rem' fontWeight='500' fontSize='xl'>
@@ -152,9 +159,87 @@ const AboutHero = () => {
             </Text>
             <Text>020 8125 3074</Text>
             <Text>info@spinwash.co.uk</Text>
-            <Text>Instagram</Text>
-            <Text>Facebook</Text>
+            <a
+              href='https://www.facebook.com/spinwash01'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <Text>Instagram</Text>
+            </a>
+            <a
+              href='https://www.instagram.com/spinwash_'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <Text>Facebook</Text>
+            </a>
           </VStack>
+        </MotionBox>
+      </Stack>
+      <Stack
+        zIndex={'1'}
+        direction={{ base: 'column', lg: 'row' }}
+        p={{ base: '1rem', sm: '2rem', lg: '8rem 2rem 4rem 2rem' }}
+        spacing={{ base: '1rem', md: '1.5rem', xl: '2rem' }}
+        maxW='8xl'
+        justifyContent={'space-between'}
+        mx='auto'
+      >
+        <MotionBox
+          w='full'
+          display='flex'
+          flexDirection='column'
+          justifyContent='flex-start'
+          initial={{ opacity: 0, y: 30 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: 'easeInOut' },
+          }}
+        >
+          <Text
+            fontSize={{ base: 'xl', md: '3xl' }}
+            py='2rem'
+            textAlign={'center'}
+          >
+            In Partnership with
+          </Text>
+          <Stack
+            p='2rem'
+            direction={{ base: 'column', sm: 'row' }}
+            mx='auto'
+            w='full'
+            maxW='4xl'
+            justifyContent='space-between'
+            spacing='4rem'
+          >
+            <VStack alignItems={'start'}>
+              <Image src={Attire} w={{ base: '10rem', md: '15rem' }} />
+              <VStack pt='1rem' alignItems={'start'}>
+                <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight='bold'>
+                  Located in Hayes
+                </Text>
+                <Text fontSize={{ base: 'sm', md: 'xl' }}>
+                  34 Station Approach
+                </Text>
+                <Text fontSize={{ base: 'sm', md: 'xl' }}>BR2 7EJ</Text>
+                <Text fontSize={{ base: 'sm', md: 'xl' }}>Bromley</Text>
+              </VStack>
+            </VStack>
+            <VStack alignItems={'start'}>
+              <Image src={EdenPark} w={{ base: '6rem', md: '8rem' }} />
+              <VStack pt='1rem' alignItems={'start'}>
+                <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight='bold'>
+                  Located in Eden Park
+                </Text>
+                <Text fontSize={{ base: 'sm', md: 'xl' }}>
+                  523 Upper Elmers End Road
+                </Text>
+                <Text fontSize={{ base: 'sm', md: 'xl' }}>BR3 3DE</Text>
+                <Text fontSize={{ base: 'sm', md: 'xl' }}>Bromley</Text>
+              </VStack>
+            </VStack>
+          </Stack>
         </MotionBox>
       </Stack>
     </>

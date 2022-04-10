@@ -57,7 +57,7 @@ const ExtraServices = () => {
           fontWeight={'300'}
           fontSize={{ base: 'xs', md: 'md' }}
         >
-          For any additional service please contact us via email and phone for
+          For any additional service please contact us via email or phone for
           more information.
         </Text>
         <Text
@@ -68,19 +68,20 @@ const ExtraServices = () => {
           fontSize={{ base: 'xs', md: 'md' }}
         >
           Get 20% Off with your first order{' '}
-          <Text
-            as='span'
-            fontSize='xs'
-            onClick={() => {
-              navigate('/t&c');
-              window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-              });
-            }}
-          >
-            <i>( T&C’s apply ) </i>
-          </Text>
+        </Text>
+        <Text
+          as='span'
+          fontSize='xs'
+          onClick={() => {
+            navigate('/t&c');
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            });
+          }}
+        >
+          Discounts are only applied once the order total is above £20 after
+          applying the discount
         </Text>
       </VStack>
     </MotionStack>

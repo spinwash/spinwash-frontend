@@ -430,7 +430,7 @@ export default function BookingBar(props) {
                             Your order is complete!
                           </Heading>
                           <Text maxW='24rem' textAlign={'center'}>
-                            You will receive a order Confirmation mail with
+                            You will receive an order confirmation mail with
                             order details soon. Thanks for using our service.
                           </Text>
                         </VStack>
@@ -452,17 +452,27 @@ export default function BookingBar(props) {
                             textAlign={'center'}
                             px={{ base: '0rem', md: '2rem' }}
                           >
-                            Your Items will be picked up between{' '}
-                            {watch('pickupTime')
-                              ? `${watch('pickupTime')} to ${addedTime(
-                                  watch('pickupTime')
-                                )}.`
-                              : '1 hr of selected time. '}{' '}
-                            Please confirm if your items are for dry clean/wash
-                            and press, press only (ironing) or service wash (
-                            wash dry and fold). Also if you require any
-                            alterations or have any specific requirements please
-                            let us know the details
+                            <b>
+                              Your Items will be picked up between{' '}
+                              {watch('pickupTime')
+                                ? `${watch('pickupTime')} to ${addedTime(
+                                    watch('pickupTime')
+                                  )}.`
+                                : '1 hr of selected time. '}{' '}
+                              and dropped off between{' '}
+                              {watch('dropOffTime')
+                                ? `${watch('dropOffTime')} to ${addedTime(
+                                    watch('dropOffTime')
+                                  )}.`
+                                : '1 hr of selected time. '}
+                              {/*   on the{' '}
+                              {watch('pickup')?.toISOString().split('T')[0]},*/}
+                            </b>
+                            , Please confirm if your items are for dry
+                            clean/wash and press, press only (ironing) or
+                            service wash ( wash dry and fold). Also if you
+                            require any alterations or have any specific
+                            requirements please let us know the details.
                           </Text>
                         </VStack>
                         {charges || notPossible ? (

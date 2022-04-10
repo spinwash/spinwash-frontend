@@ -1,9 +1,18 @@
-import { Box, Container, Heading, Stack, Text, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Heading,
+  Image,
+  Stack,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import ArrowButton from '../HOC/ArrowButton';
+import MainLogo from './MainLogo.svg';
 
 const MotionContainer = motion(Container);
 
@@ -64,7 +73,7 @@ const Footer = () => {
               fontSize={{ base: 'xl', md: '2xl' }}
               fontWeight={'400'}
             >
-              We are here
+              Contact Us
             </Heading>
             <Text maxW='15rem'>
               Head Office: 523A Upper Elmers End Road, Beckenham, Kent, BR3 3DE
@@ -239,6 +248,7 @@ const Footer = () => {
           fontSize={{ base: 'sm', md: 'md' }}
           alignItems={'start'}
         >
+          <Image src={MainLogo} w={{ base: '7rem', md: '10rem' }} pb='1rem' />
           <Heading fontSize={{ base: 'xl', md: '2xl' }} fontWeight={'400'}>
             Book Our Service Now
           </Heading>
