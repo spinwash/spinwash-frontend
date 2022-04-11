@@ -12,7 +12,7 @@ const containerStyle = {
   height: '24rem',
 };
 
-const position = { lat: 18.466, lng: -66.118 };
+const position = { lat: 51.379103, lng: -0.01553 };
 
 const options = {
   fillColor: '#E1F6FF',
@@ -28,11 +28,25 @@ const options = {
 };
 
 const paths = [
-  { lat: 25.774, lng: -80.19 },
-  { lat: 18.466, lng: -66.118 },
-  { lat: 32.321, lng: -64.757 },
-  { lat: 35.774, lng: -120.19 },
-  { lat: 25.774, lng: -100.19 },
+  { lat: 51.283381, lng: -0.202692 },
+  { lat: 51.278531, lng: -0.202612 },
+  { lat: 51.27174, lng: -0.193241 },
+  { lat: 51.271704, lng: -0.193144 },
+  { lat: 51.271364, lng: -0.190483 },
+  { lat: 51.260977, lng: -0.083234 },
+  { lat: 51.265675, lng: -0.037068 },
+  { lat: 51.272873, lng: -0.006562 },
+  { lat: 51.322318, lng: 0.121994 },
+  { lat: 51.359907, lng: 0.17081 },
+  { lat: 51.361587, lng: 0.170725 },
+  { lat: 51.369027, lng: 0.168403 },
+  { lat: 51.409697, lng: 0.14263 },
+  { lat: 51.466872, lng: 0.084074 },
+  { lat: 51.470803, lng: 0.060303 },
+  { lat: 51.454983, lng: -0.088932 },
+  { lat: 51.453154, lng: -0.092358 },
+  { lat: 51.444321, lng: -0.104451 },
+  { lat: 51.394307, lng: -0.144516 },
 ];
 
 const Map = () => {
@@ -66,7 +80,7 @@ const Map = () => {
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={position}
-            zoom={14}
+            zoom={10}
             onLoad={onLoad}
             onUnmount={onUnmount}
           >
