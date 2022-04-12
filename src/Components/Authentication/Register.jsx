@@ -98,13 +98,13 @@ const Register = () => {
       })
       .then((res) => {
         toast({
-          title: 'Google Signin Successful',
+          title: 'Google Signin Successful Please Complete Your Profile',
           status: 'success',
           duration: 3000,
         });
         //successfully logedin
         authenticate(res);
-        navigate('/');
+        navigate('/profile');
         setLoaderGoogle(false);
       })
       .catch((err) => {

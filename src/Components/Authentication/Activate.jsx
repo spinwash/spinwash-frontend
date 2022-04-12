@@ -52,9 +52,9 @@ const Activate = () => {
           show: false,
         });
         toast({
-          title: res.data.message,
+          title: 'Please Complete your Profile',
           status: 'success',
-          duration: 2000,
+          duration: 5000,
         });
         authenticate(res);
         navigate('/profile');
@@ -64,7 +64,7 @@ const Activate = () => {
         toast({
           title: err.response.data.errors,
           status: 'error',
-          duration: 5000,
+          duration: 4000,
         });
         setLoader(false);
       });

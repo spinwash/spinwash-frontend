@@ -175,7 +175,7 @@ const MobileNav = ({ isAuth, navbarDark }) => {
               }}
               fontWeight='500'
             >
-              Spin Wash
+              Spinwash
             </Box>
           </DrawerHeader>
           <DrawerBody>
