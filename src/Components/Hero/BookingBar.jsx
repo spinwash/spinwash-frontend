@@ -431,7 +431,7 @@ export default function BookingBar(props) {
                           </Heading>
                           <Text maxW='24rem' textAlign={'center'}>
                             You will receive an order confirmation mail with
-                            order details soon. Thanks for using our service.
+                            order details soon. Thanks for choosing Spinwash.
                           </Text>
                         </VStack>
                       </Center>
@@ -468,10 +468,10 @@ export default function BookingBar(props) {
                               {/*   on the{' '}
                               {watch('pickup')?.toISOString().split('T')[0]},*/}
                             </b>
-                            , Please confirm if your items are for dry
+                            ,<br /> Please confirm if your items are for dry
                             clean/wash and press, press only (ironing) or
-                            service wash ( wash dry and fold). Also if you
-                            require any alterations or have any specific
+                            service wash ( wash dry and fold). <br /> Also if
+                            you require any alterations or have any specific
                             requirements please let us know the details.
                           </Text>
                         </VStack>

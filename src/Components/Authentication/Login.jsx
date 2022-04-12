@@ -272,7 +272,7 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
               </Box>
             </VStack>
             <Text fontSize={{ base: 'sm', md: 'md' }} py={'1rem'}>
-              Dont have an account{' '}
+              Dont have an account?{' '}
               <Link to='/register' onClick={() => closeModel()}>
                 <Text
                   as='span'

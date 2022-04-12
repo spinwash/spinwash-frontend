@@ -53,7 +53,7 @@ const SearchData = [
   },
   {
     name: 'Dress',
-    price: 'Starting From £10.95',
+    price: 'Starting from £10.95',
     parentId: 'Dry Cleaning',
     id: 6,
   },
@@ -743,7 +743,7 @@ const SearchData = [
   },
   {
     name: 'Rug (Dry Clean/ Wash)',
-    price: 'Starting From £70.00',
+    price: 'Starting from £70.00',
     parentId: 'Household',
     id: 119,
   },
@@ -989,13 +989,13 @@ const SearchData = [
   },
   {
     name: 'Curtains  - Shortening',
-    price: 'Starting From £30.00',
+    price: 'Starting from £30.00',
     parentId: 'Curtains',
     id: 160,
   },
   {
     name: 'Curtains – Re-hem',
-    price: 'Starting From £20.00',
+    price: 'Starting from £20.00',
     parentId: 'Curtains',
     id: 161,
   },
