@@ -52,7 +52,7 @@
 .react-datepicker-wrapper,
 .react-datepicker__input-container {
   display: block;
-  width: 4rem;
+  width: 4.2rem;
 }
 
 .react-datepicker__input-container {
@@ -60,7 +60,7 @@
   padding-left: 0.4rem;
   padding-right: 0rem;
   height: clamp(1rem, 6vh, 2rem);
-  width: 4rem;
+  width: 4.2rem;
   border-radius: 0rem;
   border: 0px solid;
   border-color: var(--light-gray);

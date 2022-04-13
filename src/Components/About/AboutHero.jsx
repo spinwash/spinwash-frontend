@@ -1,71 +1,19 @@
-import { Box, Heading, Image, Stack, Text, VStack } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import {
-  GoogleMap,
-  useJsApiLoader,
-  Marker,
-  Polygon,
-} from '@react-google-maps/api';
-import { useCallback, useState } from 'react';
+  Box,
+  Heading,
+  HStack,
+  Image,
+  Stack,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import EdenPark from './EDENPARK.svg';
 import Attire from './ATTIRE.svg';
 
 const MotionBox = motion(Box);
 
-const containerStyle = {
-  width: 'full',
-  height: '24rem',
-};
-
-const position = { lat: 18.466, lng: -66.118 };
-
-const options = {
-  fillColor: '#E1F6FF',
-  fillOpacity: 0.3,
-  strokeColor: '#1B4D7A',
-  strokeOpacity: 1,
-  strokeWeight: 1,
-  clickable: false,
-  draggable: false,
-  editable: false,
-  geodesic: false,
-  zIndex: 1,
-};
-
-const paths = [
-  {lat: 51.278519,lng: -0.202582},
-  {lat: 51.271770,lng: -0.193354},
-  {lat: 51.261156,lng: -0.083629},
-  {lat: 51.265655,lng: -0.037236},
-  {lat: 51.322326,lng: 0.121610},
-  {lat: 51.359907,lng: 0.170690},
-  {lat: 51.409824,lng: 0.142423},
-  {lat: 51.467136,lng: 0.083690},
-  {lat: 51.470665,lng: 0.060086},
-  {lat: 51.470816,lng: 0.060277},
-  {lat: 51.454923,lng: -0.088540},
-  {lat: 51.444340,lng: -0.104440},
-  {lat: 51.394271,lng: -0.144459},
-  {lat: 51.283381,lng: -0.202652},
-  {lat: 51.278529,lng: -0.202618},
-];
-
 const AboutHero = () => {
-  const { isLoaded } = useJsApiLoader({
-    id: 'ChIJF27lkrQBdkgR618XtZrh7L0',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_PLACES_KEY,
-  });
-
-  const [map, setMap] = useState(null);
-
-  const onLoad = (polygon) => {
-    console.log('polygon: ', polygon);
-  };
-
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null);
-  }, []);
-
   return (
     <>
       <Stack
@@ -106,7 +54,7 @@ const AboutHero = () => {
             <br /> We offer many services such as dry cleaning, laundry service,
             curtain cleaning, duvet cleaning, repairs, alterations, shirt
             service and iron only options. We also offer cleaning for fur,
-            leather and suede cleaning.
+            leather and suede.
             <br />
             <br />
             We have listed all the areas we provide our services in at the
@@ -154,7 +102,7 @@ const AboutHero = () => {
             <Text py='0.5rem' fontWeight='500' fontSize='xl'>
               Customer Support
             </Text>
-            <Text>Monday - Friday : 8:00 am - 8: 00pm</Text>
+            <Text>Monday - Friday : 7:00 am - 8: 30pm</Text>
             <Text>Saturday : 8:00 am - 6:30pm</Text>
           </VStack>
           <VStack p='1rem' align={'start'}>
@@ -237,7 +185,15 @@ const AboutHero = () => {
               </VStack>
             </VStack>
             <VStack alignItems={'start'}>
-              <Image src={EdenPark} w={{ base: '6rem', md: '8rem' }} />
+              <HStack p='0' alignItems={'center'}>
+                <Image src={EdenPark} w={{ base: '3rem', md: '3.5rem' }} />
+                <Heading
+                  fontSize={{ base: '1.7rem', md: '2.3rem' }}
+                  pt='0.5rem'
+                >
+                  DRY CLEANERS
+                </Heading>
+              </HStack>
               <VStack pt='1rem' alignItems={'start'}>
                 <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight='bold'>
                   Located in Eden Park

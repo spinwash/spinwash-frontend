@@ -78,152 +78,152 @@
     "subItems": false,
     "items": [
       {
-        "name": "Two-Piece Suit",
+        "name": "Two-Piece Suit (Dry Clean)",
         "price": "£11.95",
         "parentId": 1
       },
       {
-        "name": "Three Piece Suit",
+        "name": "Three Piece Suit (Dry Clean)",
         "price": "£15.95",
         "parentId": 1
       },
       {
-        "name": "Dinner suit/ Tuxedo",
+        "name": "Dinner suit/ Tuxedo (Dry Clean)",
         "price": "£14.95",
         "parentId": 1
       },
       {
-        "name": "Dinner Jacket",
+        "name": "Dinner Jacket (Dry Clean)",
         "price": "£8.95",
         "parentId": 1
       },
       {
-        "name": "Dinner Trouser",
+        "name": "Dinner Trouser (Dry Clean)",
         "price": "£6.50",
         "parentId": 1
       },
       {
-        "name": "Dress Suit",
+        "name": "Dress Suit (Dry Clean)",
         "price": "£16.95",
         "parentId": 1
       },
       {
-        "name": "Dress",
+        "name": "Dress (Dry Clean)",
         "price": "Starting from £10.95",
         "parentId": 1
       },
       {
-        "name": "Delicate Dress/ Evening Dress",
+        "name": "Delicate Dress/ Evening Dress (Dry Clean)",
         "price": "£16.95",
         "parentId": 1
       },
       {
-        "name": "Skirt",
+        "name": "Skirt (Dry Clean)",
         "price": "Starting from £6.50",
         "parentId": 1
       },
       {
-        "name": "Trouser",
+        "name": "Trouser (Dry Clean)",
         "price": "£5.95",
         "parentId": 1
       },
       {
-        "name": "Jean",
+        "name": "Jean (Dry Clean)",
         "price": "£5.95",
         "parentId": 1
       },
       {
-        "name": "Jacket/ Blazer",
+        "name": "Jacket/ Blazer (Dry Clean)",
         "price": "£7.95",
         "parentId": 1
       },
       {
-        "name": "Jacket (Silk)",
+        "name": "Jacket (Silk) (Dry Clean)",
         "price": "£8.95",
         "parentId": 1
       },
       {
-        "name": "Light Knitwear",
+        "name": "Light Knitwear (Dry Clean)",
         "price": "£6.50",
         "parentId": 1
       },
       {
-        "name": "Heavy Knitwear",
+        "name": "Heavy Knitwear (Dry Clean)",
         "price": "£7.50",
         "parentId": 1
       },
       {
-        "name": "Top",
+        "name": "Top (Dry Clean)",
         "price": "£7.50",
         "parentId": 1
       },
       {
-        "name": "Blouse",
+        "name": "Blouse (Dry Clean)",
         "price": "£7.50",
         "parentId": 1
       },
       {
-        "name": "Jumper",
+        "name": "Jumper (Dry Clean)",
         "price": "£6.95",
         "parentId": 1
       },
       {
-        "name": "Men`s Shirt",
+        "name": "Men`s Shirt (Dry Clean)",
         "price": "£3.95",
         "parentId": 1
       },
       {
-        "name": "Ladies Shirt",
+        "name": "Ladies Shirt (Dry Clean)",
         "price": "£4.50",
         "parentId": 1
       },
       {
-        "name": "Polo T-shirt",
+        "name": "Polo T-shirt (Dry Clean)",
         "price": "£4.50",
         "parentId": 1
       },
       {
-        "name": "T Shirt",
+        "name": "T Shirt (Dry Clean)",
         "price": "£3.95",
         "parentId": 1
       },
       {
-        "name": "Waistcoat",
+        "name": "Waistcoat (Dry Clean)",
         "price": "£4.95",
         "parentId": 1
       },
       {
-        "name": "Tie",
+        "name": "Tie (Dry Clean)",
         "price": "£3.95",
         "parentId": 1
       },
       {
-        "name": "Scarf",
+        "name": "Scarf (Dry Clean)",
         "price": "£6.50",
         "parentId": 1
       },
       {
-        "name": "Gown",
+        "name": "Gown (Dry Clean)",
         "price": "£10.50",
         "parentId": 1
       },
       {
-        "name": "Shawl",
+        "name": "Shawl (Dry Clean)",
         "price": "£8.50",
         "parentId": 1
       },
       {
-        "name": "Hoodie",
+        "name": "Hoodie (Dry Clean)",
         "price": "£9.95",
         "parentId": 1
       },
       {
-        "name": "Coat",
+        "name": "Coat (Dry Clean)",
         "price": "Starting from £11.95",
         "parentId": 1
       },
       {
-        "name": "Rain Coat/Mac",
+        "name": "Rain Coat/Mac (Dry Clean)",
         "price": "Starting from £13.50",
         "parentId": 1
       },
@@ -233,17 +233,17 @@
         "parentId": 1
       },
       {
-        "name": "Cashmere Knitwear ",
+        "name": "Cashmere Knitwear  (Dry Clean)",
         "price": "£7.95",
         "parentId": 1
       },
       {
-        "name": "Jumpsuit",
+        "name": "Jumpsuit (Dry Clean)",
         "price": "£11.50",
         "parentId": 1
       },
       {
-        "name": "Kurta",
+        "name": "Kurta (Dry Clean)",
         "price": "£18.95",
         "parentId": 1
       },
@@ -258,7 +258,7 @@
         "parentId": 1
       },
       {
-        "name": "Moncler Jacket",
+        "name": "Moncler Coat",
         "price": "£45.00",
         "parentId": 1
       },
@@ -285,12 +285,12 @@
         "parentId": 2
       },
       {
-        "name": "Men’s Shirt -10 or More (Wash & Press) ",
+        "name": "Men’s Shirt - 10 or More (Wash & Press) ",
         "price": "£2.50",
         "parentId": 2
       },
       {
-        "name": "Men’s Shirt (folded)",
+        "name": "Men’s Shirt (Folded)",
         "price": "+ £0.75 per shirt",
         "parentId": 2
       },
@@ -343,72 +343,72 @@
         "parentId": 3
       },
       {
-        "name": "Face Mask - Wash & Press",
+        "name": "Face Mask (Wash & Press)",
         "price": "£1.00",
         "parentId": 3
       },
       {
-        "name": "Jacket/ Blazer - Wash & Press",
+        "name": "Jacket/ Blazer (Wash & Press)",
         "price": "£7.50",
         "parentId": 3
       },
       {
-        "name": "Jeans - Wash & Press",
+        "name": "Jeans (Wash & Press)",
         "price": "£5.50",
         "parentId": 3
       },
       {
-        "name": "Jumper - Wash & Press",
+        "name": "Jumper (Wash & Press)",
         "price": "£6.50",
         "parentId": 3
       },
       {
-        "name": "Polo Shirt - Wash & Press",
+        "name": "Polo Shirt (Wash & Press)",
         "price": "£3.95",
         "parentId": 3
       },
       {
-        "name": "Pyjamas - Wash & Press",
+        "name": "Pyjamas (Wash & Press)",
         "price": "£4.50",
         "parentId": 3
       },
       {
-        "name": "Scarf - Wash & Press",
+        "name": "Scarf (Wash & Press)",
         "price": "£5.95",
         "parentId": 3
       },
       {
-        "name": "Shorts - Wash & Press",
+        "name": "Shorts (Wash & Press)",
         "price": "£4.95",
         "parentId": 3
       },
       {
-        "name": "Skirt - Wash & Press",
+        "name": "Skirt (Wash & Press)",
         "price": "£5.95",
         "parentId": 3
       },
       {
-        "name": "Top - Wash & Press",
+        "name": "Top (Wash & Press)",
         "price": "£6.95",
         "parentId": 3
       },
       {
-        "name": "Tracksuit - Wash & Press",
+        "name": "Tracksuit (Wash & Press)",
         "price": "£10.95",
         "parentId": 3
       },
       {
-        "name": "Trousers - Wash & Press",
+        "name": "Trousers (Wash & Press)",
         "price": "£5.50",
         "parentId": 3
       },
       {
-        "name": "T-Shirt - Wash & Press",
+        "name": "T-Shirt (Wash & Press)",
         "price": "£3.50",
         "parentId": 3
       },
       {
-        "name": "  Vest - Wash & Press",
+        "name": "  Vest (Wash & Press)",
         "price": "£1.50",
         "parentId": 3
       },
@@ -500,7 +500,7 @@
         "parentId": 4
       },
       {
-        "name": "King Bed Set",
+        "name": "King Bed Set - 1 King Sheet, 1 King Duvet Cover, 2 Pillow Cases( wash and Press )",
         "price": "£19.50",
         "parentId": 4
       },
@@ -565,7 +565,7 @@
         "parentId": 4
       },
       {
-        "name": "Pillowcase - Silk",
+        "name": "Pillow Case - Silk",
         "price": "3.95",
         "parentId": 4
       },
@@ -757,8 +757,8 @@
         "parentId": 5
       },
       {
-        "name": "Service Wash (Wash, Dry & Fold) Above 5kg ",
-        "price": "£3.50 ",
+        "name": "Service Wash (Wash, Dry & Fold) 5kg or Above 5kg ",
+        "price": "£3.50 per kg",
         "parentId": 5
       }
     ]
@@ -770,157 +770,157 @@
     "subItems": false,
     "items": [
       {
-        "name": "Two-Piece Suit",
+        "name": "Two-Piece Suit (Press Only)",
         "price": "£9.95",
         "parentId": 6
       },
       {
-        "name": "Three Piece Suit",
+        "name": "Three Piece Suit (Press Only)",
         "price": " £12.50",
         "parentId": 6
       },
       {
-        "name": "Dinner Suit/ Tuxedo",
+        "name": "Dinner Suit/ Tuxedo (Press Only)",
         "price": "£11.50",
         "parentId": 6
       },
       {
-        "name": "Dinner Jacket",
+        "name": "Dinner Jacket (Press Only)",
         "price": "£7.50",
         "parentId": 6
       },
       {
-        "name": "Dinner Trouser",
+        "name": "Dinner Trouser (Press Only)",
         "price": "£4.95",
         "parentId": 6
       },
       {
-        "name": "Dress Suit",
+        "name": "Dress Suit (Press Only)",
         "price": "£13.50",
         "parentId": 6
       },
       {
-        "name": "Dress",
+        "name": "Dress (Press Only)",
         "price": "Starting from £8.95",
         "parentId": 6
       },
       {
-        "name": "Skirt",
+        "name": "Skirt (Press Only)",
         "price": "Starting from £4.95",
         "parentId": 6
       },
       {
-        "name": "Trouser",
+        "name": "Trouser (Press Only)",
         "price": "£3.96",
         "parentId": 6
       },
       {
-        "name": "Jeans",
+        "name": "Jeans (Press Only)",
         "price": "£3.95",
         "parentId": 6
       },
       {
-        "name": "Shorts",
+        "name": "Shorts (Press Only)",
         "price": "£3.95",
         "parentId": 6
       },
       {
-        "name": "Men’s Shirt",
+        "name": "Men’s Shirt (Press Only)",
         "price": "£1.95",
         "parentId": 6
       },
       {
-        "name": "Ladies Shirt",
+        "name": "Ladies Shirt (Press Only)",
         "price": "£2.95",
         "parentId": 6
       },
       {
-        "name": "Jacket/ Blazer",
+        "name": "Jacket/ Blazer (Press Only)",
         "price": "£6.50",
         "parentId": 6
       },
       {
-        "name": "Jacket (Silk)",
+        "name": "Jacket (Silk) (Press Only)",
         "price": "£6.95",
         "parentId": 6
       },
       {
-        "name": "Light Knitwear",
+        "name": "Light Knitwear (Press Only)",
         "price": "£4.50",
         "parentId": 6
       },
       {
-        "name": "Heavy Knitwear",
+        "name": "Heavy Knitwear (Press Only)",
         "price": "£5.50",
         "parentId": 6
       },
       {
-        "name": "Tie",
+        "name": "Tie (Press Only)",
         "price": "£2.95",
         "parentId": 6
       },
       {
-        "name": "Scarf",
+        "name": "Scarf (Press Only)",
         "price": "£4.95",
         "parentId": 6
       },
       {
-        "name": "Top",
+        "name": "Top (Press Only)",
         "price": "£5.50",
         "parentId": 6
       },
       {
-        "name": "Shawl",
+        "name": "Shawl (Press Only)",
         "price": "£6.95",
         "parentId": 6
       },
       {
-        "name": "Blouse",
+        "name": "Blouse (Press Only)",
         "price": "£5.50",
         "parentId": 6
       },
       {
-        "name": "Coat",
+        "name": "Coat (Press Only)",
         "price": "Starting from £8.95",
         "parentId": 6
       },
       {
-        "name": "Waistcoat",
+        "name": "Waistcoat (Press Only)",
         "price": "£3.95",
         "parentId": 6
       },
       {
-        "name": "Rain Coat / Mac",
+        "name": "Rain Coat / Mac (Press Only)",
         "price": "Starting from £10.50",
         "parentId": 6
       },
       {
-        "name": "Polo T-shirt",
+        "name": "Polo T-shirt (Press Only)",
         "price": "£3.50",
         "parentId": 6
       },
       {
-        "name": "T-shirt",
+        "name": "T-shirt (Press Only)",
         "price": "£2.95",
         "parentId": 6
       },
       {
-        "name": "Jumpsuit ",
+        "name": "Jumpsuit (Press Only) ",
         "price": "£8.50",
         "parentId": 6
       },
       {
-        "name": "Tracksuit",
+        "name": "Tracksuit (Press Only)",
         "price": "£8.95",
         "parentId": 6
       },
       {
-        "name": "Tracksuit Top",
+        "name": "Tracksuit Top (Press Only)",
         "price": "£4.95",
         "parentId": 6
       },
       {
-        "name": "Tracksuit Bottom",
+        "name": "Tracksuit Bottom (Press Only)",
         "price": "£3.95",
         "parentId": 6
       }
@@ -1020,7 +1020,7 @@
         "parentId": 8
       },
       {
-        "name": "Pillowcase (Silk)",
+        "name": "Pillow Case (Silk)",
         "price": "£1.95",
         "parentId": 8
       },
@@ -1131,7 +1131,7 @@
         "parentId": 10
       },
       {
-        "name": "Moncler Jacket",
+        "name": "Moncler Coat",
         "price": "£45.00",
         "parentId": 10
       },

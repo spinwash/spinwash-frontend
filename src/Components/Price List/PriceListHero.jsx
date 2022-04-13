@@ -232,7 +232,7 @@ const SearchData = [
     id: 33,
   },
   {
-    name: 'Moncler Jacket',
+    name: 'Moncler Coat',
     price: '£45.00',
     parentId: 'Dry Cleaning',
     id: 34,
@@ -568,7 +568,7 @@ const SearchData = [
     id: 89,
   },
   {
-    name: 'Pillowcase - Silk',
+    name: 'Pillow Case - Silk',
     price: '3.95',
     parentId: 'Bedding',
     id: 90,
@@ -1078,7 +1078,7 @@ const SearchData = [
     id: 175,
   },
   {
-    name: 'Pillowcase (Silk)',
+    name: 'Pillow Case (Silk)',
     price: '£1.95',
     parentId: 'Household Iron',
     id: 176,
@@ -1192,7 +1192,7 @@ const SearchData = [
     id: 194,
   },
   {
-    name: 'Moncler Jacket',
+    name: 'Moncler Coat',
     price: '£45.00',
     parentId: 'Specialist',
     id: 195,

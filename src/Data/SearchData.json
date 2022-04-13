@@ -180,7 +180,7 @@
     "parentId": "Dry Cleaning"
   },
   {
-    "name": "Moncler Jacket",
+    "name": "Moncler Coat",
     "price": "£45.00",
     "parentId": "Dry Cleaning"
   },
@@ -200,7 +200,7 @@
     "parentId": "Shirt Service"
   },
   {
-    "name": "Men’s Shirt -10 or More (Wash & Press)",
+    "name": "Men’s Shirt - 10 or More (Wash & Press)",
     "price": "£2.50",
     "parentId": "Shirt Service"
   },
@@ -465,7 +465,7 @@
     "parentId": "Bedding"
   },
   {
-    "name": "Pillowcase - Silk",
+    "name": "Pillow Case - Silk",
     "price": "3.95",
     "parentId": "Bedding"
   },
@@ -890,7 +890,7 @@
     "parentId": "Household Iron"
   },
   {
-    "name": "Pillowcase (Silk)",
+    "name": "Pillow Case (Silk)",
     "price": "£1.95",
     "parentId": "Household Iron"
   },
@@ -985,7 +985,7 @@
     "parentId": "Specialist"
   },
   {
-    "name": "Moncler Jacket",
+    "name": "Moncler Coat",
     "price": "£45.00",
     "parentId": "Specialist"
   },

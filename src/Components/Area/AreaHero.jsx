@@ -67,7 +67,7 @@ const Data = [
   },
   {
     id: 10,
-    area: 'Keston Orpingto',
+    area: 'Keston Orpington',
     parent: 'Bromley',
   },
   {

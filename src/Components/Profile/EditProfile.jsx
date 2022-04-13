@@ -180,7 +180,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                   fontSize={{ base: 'xl', md: '2xl' }}
                   fontWeight={500}
                 >
-                  Shirt Cleaning
+                  Shirt Cleaning Preferences
                 </Heading>
                 <VStack pl='1rem'>
                   <Select
@@ -204,7 +204,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                   fontSize={{ base: 'xl', md: '2xl' }}
                   fontWeight={500}
                 >
-                  Shirt Delivery
+                  Shirt Delivery Preferences
                 </Heading>
                 <VStack pl='1rem'>
                   <Select

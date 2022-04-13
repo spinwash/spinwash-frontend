@@ -112,7 +112,7 @@ const ContactUs = () => {
           <Text py='0.5rem' fontWeight='500' fontSize='xl'>
             Customer Support
           </Text>
-          <Text>Monday - Friday : 8:00 am - 8: 00pm</Text>
+          <Text>Monday - Friday : 7:00 am - 8: 30pm</Text>
           <Text>Saturday : 8:00 am - 6:30pm</Text>
         </VStack>
         <VStack p='1rem' align={'start'}>
@@ -130,14 +130,14 @@ const ContactUs = () => {
           <Text>020 8125 3074</Text>
           <Text>info@spinwash.co.uk</Text>
           <a
-            href='https://www.facebook.com/spinwash01'
+            href='https://www.instagram.com/spinwash_'
             target='_blank'
             rel='noreferrer'
           >
             <Text>Instagram</Text>
           </a>
           <a
-            href='https://www.instagram.com/spinwash_'
+            href='https://www.facebook.com/spinwash01'
             target='_blank'
             rel='noreferrer'
           >

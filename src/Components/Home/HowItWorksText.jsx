@@ -65,8 +65,7 @@ const HowItWorksText = () => {
               fontWeight={'300'}
               fontSize={{ base: 'xs', md: 'md' }}
             >
-              We will collect your items, invoice them for you and clean them
-              according to your requirements.
+              We will collect your items, provide you with an invoice and clean them according to your requirements.
             </Text>
           </VStack>
         </HStack>

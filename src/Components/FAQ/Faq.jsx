@@ -223,7 +223,7 @@ const Faq = () => {
                     textAlign='left'
                     pr={'1rem'}
                   >
-                    How long do you require for suede, fur & leather cleaning?
+                    How long do you require for fur, leather, suede cleaning?
                   </Box>
                   {isExpanded ? (
                     <MinusIcon fontSize='12px' />

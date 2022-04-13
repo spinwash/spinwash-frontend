@@ -310,7 +310,7 @@ export default function BookingBar(props) {
                       <DatePicker
                         filterDate={isWeekday}
                         dateFormat='dd-eee'
-                        placeholderText='Pickup'
+                        placeholderText='Pick up'
                         onChange={(date) => field.onChange(date)}
                         minDate={now}
                         selected={field.value}
@@ -345,7 +345,7 @@ export default function BookingBar(props) {
                     render={({ field }) => (
                       <DatePicker
                         filterDate={isWeekday}
-                        placeholderText='DropOff'
+                        placeholderText='Drop off'
                         dateFormat='dd-eee'
                         minDate={collection}
                         onChange={(date) => field.onChange(date)}
@@ -468,7 +468,7 @@ export default function BookingBar(props) {
                               {/*   on the{' '}
                               {watch('pickup')?.toISOString().split('T')[0]},*/}
                             </b>
-                            ,<br /> Please confirm if your items are for dry
+                            <br /> Please confirm if your items are for dry
                             clean/wash and press, press only (ironing) or
                             service wash ( wash dry and fold). <br /> Also if
                             you require any alterations or have any specific
