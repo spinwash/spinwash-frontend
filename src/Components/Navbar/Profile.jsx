@@ -87,7 +87,7 @@ const Profile = ({ userProfilePicture }) => {
             as='button'
             onClick={onOpen}
           >
-            <Box fontWeight={'500'}>Logout</Box>
+            <Box fontWeight={'500'}>Log out</Box>
             <Icon
               as={ArrowForwardIcon}
               transition={'all .25s ease-in-out'}
@@ -112,9 +112,9 @@ const Profile = ({ userProfilePicture }) => {
             m='1rem'
             borderRadius={'0'}
           >
-            <AlertDialogHeader>Logout</AlertDialogHeader>
+            <AlertDialogHeader>Log out</AlertDialogHeader>
             <AlertDialogCloseButton />
-            <AlertDialogBody>Are you sure you want to Logout</AlertDialogBody>
+            <AlertDialogBody>Are you sure you want to Log out</AlertDialogBody>
             <AlertDialogFooter>
               <Button
                 variant={'unstyled'}

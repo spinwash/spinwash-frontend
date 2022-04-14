@@ -118,14 +118,14 @@ const AboutHero = () => {
             <Text>020 8125 3074</Text>
             <Text>info@spinwash.co.uk</Text>
             <a
-              href='https://www.facebook.com/spinwash01'
+              href='https://www.instagram.com/spinwash_'
               target='_blank'
               rel='noreferrer'
             >
               <Text>Instagram</Text>
             </a>
             <a
-              href='https://www.instagram.com/spinwash_'
+              href='https://www.facebook.com/spinwash01'
               target='_blank'
               rel='noreferrer'
             >
@@ -186,9 +186,9 @@ const AboutHero = () => {
             </VStack>
             <VStack alignItems={'start'}>
               <HStack p='0' alignItems={'center'}>
-                <Image src={EdenPark} w={{ base: '3rem', md: '3.5rem' }} />
+                <Image src={EdenPark} w={{ base: '3.2rem', md: '3.6rem' }} />
                 <Heading
-                  fontSize={{ base: '1.7rem', md: '2.3rem' }}
+                  fontSize={{ base: '1.6rem', md: '2.2rem' }}
                   pt='0.5rem'
                 >
                   DRY CLEANERS

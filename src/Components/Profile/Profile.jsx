@@ -64,7 +64,7 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Shirt Cleaning
+                Shirt Cleaning Preference
               </Heading>
               <Text fontWeight={400} px='1rem'>
                 {data?.shirtWashingPreference}
@@ -79,7 +79,7 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Shirt Delivery
+                Shirt Delivery Preference
               </Heading>
               <Text fontWeight={400} px='1rem'>
                 {data?.shirtFoldingPreference}
@@ -94,7 +94,7 @@ const UserProfile = ({ data }) => {
                 fontSize={{ base: 'xl', md: '2xl' }}
                 fontWeight={500}
               >
-                Bedding 
+                Bedding Preference
               </Heading>
               <Text fontWeight={400} px='1rem'>
                 {data?.beddingPreference}
