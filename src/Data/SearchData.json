@@ -31,7 +31,7 @@
   },
   {
     "name": "Dress",
-    "price": "Starting from £10.95",
+    "price": "Starting From £10.95",
     "parentId": "Dry Cleaning"
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "name": "Skirt",
-    "price": "Starting from £6.50",
+    "price": "Starting From £6.50",
     "parentId": "Dry Cleaning"
   },
   {
@@ -141,17 +141,17 @@
   },
   {
     "name": "Coat",
-    "price": "Starting from £11.95",
+    "price": "Starting From £11.95",
     "parentId": "Dry Cleaning"
   },
   {
     "name": "Rain Coat/Mac",
-    "price": "Starting from £13.50",
+    "price": "Starting From £13.50",
     "parentId": "Dry Cleaning"
   },
   {
     "name": "Puffer Jacket",
-    "price": "Starting from £18.50",
+    "price": "Starting From £18.50",
     "parentId": "Dry Cleaning"
   },
   {
@@ -186,7 +186,7 @@
   },
   {
     "name": "Wedding Dress",
-    "price": "Starting from £95.00",
+    "price": "Starting From £95.00",
     "parentId": "Dry Cleaning"
   },
   {
@@ -611,7 +611,7 @@
   },
   {
     "name": "Rug (Dry Clean/ Wash)",
-    "price": "Starting from £70.00",
+    "price": "Starting From £70.00",
     "parentId": "Household"
   },
   {
@@ -686,12 +686,12 @@
   },
   {
     "name": "Dress",
-    "price": "Starting from £8.95",
+    "price": "Starting From £8.95",
     "parentId": "Ironing Only"
   },
   {
     "name": "Skirt",
-    "price": "Starting from £4.95",
+    "price": "Starting From £4.95",
     "parentId": "Ironing Only"
   },
   {
@@ -766,7 +766,7 @@
   },
   {
     "name": "Coat",
-    "price": "Starting from £8.95",
+    "price": "Starting From £8.95",
     "parentId": "Ironing Only"
   },
   {
@@ -776,7 +776,7 @@
   },
   {
     "name": "Rain Coat / Mac",
-    "price": "Starting from £10.50",
+    "price": "Starting From £10.50",
     "parentId": "Ironing Only"
   },
   {
@@ -816,12 +816,12 @@
   },
   {
     "name": "Curtains  - Shortening",
-    "price": "Starting from £30.00",
+    "price": "Starting From £30.00",
     "parentId": "Curtains"
   },
   {
     "name": "Curtains – Re-hem",
-    "price": "Starting from £20.00",
+    "price": "Starting From £20.00",
     "parentId": "Curtains"
   },
   {

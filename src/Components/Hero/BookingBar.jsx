@@ -470,7 +470,7 @@ export default function BookingBar(props) {
                             </b>
                             <br /> Please confirm if your items are for dry
                             clean/wash and press, press only (ironing) or
-                            service wash ( wash dry and fold). <br /> Also if
+                            service wash ( Wash, Dry and Fold). <br /> Also if
                             you require any alterations or have any specific
                             requirements please let us know the details.
                           </Text>
