@@ -2,17 +2,27 @@ import {
   Box,
   Container,
   Heading,
-  Image,
   Stack,
   Text,
   VStack,
+  useToast,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  Button,
+  Input,
+  FormControl,
+  Textarea,
+  HStack,
 } from '@chakra-ui/react';
+import axios from 'axios';
 import { motion, useAnimation } from 'framer-motion';
+import { useState } from 'react';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { useInView } from 'react-intersection-observer';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ArrowButton from '../HOC/ArrowButton';
-import MainLogo from './MainLogo.svg';
 
 const MotionContainer = motion(Container);
 
@@ -21,30 +31,57 @@ const variant = {
   hidden: { opacity: 0, y: 40 },
 };
 
-const Footer = () => {
+const AlertPop = (props) => {
+  return (
+    <Alert status='error'>
+      <AlertIcon color={'red.400'} />
+      <AlertTitle mr={4} textColor={'red.400'} fontWeight={'500'}>
+        {props.title}
+      </AlertTitle>
+    </Alert>
+  );
+};
+
+const Footer2 = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
+  const [loader, setLoader] = useState(false);
+  const toast = useToast();
+
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   useEffect(() => {
     if (inView) {
       controls.start('visible');
     }
   }, [controls, inView]);
-  const { pathname } = useLocation();
   const navigate = useNavigate();
-  const onClickHandler = () => {
-    if (pathname === '/') {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
+  const onSubmit = (data) => {
+    setLoader(true);
+    axios
+      .post(`https://spinwash.herokuapp.com/api/contactUS`, data)
+      .then((res) => {
+        toast({
+          title: res.data.message,
+          status: 'success',
+          duration: 3000,
+        });
+        reset();
+        setLoader(false);
+      })
+      .catch((err) => {
+        toast({
+          title: 'Error occurred',
+          status: 'error',
+          duration: 3000,
+        });
+        setLoader(false);
       });
-    } else {
-      navigate('/');
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
   };
   return (
     <MotionContainer
@@ -244,19 +281,58 @@ const Footer = () => {
           </VStack>
         </Stack>
         <VStack
-          spacing={{ base: '1rem', md: '1.5rem' }}
-          fontSize={{ base: 'sm', md: 'md' }}
-          alignItems={'start'}
+          maxW={'fit-content'}
+          alignItems='start'
+          spacing='1rem'
+          mx='auto'
         >
-          <Image src={MainLogo} w={{ base: '7rem', md: '10rem' }} pb='1rem' />
-          <Heading fontSize={{ base: 'xl', md: '2xl' }} fontWeight={'400'}>
-            Book Our Service Now
+          <Heading fontWeight={'500'} fontSize={{ base: 'sm', md: 'xl' }}>
+            Feel free to talk to us if you have any questions.
           </Heading>
-          <Link to='/'>
-            <Box w='fit-content' as='button' onClick={onClickHandler}>
-              <ArrowButton variant='dark'>Order Now</ArrowButton>
-            </Box>
-          </Link>
+
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <HStack
+              py='1rem'
+              spacing='2rem'
+              minW={{ base: '16rem', md: '28rem' }}
+              alignItems={'start'}
+            >
+              <FormControl w='full' isRequired>
+                <Input
+                  border='0'
+                  me={'2rem'}
+                  _hover={{
+                    borderBottom: '2px solid #1B4D7A',
+                  }}
+                  //outline='1px solid #1B4D7A'
+                  borderBottom={'2px solid #1B4D7A'}
+                  mb={'1rem'}
+                  borderRadius={'0'}
+                  bg={'white'}
+                  px='0.5rem'
+                  h={{ base: '2rem', md: '2.4rem' }}
+                  size={{ base: 'sm', md: 'lg' }}
+                  placeholder='Email'
+                  _placeholder={{ color: 'gray.400' }}
+                  {...register('email', {
+                    required: 'Please enter your name',
+                  })}
+                />
+                {errors.name && <AlertPop title={errors.name.message} />}
+              </FormControl>
+              <Button
+                variant={'unstyled'}
+                isLoading={loader}
+                display='flex'
+                justifyContent={'center'}
+                alignItems='center'
+                width='fit-content'
+                alignSelf={'start'}
+              >
+                <ArrowButton variant='dark'></ArrowButton>
+              </Button>
+            </HStack>
+          </form>
         </VStack>
       </Stack>{' '}
       <Stack
@@ -279,4 +355,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer2;

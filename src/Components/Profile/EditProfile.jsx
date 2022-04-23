@@ -81,7 +81,10 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                   sendDataToParent={changeProfilePictureHandler}
                 />
               </Stack>
-              <FormControl w={{ base: '80vw', md: '40vw', xl: '34rem' }}>
+              <FormControl
+                isRequired
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
                 <FormLabel
                   fontSize={{ base: 'xl', md: '2xl' }}
                   fontWeight={500}
@@ -101,7 +104,10 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                   {...register('name')}
                 />
               </FormControl>
-              <FormControl w={{ base: '80vw', md: '40vw', xl: '34rem' }}>
+              <FormControl
+                isRequired
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
                 <FormLabel
                   fontSize={{ base: 'xl', md: '2xl' }}
                   fontWeight={500}
@@ -122,7 +128,10 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                   {...register('email')}
                 />
               </FormControl>
-              <FormControl w={{ base: '80vw', md: '40vw', xl: '34rem' }}>
+              <FormControl
+                isRequired
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
                 <FormLabel
                   fontSize={{ base: 'xl', md: '2xl' }}
                   fontWeight={500}
@@ -142,7 +151,10 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                   {...register('phoneNumber')}
                 />
               </FormControl>
-              <FormControl w={{ base: '80vw', md: '40vw', xl: '34rem' }}>
+              <FormControl
+                isRequired
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
                 <FormLabel
                   fontSize={{ base: 'xl', md: '2xl' }}
                   fontWeight={500}
@@ -184,7 +196,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                 </Heading>
                 <VStack pl='1rem'>
                   <Select
-                    placeholder={data?.shirtWashingPreference}
+                  //  placeholder={data?.shirtWashingPreference}
                     {...register('shirtWashingPreference')}
                   >
                     <option value='Wash And Press'>Wash and Press</option>
@@ -208,11 +220,11 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                 </Heading>
                 <VStack pl='1rem'>
                   <Select
-                    placeholder={data?.shirtFoldingPreference}
+                  //  placeholder={data?.shirtFoldingPreference}
                     {...register('shirtFoldingPreference')}
                   >
-                    <option value='Hung'>Hung</option>
-                    <option value='Folded'>Fold</option>
+                    <option value='Hung'>On Hanger</option>
+                    <option value='Folded'>Folded</option>
                   </Select>{' '}
                 </VStack>
               </VStack>
@@ -229,7 +241,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                 </Heading>
                 <VStack pl='1rem'>
                   <Select
-                    placeholder={data?.beddingPreference}
+                  //  placeholder={data?.beddingPreference}
                     {...register('beddingPreference')}
                   >
                     <option value='Wash And Press'>Wash And Press</option>

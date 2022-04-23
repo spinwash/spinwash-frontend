@@ -7,7 +7,7 @@ import { isAuth } from '../Helpers/auth';
 
 const Profile = () => {
   const { _id } = isAuth();
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(true);
   const [Data, setData] = useState(isAuth());
 
   useEffect(() => {
@@ -30,10 +30,12 @@ const Profile = () => {
         direction={{ base: 'column', sm: 'row' }}
       >
         <Heading fontSize={{ base: '4xl', md: '5xl' }}>Your Profile</Heading>
-        <Box as='button' onClick={() => setEditMode(!editMode)}>
-          <ArrowButton variant='dark'>
-            {editMode ? 'Cancel' : 'Edit Profile'}
-          </ArrowButton>
+        <Box
+          as='button'
+          onClick={() => setEditMode(true)}
+          display={editMode ? 'none' : 'block'}
+        >
+          <ArrowButton variant='dark'>Edit Profile</ArrowButton>
         </Box>
       </Stack>
       <Container

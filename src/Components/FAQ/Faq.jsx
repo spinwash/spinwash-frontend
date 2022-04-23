@@ -7,11 +7,27 @@ import {
   Heading,
   Container,
   Box,
+  useToast,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  Stack,
+  Text,
+  VStack,
+  Button,
+  Input,
+  FormControl,
+  Textarea,
+  Wrap,
 } from '@chakra-ui/react';
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import ArrowButton from '../HOC/ArrowButton';
+import axios from 'axios';
 
 const MotionContainer = motion(Container);
 
@@ -20,9 +36,52 @@ const variant = {
   hidden: { opacity: 0, y: 40 },
 };
 
+const AlertPop = (props) => {
+  return (
+    <Alert status='error'>
+      <AlertIcon color={'red.400'} />
+      <AlertTitle mr={4} textColor={'red.400'} fontWeight={'500'}>
+        {props.title}
+      </AlertTitle>
+    </Alert>
+  );
+};
 const Faq = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView();
+  const [loader, setLoader] = useState(false);
+  const toast = useToast();
+
+  const {
+    handleSubmit,
+    register,
+    reset,
+    setError,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    setLoader(true);
+    axios
+      .post(`https://spinwash.herokuapp.com/api/contactUS`, data)
+      .then((res) => {
+        toast({
+          title: res.data.message,
+          status: 'success',
+          duration: 3000,
+        });
+        reset();
+        setLoader(false);
+      })
+      .catch((err) => {
+        toast({
+          title: 'Error occurred',
+          status: 'error',
+          duration: 3000,
+        });
+        setLoader(false);
+      });
+  };
 
   useEffect(() => {
     if (inView) {
@@ -310,6 +369,140 @@ const Faq = () => {
           )}
         </AccordionItem>
       </Accordion>
+      <VStack
+        px={{ base: '1rem', md: '0' }}
+        w='full'
+        mt={{ base: '5rem', md: '9rem' }}
+        // maxW={'fit-content'}
+        maxW='3xl'
+        alignItems={{ base: 'start', md: 'center' }}
+        spacing='1rem'
+        mx='auto'
+        //  p={{ base: '2rem', md: '2rem 4rem' }}
+      >
+        <Heading
+          textAlign={{ base: 'start', md: 'center' }}
+          fontWeight={'500'}
+          fontSize={{ base: 'xl', md: '3xl' }}
+        >
+          Contact US
+        </Heading>
+        <Text
+          textAlign={{ base: 'start', md: 'center' }}
+          fontSize={{ base: 'sm', md: 'lg' }}
+          maxW='32rem'
+        >
+          Feel free to talk to us if you have any questions. Just fill the form
+          and we will get in touch with you shortly
+        </Text>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <VStack
+            mx='auto'
+            alignSelf={'center'}
+            fontSize={{ base: 'sm', md: 'lg' }}
+            minW={{ base: '16rem', md: '28rem' }}
+            alignItems={'start'}
+          >
+            <Stack
+              direction={{ base: 'column', md: 'row' }}
+              spacing={{ base: '0.4rem', md: '2rem' }}
+              p='0'
+            >
+              <FormControl w='full' isRequired>
+                <Input
+                  _hover={{
+                    borderBottom: '2px solid #1B4D7A',
+                  }}
+                  //outline='1px solid #1B4D7A'
+                  borderBottom={'2px solid #1B4D7A'}
+                  mb={'1rem'}
+                  borderRadius={'0'}
+                  bg={'white'}
+                  px='0.5rem'
+                  h={{ base: '3rem', md: '3.6rem' }}
+                  size={{ base: 'sm', md: 'lg' }}
+                  placeholder='Name'
+                  _placeholder={{ color: 'gray.400' }}
+                  {...register('name', {
+                    required: 'Please enter your name',
+                  })}
+                />
+                {errors.name && <AlertPop title={errors.name.message} />}
+              </FormControl>
+              <FormControl w='full' isRequired>
+                <Input
+                  _hover={{
+                    borderBottom: '2px solid #1B4D7A',
+                  }}
+                  //outline='1px solid #1B4D7A'
+                  borderBottom={'2px solid #1B4D7A'}
+                  mb={'1rem'}
+                  borderRadius={'0'}
+                  bg={'white'}
+                  px='0.5rem'
+                  h={{ base: '3rem', md: '3.6rem' }}
+                  size={{ base: 'sm', md: 'lg' }}
+                  placeholder='Email'
+                  _placeholder={{ color: 'gray.400' }}
+                  {...register('email', {
+                    required: 'Please enter registered email',
+                    pattern: {
+                      value:
+                        /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                      message: 'Enter a valid email',
+                    },
+                  })}
+                />
+                {errors.email && <AlertPop title={errors.email.message} />}
+              </FormControl>
+            </Stack>
+            <Stack
+              direction={{ base: 'column', md: 'row' }}
+              spacing={{ base: '0.4rem', md: '2rem' }}
+              p='0'
+            >
+              <FormControl
+                pr={{ base: '1.5rem', md: '0rem' }}
+                w='full'
+                isRequired
+              >
+                <Textarea
+                  // outline='1px solid #1B4D7A'
+                  _hover={{
+                    borderBottom: '2px solid #1B4D7A',
+                  }}
+                  //outline='1px solid #1B4D7A'
+                  borderBottom={'2px solid #1B4D7A'}
+                  borderRadius={'0'}
+                  bg={'white'}
+                  px='0.5rem'
+                  h={{ base: '3rem', md: '3.6rem' }}
+                  size={{ base: 'sm', md: 'lg' }}
+                  placeholder='Message'
+                  _placeholder={{ color: 'gray.400' }}
+                  {...register('message', {
+                    required: 'Message can not be empty',
+                  })}
+                />
+              </FormControl>
+              <Button
+                pt={{ base: '3rem', md: '0rem' }}
+                pl={{ base: '0rem', md: '0.5rem' }}
+                isLoading={loader}
+                variant={'unstyled'}
+                display='flex'
+                justifyContent={'center'}
+                alignItems='center'
+                width='fit-content'
+                alignSelf={{ base: 'start', md: 'end' }}
+              >
+                <ArrowButton variant='dark'>Send Message</ArrowButton>
+              </Button>
+            </Stack>
+          </VStack>
+        </form>
+      </VStack>
     </MotionContainer>
   );
 };

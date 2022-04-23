@@ -185,12 +185,9 @@ const AboutHero = () => {
               </VStack>
             </VStack>
             <VStack alignItems={'start'}>
-              <HStack p='0' alignItems={'center'}>
-                <Image src={EdenPark} w={{ base: '3.2rem', md: '3.6rem' }} />
-                <Heading
-                  fontSize={{ base: '1.6rem', md: '2.2rem' }}
-                  pt='0.5rem'
-                >
+              <HStack p='0' alignItems={'flex-start'}>
+                <Image src={EdenPark} w={{ base: '3.2rem', md: '5rem' }} />
+                <Heading fontSize={{ base: '1.6rem', md: '2.3rem' }}>
                   DRY CLEANERS
                 </Heading>
               </HStack>

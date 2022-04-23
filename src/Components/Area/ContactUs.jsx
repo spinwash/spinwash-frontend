@@ -20,6 +20,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import ArrowButton from '../HOC/ArrowButton';
+import Map from './Map';
 
 const MotionStack = motion(Stack);
 
@@ -145,103 +146,7 @@ const ContactUs = () => {
           </a>
         </VStack>
       </Wrap>
-      <VStack
-        bg='spinwash.100'
-        maxW={'fit-content'}
-        alignItems='start'
-        spacing='1rem'
-        mx='auto'
-        p={{ base: '2rem', md: '2rem 4rem' }}
-      >
-        <Heading fontWeight={'500'} fontSize={{ base: 'xl', md: '3xl' }}>
-          Contact US
-        </Heading>
-        <Text maxW='26rem' fontSize={{ base: 'xs', md: 'sm' }}>
-          Feel free to talk to us if you have any questions. Just fill the form
-          and we will get in touch with you shortly
-        </Text>
-
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <VStack minW={{ base: '16rem', md: '28rem' }} alignItems={'start'}>
-            <Stack
-              direction={{ base: 'column', md: 'row' }}
-              spacing={{ base: '0.4rem', md: '2rem' }}
-              p='0'
-            >
-              <FormControl w='full' isRequired>
-                <Input
-                  outline='1px solid #1B4D7A'
-                  mb={'1rem'}
-                  borderRadius={'0'}
-                  bg={'white'}
-                  px='0.5rem'
-                  h={{ base: '3rem', md: '3.6rem' }}
-                  size={{ base: 'sm', md: 'lg' }}
-                  placeholder='Name'
-                  _placeholder={{ color: 'gray.400' }}
-                  {...register('name', {
-                    required: 'Please enter your name',
-                  })}
-                />
-                {errors.name && <AlertPop title={errors.name.message} />}
-              </FormControl>
-              <FormControl w='full' isRequired>
-                <Input
-                  outline='1px solid #1B4D7A'
-                  mb={'1rem'}
-                  borderRadius={'0'}
-                  bg={'white'}
-                  px='0.5rem'
-                  h={{ base: '3rem', md: '3.6rem' }}
-                  size={{ base: 'sm', md: 'lg' }}
-                  placeholder='Email'
-                  _placeholder={{ color: 'gray.400' }}
-                  {...register('email', {
-                    required: 'Please enter registered email',
-                    pattern: {
-                      value:
-                        /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                      message: 'Enter a valid email',
-                    },
-                  })}
-                />
-                {errors.email && <AlertPop title={errors.email.message} />}
-              </FormControl>
-            </Stack>
-            <FormControl
-              pr={{ base: '1.5rem', md: '0rem' }}
-              w='full'
-              isRequired
-            >
-              <Textarea
-                outline='1px solid #1B4D7A'
-                mb={'1rem'}
-                borderRadius={'0'}
-                bg={'white'}
-                px='0.5rem'
-                h={{ base: '3rem', md: '3.6rem' }}
-                size={{ base: 'sm', md: 'lg' }}
-                placeholder='Message'
-                _placeholder={{ color: 'gray.400' }}
-                {...register('message', {
-                  required: 'Message can not be empty',
-                })}
-              />
-            </FormControl>
-            <Button
-              isLoading={loader}
-              variant={'unstyled'}
-              display='flex'
-              justifyContent={'center'}
-              alignItems='center'
-              width='fit-content'
-              alignSelf={'start'}
-            >
-              <ArrowButton variant='dark'>Send Message</ArrowButton>
-            </Button>
-          </VStack>
-        </form>
-      </VStack>
+      <Map />
     </MotionStack>
   );
 };

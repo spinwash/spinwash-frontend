@@ -188,6 +188,16 @@
         "parentId": 1
       },
       {
+        "name": "Hoodie (Dry Clean)",
+        "price": "£9.95",
+        "parentId": 1
+      },
+      {
+        "name": "Sweatshirt (Dry Clean)",
+        "price": "£8.95",
+        "parentId": 1
+      },
+      {
         "name": "Waistcoat (Dry Clean)",
         "price": "£4.95",
         "parentId": 1
@@ -398,12 +408,22 @@
         "parentId": 3
       },
       {
+        "name": "Hoodie (Wash & Press)",
+        "price": "£9.50",
+        "parentId": 3
+      },
+      {
+        "name": "Sweatshirt (Wash & Press)",
+        "price": "£8.50",
+        "parentId": 3
+      },
+      {
         "name": "T-Shirt (Wash & Press)",
         "price": "£3.50",
         "parentId": 3
       },
       {
-        "name": "  Vest (Wash & Press)",
+        "name": "Vest (Wash & Press)",
         "price": "£1.50",
         "parentId": 3
       },
@@ -924,7 +944,7 @@
   {
     "id": "7",
     "title": "Curtains",
-    "note": "We offer specialist curtain cleaning along with alteration services such as shortening them or re-hemming them.",
+    "note": "We offer specialist curtain cleaning along with alteration services such as shortening them or re-hemming them. ",
     "subItems": false,
     "items": [
       {
