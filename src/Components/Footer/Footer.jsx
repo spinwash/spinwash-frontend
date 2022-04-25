@@ -268,12 +268,12 @@ const Footer = () => {
         justifyContent='space-between'
         alignItems={{ base: 'start', md: 'center' }}
       >
-        <Text>© 2022 Spinwash</Text>
+        {/* <Text>© 2022 Spinwash</Text>
         <Text>
           <a href='https://twitter.com/demonicirfan' target='_blank'>
             Designed and Developed by Irfan Asif
           </a>
-        </Text>
+        </Text> */}
       </Stack>
     </MotionContainer>
   );
