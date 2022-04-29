@@ -147,112 +147,115 @@ export default function BookingBar(props) {
   }
 
   useEffect(() => {
-    if (timePickup) {
-      if (collection?.getDate() === now.getDate()) {
-        console.log(
-          'collection today chosen | time-diff = ',
-          timePickup - now.getHours()
-        );
-        if (timePickup - now.getHours() < 3) {
-          setFormErrorState({
-            is: true,
-            message: 'Minimum Time for pickup is 3 hrs',
-          });
-          setNotPossible(true);
-          console.log('✖ less than 3 hours in today');
+    if (collection?.getMonth() === dropOff?.getMonth()) {
+      if (timePickup) {
+        console.log('same month');
+        if (collection?.getDate() === now.getDate()) {
+          console.log(
+            'collection today chosen | time-diff = ',
+            timePickup - now.getHours()
+          );
+          if (timePickup - now.getHours() < 3) {
+            setFormErrorState({
+              is: true,
+              message: 'Minimum Time for pickup is 3 hrs',
+            });
+            setNotPossible(true);
+            console.log('✖ less than 3 hours in today');
+          } else {
+            setFormErrorState({
+              is: false,
+              message: '',
+            });
+            setNotPossible(false);
+            console.log('✔ greater than 3 hours in today');
+          }
         } else {
+          setNotPossible(false);
           setFormErrorState({
             is: false,
-            message: '',
+            message: 'Please Select the Timing Correctly',
           });
-          setNotPossible(false);
-          console.log('✔ greater than 3 hours in today');
+          console.log('pickup not today');
         }
-      } else {
-        setNotPossible(false);
-        setFormErrorState({
-          is: false,
-          message: 'Please Select the Timing Correctly',
-        });
-        console.log('pickup not today');
-      }
-      console.log(
-        '-------------------------- time diff  👉🏻 ',
-        timedropOff - timePickup
-      );
-      // if the date is same only then this code snippet will run
-      if (Date.parse(collection) === Date.parse(dropOff)) {
-        // console.log(
-        //   'same date choosen',
-        //   Date.parse(collection) === Date.parse(dropOff)
-        // );
+        console.log(
+          '-------------------------- time diff  👉🏻 ',
+          timedropOff - timePickup
+        );
+        // if the date is same only then this code snippet will run
+        if (Date.parse(collection) === Date.parse(dropOff)) {
+          // console.log(
+          //   'same date choosen',
+          //   Date.parse(collection) === Date.parse(dropOff)
+          // );
 
-        if (timedropOff - timePickup >= 0) {
-          // console.log('positive time choosen'); // as the time is negative we will check if its less than 12 or greater than 12
-          if (timedropOff - timePickup === 12) {
-            // console.log('equal to 12 choosen');
-            setCharges(true);
-            setNotPossible(false);
-          } else if (timedropOff - timePickup < 12) {
-            //  console.log('less than 12 choosen');
+          if (timedropOff - timePickup >= 0) {
+            // console.log('positive time choosen'); // as the time is negative we will check if its less than 12 or greater than 12
+            if (timedropOff - timePickup === 12) {
+              // console.log('equal to 12 choosen');
+              setCharges(true);
+              setNotPossible(false);
+            } else if (timedropOff - timePickup < 12) {
+              //  console.log('less than 12 choosen');
+              setNotPossible(true);
+              setFormErrorState({
+                is: true,
+                message: 'Minimum Delivery time is 12 hrs',
+              });
+              setCharges(false);
+            } else {
+              // console.log('greater than 12 choosen');
+              setCharges(false);
+              setNotPossible(false);
+            }
+          } else {
+            // console.log('Negative time choosen');
             setNotPossible(true);
             setFormErrorState({
               is: true,
               message: 'Minimum Delivery time is 12 hrs',
             });
+          }
+
+          if (timedropOff - timePickup < 0 && timedropOff > 0) {
+            console.log('✖ less than 0 choosen');
             setCharges(false);
+            setNotPossible(true);
+            setAllowModal(false);
+            setFormErrorState({
+              is: true,
+              message: 'Error! Please select the timing correctly',
+            });
+            console.log('--------- if of time pickup ----------');
           } else {
-            // console.log('greater than 12 choosen');
+            console.log('✔ more than 0 choosen');
             setCharges(false);
             setNotPossible(false);
+            setAllowModal(true);
           }
-        } else {
-          // console.log('Negative time choosen');
-          setNotPossible(true);
-          setFormErrorState({
-            is: true,
-            message: 'Minimum Delivery time is 12 hrs',
-          });
         }
-
-        if (timedropOff - timePickup < 0 && timedropOff > 0) {
-          console.log('✖ less than 0 choosen');
-          setCharges(false);
-          setNotPossible(true);
-          setAllowModal(false);
-          setFormErrorState({
-            is: true,
-            message: 'Error! Please select the timing correctly',
-          });
-          console.log('--------- if of time pickup ----------');
-        } else {
-          console.log('✔ more than 0 choosen');
-          setCharges(false);
-          setNotPossible(false);
-          setAllowModal(true);
-        }
+      } else {
+        setNotPossible(false);
+        setAllowModal(true);
       }
-    } else {
-      setNotPossible(false);
-      setAllowModal(true);
-    }
 
-    if (formErrorState.is) {
-      setNotPossible(true);
-      setAllowModal(false);
-    } else {
-      setNotPossible(false);
-      setAllowModal(true);
-    }
+      if (formErrorState.is) {
+        setNotPossible(true);
+        setAllowModal(false);
+      } else {
+        setNotPossible(false);
+        setAllowModal(true);
+      }
 
-    if (collection?.getDate() > dropOff?.getDate()) {
-      console.log('collection greater than dropOff ');
-      setNotPossible(true);
-      setAllowModal(false);
-      setFormErrorState({
-        is: true,
-        message: 'Error! Please select the timing correctly',
-      });
+      if (collection?.getDate() > dropOff?.getDate()) {
+        console.log('collection greater than dropOff ');
+        setNotPossible(true);
+        setAllowModal(false);
+        setFormErrorState({
+          is: true,
+          message: 'Error! Please select the timing correctly',
+        });
+      }
     }
   }, [
     collection,
