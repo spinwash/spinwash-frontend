@@ -74,13 +74,13 @@ export default function BookingBar(props) {
 
   function convertTo24Hour(time) {
     var hours = parseInt(time?.substr(0, 2));
-    if (time?.indexOf('am') != -1 && hours == 12) {
+    if (time?.indexOf('AM') != -1 && hours == 12) {
       time = time?.replace('12', '0');
     }
-    if (time?.indexOf('pm') != -1 && hours < 12) {
+    if (time?.indexOf('PM') != -1 && hours < 12) {
       time = time?.replace(hours, hours + 12);
     }
-    return time?.replace(/(am|pm)/, '');
+    return time?.replace(/(AM|PM)/, '');
   }
 
   const [minDate, setMinDate] = useState(now);
@@ -136,7 +136,7 @@ export default function BookingBar(props) {
     let value = '';
     if (parseInt(timeData[0]) === 11) {
       value = 12;
-      return value + ' pm';
+      return value + ' PM';
     } else if (parseInt(timeData[0]) === 12) {
       value = 1;
       return value + ' ' + timeData[1];
@@ -271,33 +271,33 @@ export default function BookingBar(props) {
   useEffect(() => {
     if (collectionDate === '6') {
       setTiming([
-        '08 am',
-        '09 am',
-        '10 am',
-        '11 am',
-        '12 pm',
-        '01 pm',
-        '02 pm',
-        '03 pm',
-        '04 pm',
-        '05 pm',
-        '06 pm',
+        '08 AM',
+        '09 AM',
+        '10 AM',
+        '11 AM',
+        '12 PM',
+        '01 PM',
+        '02 PM',
+        '03 PM',
+        '04 PM',
+        '05 PM',
+        '06 PM',
       ]);
     } else {
       setTiming([
-        '07 am',
-        '08 am',
-        '09 am',
-        '10 am',
-        '11 am',
-        '12 pm',
-        '01 pm',
-        '02 pm',
-        '03 pm',
-        '04 pm',
-        '05 pm',
-        '06 pm',
-        '07 pm',
+        '07 AM',
+        '08 AM',
+        '09 AM',
+        '10 AM',
+        '11 AM',
+        '12 PM',
+        '01 PM',
+        '02 PM',
+        '03 PM',
+        '04 PM',
+        '05 PM',
+        '06 PM',
+        '07 PM',
       ]);
     }
   }, [collectionDate]);
@@ -305,34 +305,34 @@ export default function BookingBar(props) {
   useEffect(() => {
     if (dropOffDate === '6') {
       setDropOffTiming([
-        '07 am',
-        '08 am',
-        '09 am',
-        '10 am',
-        '11 am',
-        '12 pm',
-        '01 pm',
-        '02 pm',
-        '03 pm',
-        '04 pm',
-        '05 pm',
-        '06 pm',
+        '07 AM',
+        '08 AM',
+        '09 AM',
+        '10 AM',
+        '11 AM',
+        '12 PM',
+        '01 PM',
+        '02 PM',
+        '03 PM',
+        '04 PM',
+        '05 PM',
+        '06 PM',
       ]);
     } else {
       setDropOffTiming([
-        '07 am',
-        '08 am',
-        '09 am',
-        '10 am',
-        '11 am',
-        '12 pm',
-        '01 pm',
-        '02 pm',
-        '03 pm',
-        '04 pm',
-        '05 pm',
-        '06 pm',
-        '07 pm',
+        '07 AM',
+        '08 AM',
+        '09 AM',
+        '10 AM',
+        '11 AM',
+        '12 PM',
+        '01 PM',
+        '02 PM',
+        '03 PM',
+        '04 PM',
+        '05 PM',
+        '06 PM',
+        '07 PM',
       ]);
     }
   }, [dropOffDate]);
@@ -345,8 +345,8 @@ export default function BookingBar(props) {
     setSubmitSpinner(true);
     const dataToSend = {
       ...data,
-      pickup: data.pickup.toISOString().split('T')[0],
-      dropOff: data.dropOff.toISOString().split('T')[0],
+      pickup: data.pickup.toLocaleDateString(),
+      dropOff: data.dropOff.toLocaleDateString(),
     };
     axios
       .post(
