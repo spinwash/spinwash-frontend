@@ -121,13 +121,13 @@ const Orders = (props) => {
                     </Td>
                     <Td>
                       <Text>
-                        {order.pickup} - {order.pickupTime}
+                         DATE: {order.pickup} <br />TIME: {order.pickupTime}
                       </Text>
                     </Td>
                     <Td>
                       {' '}
                       <Text>
-                        {order.dropOff} - {order.dropOffTime}
+                        DATE: {order.dropOff} <br />TIME: {order.dropOffTime}
                       </Text>
                     </Td>
                   </Tr>
@@ -161,13 +161,13 @@ const Orders = (props) => {
                     </Td>
                     <Td>
                       <Text>
-                        {order.pickup} - {order.pickupTime}
+                        DATE: {order.pickup} <br />TIME: {order.pickupTime}
                       </Text>
                     </Td>
                     <Td>
                       {' '}
                       <Text>
-                        {order.dropOff} - {order.dropOffTime}
+                        DATE: {order.dropOff} <br />TIME: {order.dropOffTime}
                       </Text>
                     </Td>
                   </Tr>
