@@ -452,7 +452,7 @@ export default function BookingBar(props) {
                       {timing.map((time) => (
                         <option
                           style={{ backgroundColor: 'white' }}
-                          value={time}
+                          value={`${time} to ${addedTime(time)}`}
                         >
                           {time} - {addedTime(time)}
                         </option>
@@ -493,7 +493,7 @@ export default function BookingBar(props) {
                       {dropOffTiming.map((time) => (
                         <option
                           style={{ backgroundColor: 'white' }}
-                          value={time}
+                          value={`${time} to ${addedTime(time)}`}
                         >
                           {time} - {addedTime(time)}
                         </option>
