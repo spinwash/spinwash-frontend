@@ -345,8 +345,8 @@ export default function BookingBar(props) {
     setSubmitSpinner(true);
     const dataToSend = {
       ...data,
-      pickup: data.pickup.toISOString().split('T')[0],
-      dropOff: data.dropOff.toISOString().split('T')[0],
+      pickup: data.pickup.toLocaleDateString(),
+      dropOff: data.dropOff.toLocaleDateString(),
     };
     axios
       .post(
