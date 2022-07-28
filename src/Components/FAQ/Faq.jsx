@@ -385,7 +385,7 @@ const Faq = () => {
           fontWeight={'500'}
           fontSize={{ base: 'xl', md: '3xl' }}
         >
-          Contact US
+          Contact Us
         </Heading>
         <Text
           textAlign={{ base: 'start', md: 'center' }}
