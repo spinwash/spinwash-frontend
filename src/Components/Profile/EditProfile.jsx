@@ -224,7 +224,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
                     {...register('shirtFoldingPreference')}
                   >
                     <option value='Hung'>On Hanger</option>
-                    <option value='Folded'>Folded</option>
+                    <option value='Folded'>Folded (Additional Cost)</option>
                   </Select>{' '}
                 </VStack>
               </VStack>
