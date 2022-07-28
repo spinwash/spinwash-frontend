@@ -170,7 +170,7 @@ const AreaHero = () => {
               fontWeight={'600'}
               fontSize={{ base: '4xl', lg: '6xl', xl: '7xl' }}
             >
-              Areas & Postcodes We Cover
+              Areas We Currently Cover
             </Heading>
           </MotionBox>
           <MotionBox
