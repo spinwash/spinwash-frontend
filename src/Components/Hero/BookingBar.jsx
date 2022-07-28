@@ -63,6 +63,10 @@ export default function BookingBar(props) {
     is: false,
     message: '',
   });
+  const [formPassState, setFormPassState] = useState({
+    is: false,
+    message: '',
+  });
   const [allowModal, setAllowModal] = useState(false);
   const [timing, setTiming] = useState(['Select Date First']);
   const [dropOffTiming, setDropOffTiming] = useState(['Select Date First']);
@@ -130,6 +134,8 @@ export default function BookingBar(props) {
 
   const collectionDate = JSON.stringify(collection?.getDay());
   const dropOffDate = JSON.stringify(dropOff?.getDay());
+  let timePickupp = parseInt(timePickup);
+  let timedropOfff = parseInt(timedropOff);
 
   function addedTime(t) {
     const timeData = t.toString().split(' ');
@@ -148,14 +154,15 @@ export default function BookingBar(props) {
 
   useEffect(() => {
     if (collection?.getMonth() === dropOff?.getMonth()) {
-      if (timePickup) {
+      
+      if (timePickupp) {
         console.log('same month');
         if (collection?.getDate() === now.getDate()) {
           console.log(
             'collection today chosen | time-diff = ',
-            timePickup - now.getHours()
+            timePickupp - now.getHours()
           );
-          if (timePickup - now.getHours() < 3) {
+          if (timePickupp - now.getHours() < 3) {
             setFormErrorState({
               is: true,
               message: 'Minimum Time for pickup is 3 hrs',
@@ -180,7 +187,7 @@ export default function BookingBar(props) {
         }
         console.log(
           '-------------------------- time diff  👉🏻 ',
-          timedropOff - timePickup
+          timedropOfff - timePickupp
         );
         // if the date is same only then this code snippet will run
         if (Date.parse(collection) === Date.parse(dropOff)) {
@@ -189,13 +196,14 @@ export default function BookingBar(props) {
           //   Date.parse(collection) === Date.parse(dropOff)
           // );
 
-          if (timedropOff - timePickup >= 0) {
+          if (timedropOfff - timePickupp >= 0) {
             // console.log('positive time choosen'); // as the time is negative we will check if its less than 12 or greater than 12
-            if (timedropOff - timePickup === 12) {
+            if (timedropOfff - timePickupp === 12) {
               // console.log('equal to 12 choosen');
               setCharges(true);
               setNotPossible(false);
-            } else if (timedropOff - timePickup < 12) {
+              
+            } else if (timedropOfff - timePickupp < 12) {
               //  console.log('less than 12 choosen');
               setNotPossible(true);
               setFormErrorState({
@@ -217,7 +225,7 @@ export default function BookingBar(props) {
             });
           }
 
-          if (timedropOff - timePickup < 0 && timedropOff > 0) {
+          if (timedropOfff - timePickupp < 0 && timedropOfff > 0) {
             console.log('✖ less than 0 choosen');
             setCharges(false);
             setNotPossible(true);
@@ -239,7 +247,7 @@ export default function BookingBar(props) {
         setAllowModal(true);
       }
 
-      if (formErrorState.is) {
+      if (formPassState.is) {
         setNotPossible(true);
         setAllowModal(false);
       } else {
@@ -260,11 +268,12 @@ export default function BookingBar(props) {
   }, [
     collection,
     dropOff,
-    timedropOff,
-    timePickup,
+    timedropOfff,
+    timePickupp,
     collectionDateData,
     dropOffDateData,
     formErrorState.is,
+    formPassState.is,
     allowModal,
   ]);
 
@@ -316,7 +325,6 @@ export default function BookingBar(props) {
         '03 PM',
         '04 PM',
         '05 PM',
-        '06 PM',
       ]);
     } else {
       setDropOffTiming([
@@ -703,6 +711,9 @@ export default function BookingBar(props) {
         </Center>
       </Center>
       {formErrorState.is && <AlertPop title={formErrorState.message} />}
+    { timedropOfff - timePickupp === 12 && collection?.getDate() === dropOff?.getDate() ? <Alert status='info' color={'spinwash.500'}>
+    <AlertIcon />We charge 25% more on same day orders
+  </Alert> : '' }
     </VStack>
   );
 }
