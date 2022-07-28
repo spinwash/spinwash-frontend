@@ -16,10 +16,10 @@ const position = { lat: 51.379103, lng: -0.01553 };
 
 const options = {
   fillColor: '#E1F6FF',
-  fillOpacity: 0.3,
+  fillOpacity: 0.1,
   strokeColor: '#1B4D7A',
   strokeOpacity: 1,
-  strokeWeight: 1,
+  strokeWeight: 2,
   clickable: false,
   draggable: false,
   editable: false,
@@ -80,7 +80,7 @@ const Map = () => {
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={position}
-            zoom={10}
+            zoom={10.5}
             onLoad={onLoad}
             onUnmount={onUnmount}
           >
