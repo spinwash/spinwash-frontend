@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Box, Heading, Stack, Text, VStack } from '@chakra-ui/react';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import BookNow from './BookNow';
+import BookOff from './BookOff';
 import { useNavigate } from 'react-router-dom';
 
 const MotionStack = motion(Stack);
@@ -40,7 +40,7 @@ const ExtraServices = () => {
       my={{ base: '2rem', md: '6rem' }}
       spacing={{ base: '2rem', md: '' }}
     >
-      <BookNow />
+      <BookOff />
       <VStack
         bg='spinwash.100'
         maxW={'fit-content'}
@@ -67,7 +67,7 @@ const ExtraServices = () => {
           fontWeight={'400'}
           fontSize={{ base: 'xs', md: 'md' }}
         >
-          Get 20% Off with your first order{' '}
+          Get 20% Off with your first order by using the code : SPINWASH20{' '}
         </Text>
         <Text
           as='span'
