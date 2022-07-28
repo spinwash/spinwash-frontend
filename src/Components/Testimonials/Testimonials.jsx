@@ -12,6 +12,7 @@ import Slider from 'react-slick';
 import axios from 'axios';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import cards_data from './Testimonial_data.json'
 
 const MotionContainer = motion(Container);
 
@@ -53,14 +54,15 @@ export default function Testimonials() {
   }, [controls, inView]);
 
   useEffect(() => {
-    axios
+   /* axios
       .get(`https://spinwash.herokuapp.com/api/reviews`)
       .then((res) => {
         const data = JSON.parse(res.data);
         // console.log(data.result.reviews);
         setCards(data.result.reviews);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err));*/
+      setCards(cards_data);
   }, []);
 
   return (
@@ -132,7 +134,8 @@ export default function Testimonials() {
           ))}
         </Slider>
       </Box>
-      {/*  <Stack
+      {/*}
+        <Stack
         p='4rem 1rem'
         maxW='7xl'
         mx='auto'
@@ -158,7 +161,8 @@ export default function Testimonials() {
           porttitor rhoncus dolor purus non enim praesent elementum facilisis
           leo, vel
         </Text>
-          </Stack>*/}
+          </Stack>
+          */}
     </MotionContainer>
   );
 }
