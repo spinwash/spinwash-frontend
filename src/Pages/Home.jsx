@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useAnimation, motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Hero from '../Components/Hero/Hero';
-import BookNow from '../Components/Home/BookNow';
+import BookOff from '../Components/Home/BookOff';
 import Count from '../Components/Home/Count';
 import HowItWorks from '../Components/Home/HowItWorks';
 import Services from '../Components/Services/Services';
@@ -43,7 +43,7 @@ const Home = () => {
         justifyContent='space-between'
         my={{ base: '2rem', md: '4rem' }}
       >
-        <BookNow />
+        <BookOff />
         <Count />
       </MotionStack>
       <Services />
