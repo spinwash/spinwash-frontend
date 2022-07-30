@@ -34,7 +34,7 @@ const BookNow = () => {
         fontSize={{ base: 'xl', md: '4xl' }}
         maxW='36rem'
       >
-        The Best Dry Cleaning Delivered directly to your door
+        GET 20% OFF YOUR FIRST ORDER using the code 'SPINWASH20'
       </Heading>
       <Box as='button' onClick={onClickHandler}>
         <ArrowButton variant='dark'>Book Now</ArrowButton>
