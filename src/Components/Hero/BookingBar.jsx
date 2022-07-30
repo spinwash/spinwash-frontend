@@ -597,15 +597,11 @@ export default function BookingBar(props) {
                               <b>
                                 Your Items will be picked up between{' '}
                                 {watch('pickupTime')
-                                  ? `${watch('pickupTime')} to ${addedTime(
-                                      watch('pickupTime')
-                                    )}.`
+                                  ? `${watch('pickupTime')}`
                                   : '1 hr of selected time. '}{' '}
                                 and dropped off between{' '}
                                 {watch('dropOffTime')
-                                  ? `${watch('dropOffTime')} to ${addedTime(
-                                      watch('dropOffTime')
-                                    )}.`
+                                  ? `${watch('dropOffTime')}.`
                                   : '1 hr of selected time. '}
                                 {/*   on the{' '}
                               {watch('pickup')?.toISOString().split('T')[0]},*/}
@@ -630,7 +626,7 @@ export default function BookingBar(props) {
                                 textAlign={'center'}
                                 fontSize={{ base: 'sm', md: 'md' }}
                               >
-                                20% Extra will be Charged for same day delivery
+                                25% Extra will be Charged for same day delivery
                               </Text>
                             </VStack>
                           ) : (
