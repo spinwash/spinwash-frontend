@@ -165,7 +165,7 @@ export default function BookingBar(props) {
           if (timePickupp - now.getHours() < 3) {
             setFormErrorState({
               is: true,
-              message: 'Minimum Time for pickup is 3 hrs',
+              message: 'Minimum Time for pickup is 2 hrs',
             });
             setNotPossible(true);
             console.log('✖ less than 3 hours in today');
