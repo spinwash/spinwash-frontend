@@ -247,7 +247,7 @@ export default function BookingBar(props) {
         setAllowModal(true);
       }
 
-      if (formPassState.is) {
+      if (formErrorState.is) {
         setNotPossible(true);
         setAllowModal(false);
       } else {
@@ -290,7 +290,6 @@ export default function BookingBar(props) {
         '03 PM',
         '04 PM',
         '05 PM',
-        '06 PM',
       ]);
     } else {
       setTiming([
