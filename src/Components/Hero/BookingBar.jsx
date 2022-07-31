@@ -649,6 +649,21 @@ export default function BookingBar(props) {
                               {...register('address')}
                             />
                           </FormControl>
+                          <FormControl w='full' mb='1rem'>
+                            <Input
+                              outline='2px solid #1B4D7A'
+                              type={'text'}
+                              mb={'1rem'}
+                              borderRadius={'0'}
+                              bg={'white'}
+                              px='0.5rem'
+                              h={{ base: '3rem', md: '3.6rem' }}
+                              size={{ base: 'sm', md: 'lg' }}
+                              placeholder='Promo Code'
+                              _placeholder={{ color: 'gray.400' }}
+                              {...register('promo')}
+                            />
+                          </FormControl>
                           <Textarea
                             placeholder='Details'
                             fontSize={{ base: 'sm', md: 'sm' }}
