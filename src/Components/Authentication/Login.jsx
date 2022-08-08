@@ -89,7 +89,7 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
         setLoader(false);
       });
   };
-
+/*
   const googleSuccess = (tokenId) => {
     setLoaderGoogle(true);
     axios
@@ -121,11 +121,12 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
   const googleFailure = () => {
     console.log('google failure');
   };
+*/
   return (
     <ModalContent bg='white' rounded='none' shadow='md'>
       <ModalCloseButton />
       <ModalBody
-        mt={{ base: '10vh', md: '3rem' }}
+        mt={{ base: '15vh', md: '3rem' }}
         mb={{ base: '0', md: '3rem' }}
       >
         {showForgotPasswordScreen ? (
@@ -146,6 +147,7 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
             >
               Login
             </Heading>
+            {/*
             <GoogleLogin
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               onSuccess={googleSuccess}
@@ -178,7 +180,8 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
                 </Button>
               )}
             />{' '}
-            <Text fontSize={{ base: 'xs', md: 'sm' }}>or</Text>
+                */}
+            {/*<Text fontSize={{ base: 'xs', md: 'sm' }}>or</Text>*/}
             <VStack w='full'>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <FormControl w='full' isRequired>
