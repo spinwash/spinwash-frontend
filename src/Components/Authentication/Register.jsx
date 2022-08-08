@@ -5,8 +5,12 @@ import {
   useToast,
   Text,
   Heading,
+  FormLabel,
   FormControl,
   Alert,
+  Wrap,
+  Select,
+  Textarea,
   AlertIcon,
   AlertTitle,
   VStack,
@@ -89,7 +93,7 @@ const Register = () => {
         setLoader(false);
       });
   };
-
+/*
   const googleSuccess = (tokenId) => {
     setLoaderGoogle(true);
     axios
@@ -120,10 +124,10 @@ const Register = () => {
   const googleFailure = () => {
     console.log('google failure');
   };
+  */
   return (
     <Container
       w='fit-content'
-      h='90vh'
       display='flex'
       alignItems={'center'}
       justify='center'
@@ -141,7 +145,7 @@ const Register = () => {
         >
           Sign Up
         </Heading>
-        <GoogleLogin
+       {/* <GoogleLogin
           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           onSuccess={googleSuccess}
           onFailure={googleFailure}
@@ -173,7 +177,8 @@ const Register = () => {
             </Button>
           )}
         />{' '}
-        <Text fontSize={{ base: 'xs', md: 'sm' }}>or</Text>
+            */}
+        {/*<Text fontSize={{ base: 'xs', md: 'sm' }}>or</Text>*/}
         <VStack w='full'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl w='full' isRequired mb='1rem'>
@@ -291,6 +296,146 @@ const Register = () => {
                 {...register('promocode')}
               />
             </FormControl>
+
+
+            {/*EDITS*/}
+            <FormControl
+                w='full' mb='1rem'
+              >
+                <Input
+                  outline='2px solid #1B4D7A'
+                  mb={'1rem'}
+                  type={'number'}
+                  name='phoneNumber'
+                  bg={'white'}
+                  px='0.5rem'
+                  h={{ base: '3rem', md: '3.6rem' }}
+                  size={{ base: 'sm', md: 'lg' }}
+                  borderRadius={'0'}
+                  placeholder='Phone Number'
+                  _placeholder={{ color: 'gray.400' }}
+                  {...register('phoneNumber')}
+                />
+              </FormControl>
+
+              <FormControl
+                w='full' mb='1rem'
+              >
+                
+                <Input
+                 outline='2px solid #1B4D7A'
+                 mb={'1rem'}
+                  type='text'
+                  name='address'
+                  placeholder='Address'
+                  _placeholder={{ color: 'gray.400' }}
+                  bg={'white'}
+                  px='0.5rem'
+                  h={{ base: '3rem', md: '3.6rem' }}
+                  size={{ base: 'sm', md: 'lg' }}
+                  borderRadius={'0'}
+                  {...register('address')}
+                />
+              </FormControl>
+              <VStack alignItems={'start'} gap='2rem'>
+          <Heading fontSize={{ base: '2xl', md: '4xl' }} fontWeight={'500'}>
+            Preferences
+          </Heading>
+          <VStack px='1rem'>
+            <Wrap spacing={{ base: '2rem', md: '3rem' }}>
+              <VStack
+                alignItems='start'
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
+                <Heading
+                  my='0.5rem'
+                  fontSize={{ base: 'xl', md: '2xl' }}
+                  fontWeight={500}
+                >
+                  Shirt Cleaning Preferences
+                </Heading>
+                <VStack pl='1rem'>
+                  <Select
+                  //  placeholder={data?.shirtWashingPreference}
+                    {...register('shirtWashingPreference')}
+                  >
+                    <option value='Wash And Press'>Wash and Press</option>
+                    <option value='Press Only'>Press Only</option>
+                    <option value='Dry Clean And Press'>
+                      Dry Clean and Press
+                    </option>
+                  </Select>{' '}
+                </VStack>
+              </VStack>{' '}
+              <VStack
+                alignItems='start'
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
+                <Heading
+                  my='0.5rem'
+                  fontSize={{ base: 'xl', md: '2xl' }}
+                  fontWeight={500}
+                >
+                  Shirt Delivery Preferences
+                </Heading>
+                <VStack pl='1rem'>
+                  <Select
+                  //  placeholder={data?.shirtFoldingPreference}
+                    {...register('shirtFoldingPreference')}
+                  >
+                    <option value='Hung'>On Hanger</option>
+                    <option value='Folded'>Folded (Additional Cost)</option>
+                  </Select>{' '}
+                </VStack>
+              </VStack>
+              <VStack
+                alignItems='start'
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
+                <Heading
+                  my='0.5rem'
+                  fontSize={{ base: 'xl', md: '2xl' }}
+                  fontWeight={500}
+                >
+                  Bedding Preferences
+                </Heading>
+                <VStack pl='1rem'>
+                  <Select
+                  //  placeholder={data?.beddingPreference}
+                    {...register('beddingPreference')}
+                  >
+                    <option value='Wash And Press'>Wash And Press</option>
+                    <option value='Press Only'>Press Only</option>
+                    <option value='Wash And Fold'>Wash And Fold</option>
+                  </Select>{' '}
+                </VStack>
+              </VStack>
+              <VStack
+                alignItems='start'
+                w={{ base: '80vw', md: '40vw', xl: '34rem' }}
+              >
+                <Heading
+                  my='0.5rem'
+                  fontSize={{ base: 'xl', md: '2xl' }}
+                  fontWeight={500}
+                >
+                  Any Personal Cleaning, Pressing & Packaging, Preferences
+                </Heading>
+                <FormControl pl='1rem'>
+                  <Textarea
+                    borderColor={'spinwash.500'}
+                    _hover={{
+                      borderColor: 'spinwash.500',
+                    }}
+                    type='text'
+                    placeholder='Preferences'
+                    {...register('preferences')}
+                  />
+                </FormControl>
+              </VStack>
+            </Wrap>
+          </VStack>
+              </VStack>
             <Button
               variant={'unstyled'}
               border='2px solid'
@@ -303,6 +448,7 @@ const Register = () => {
               alignItems='center'
               width='fit-content'
               mx='auto'
+              my='3'
               alignSelf={'center'}
               isLoading={loader}
             >
