@@ -12,7 +12,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(`https://spinwash.herokuapp.com/api/user/${_id}`)
+      .get(`https://newapi.spinwash.co.uk/api/user/${_id}`)
       .then((res) => {
         setData(res.data);
       })

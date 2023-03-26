@@ -59,7 +59,7 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
   const onSubmit = (data) => {
     setLoader(true);
     axios
-      .post(`https://spinwash.herokuapp.com/api/login`, data)
+      .post(`https://newapi.spinwash.co.uk/api/login`, data)
       .then((res) => {
         toast({
           title: 'Login Successful',
@@ -93,7 +93,7 @@ const Login = ({ closeModel, loggedIn, setLoggedIn }) => {
   const googleSuccess = (tokenId) => {
     setLoaderGoogle(true);
     axios
-      .post(`https://spinwash.herokuapp.com/api/googlelogin`, {
+      .post(`https://newapi.spinwash.co.uk/api/googlelogin`, {
         idToken: tokenId.tokenId,
       })
       .then((res) => {

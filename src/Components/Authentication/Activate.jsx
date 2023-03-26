@@ -43,7 +43,7 @@ const Activate = () => {
     setLoader(true);
     e.preventDefault();
     axios
-      .post(`https://spinwash.herokuapp.com/api/activation`, {
+      .post(`https://newapi.spinwash.co.uk/api/activation`, {
         token,
       })
       .then((res) => {

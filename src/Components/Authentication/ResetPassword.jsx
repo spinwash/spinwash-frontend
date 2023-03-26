@@ -51,7 +51,7 @@ const ResetPassword = () => {
   const onSubmit = (data) => {
     setLoader(true);
     axios
-      .put(`https://spinwash.herokuapp.com/api/password/reset`, {
+      .put(`https://newapi.spinwash.co.uk/api/password/reset`, {
         resetPasswordLink: params.token,
         newPassword: data.password,
       })

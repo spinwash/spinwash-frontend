@@ -45,7 +45,7 @@ const EditProfile = ({ data, setEditMode, setData }) => {
     data.profilePicture = newImage;
 
     axios
-      .put(`https://spinwash.herokuapp.com/api/user/update`, data)
+      .put(`https://newapi.spinwash.co.uk/api/user/update`, data)
       .then((res) => {
         setData(res.data);
         setLocalStorage('user', res.data);

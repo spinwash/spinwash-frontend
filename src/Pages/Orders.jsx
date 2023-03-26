@@ -25,7 +25,7 @@ const Orders = (props) => {
   const id = isAuth()?._id;
   useEffect(() => {
     axios
-      .get(`https://spinwash.herokuapp.com/api/user/${id}`)
+      .get(`https://newapi.spinwash.co.uk/api/user/${id}`)
       .then((res) => {
         setData(res.data.order);
       })

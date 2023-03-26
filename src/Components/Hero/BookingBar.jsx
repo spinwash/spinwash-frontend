@@ -357,7 +357,7 @@ export default function BookingBar(props) {
     };
     axios
       .post(
-        `https://spinwash.herokuapp.com/api/user/createOrder/${isAuth()._id}`,
+        `https://newapi.spinwash.co.uk/api/user/createOrder/${isAuth()._id}`,
         dataToSend
       )
       .then((res) => {

@@ -63,7 +63,7 @@ const Faq = () => {
   const onSubmit = (data) => {
     setLoader(true);
     axios
-      .post(`https://spinwash.herokuapp.com/api/contactUS`, data)
+      .post(`https://newapi.spinwash.co.uk/api/contactUS`, data)
       .then((res) => {
         toast({
           title: res.data.message,

@@ -41,7 +41,7 @@ const ForgotPassword = (props) => {
   const onSubmit = (data) => {
     setloader(true);
     axios
-      .post(`https://spinwash.herokuapp.com/api/password/forget`, data)
+      .post(`https://newapi.spinwash.co.uk/api/password/forget`, data)
       .then((res) => {
         toast({
           title: 'Please Check Your email',

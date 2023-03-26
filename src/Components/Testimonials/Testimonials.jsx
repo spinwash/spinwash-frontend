@@ -55,7 +55,7 @@ export default function Testimonials() {
 
   useEffect(() => {
    /* axios
-      .get(`https://spinwash.herokuapp.com/api/reviews`)
+      .get(`https://newapi.spinwash.co.uk/api/reviews`)
       .then((res) => {
         const data = JSON.parse(res.data);
         // console.log(data.result.reviews);
