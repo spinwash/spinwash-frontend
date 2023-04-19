@@ -23,7 +23,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Home />} />
+       
         <Route path='service/:service' element={<Services />} />
         <Route path='about' element={<About />} />
         <Route path='register' element={<RegisterPage />} />
@@ -34,6 +34,7 @@ function App() {
         <Route path='orders' element={<Orders />} />
         <Route path='t&c' element={<TermsAndConditions />} />
         <Route path='users/password/reset/:token' element={<ResetPassword />} />
+        <Route path='/' element={<Home />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
